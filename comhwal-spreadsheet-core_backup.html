@@ -1,0 +1,2136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 2과목 스프레드시트 일반</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-card-hover: 0 10px 25px -5px rgba(2, 132, 199, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* 초록색 핵심 하이라이트 (요청사항: #fff176 노란색 -> 초록색 반영) */
+    .hl-green, u {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+    }
+
+    /* Top Bar - Clean White Theme without prev/next buttons */
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .slide-counter span {
+      color: var(--accent-blue);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    /* Main Slide Stage */
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 40px;
+      position: relative;
+      background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+    }
+
+    .slide-canvas {
+      width: 100%;
+      max-width: 1440px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 170px);
+      background: var(--canvas-bg);
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      box-shadow: var(--shadow-canvas);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 36px 48px;
+      transition: all 0.3s ease;
+    }
+
+    /* Animations */
+    @keyframes slideFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(24px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .anim-slide {
+      animation: slideFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-left {
+      animation: fadeInLeft 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: fadeInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Slide Tag: 26px Bold */
+    .slide-tag {
+      font-size: 26px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    .slide-title {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 20px;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+
+    /* 50% : 50% Split Layout */
+    .split-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      flex: 1;
+      height: calc(100% - 70px);
+      align-items: stretch;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .right-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+      font-size: 20px;
+    }
+
+    /* Info Cards in Left Col (2배 확대 가독성) */
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      box-shadow: var(--shadow-card);
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      border-color: #93c5fd;
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      border-top-left-radius: 14px;
+      border-bottom-left-radius: 14px;
+      background: var(--accent-blue);
+    }
+
+    .info-card.warning::before {
+      background: var(--accent-rose);
+    }
+
+    .info-card.success::before {
+      background: var(--accent-emerald);
+    }
+
+    .info-card.amber::before {
+      background: var(--accent-amber);
+    }
+
+    .info-card.purple::before {
+      background: var(--accent-purple);
+    }
+
+    .card-title {
+      font-size: 25px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-desc {
+      font-size: 21px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Key Badge */
+    .key-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      color: #0369a1;
+      font-weight: 700;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Visual Mockups in Right Col */
+    .visual-mockup {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .excel-window {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1);
+    }
+
+    .excel-window-header {
+      background: #107c41;
+      padding: 10px 18px;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .excel-window-body {
+      padding: 18px;
+      background: #ffffff;
+      font-size: 18px;
+    }
+
+    /* Slide 1 - Title Slide (No Split) */
+    .title-slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      position: relative;
+      background: radial-gradient(circle at center, #ffffff 40%, #f0fdf4 100%);
+      border-radius: 16px;
+    }
+
+    .title-badge {
+      padding: 8px 26px;
+      background: var(--accent-emerald-light);
+      border: 1.5px solid #86efac;
+      color: var(--accent-emerald);
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 22px;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+
+    .title-h1 {
+      font-size: 60px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      color: #0f172a;
+    }
+
+    .title-h1 span {
+      color: var(--accent-emerald);
+    }
+
+    .title-sub {
+      font-size: 28px;
+      color: #64748b;
+      font-weight: 600;
+      max-width: 1000px;
+      line-height: 1.5;
+    }
+
+    /* Slide 21, 22 - Summary Infographic Styles */
+    .infographic-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .infographic-grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 14px;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .infographic-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 14px;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .info-tile {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 22px 24px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .info-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    }
+
+    .info-tile-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 23px;
+      font-weight: 900;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid #f1f5f9;
+    }
+
+    .info-tile.blue { border-top: 5px solid #0284c7; }
+    .info-tile.blue .info-tile-header { color: #0284c7; }
+    .info-tile.amber { border-top: 5px solid #f59e0b; }
+    .info-tile.amber .info-tile-header { color: #b45309; }
+    .info-tile.rose { border-top: 5px solid #f43f5e; }
+    .info-tile.rose .info-tile-header { color: #be123c; }
+    .info-tile.purple { border-top: 5px solid #8b5cf6; }
+    .info-tile.purple .info-tile-header { color: #6d28d9; }
+    .info-tile.emerald { border-top: 5px solid #10b981; }
+    .info-tile.emerald .info-tile-header { color: #047857; }
+
+    .info-chip-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .info-chip strong {
+      font-family: 'JetBrains Mono', monospace;
+      color: #0f172a;
+      font-size: 19px;
+    }
+
+    .info-box-dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-sub-box {
+      padding: 18px 20px;
+      border-radius: 12px;
+      font-size: 17.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    /* Bottom Speaker Notes Drawer */
+    .notes-drawer {
+      height: 140px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      padding: 14px 36px;
+      display: flex;
+      flex-direction: column;
+      transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .notes-drawer.collapsed {
+      height: 42px;
+    }
+
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .notes-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notes-content {
+      overflow-y: auto;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #334155;
+    }
+
+    .notes-content strong {
+      color: #047857;
+      background: #ecfdf5;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .btn-toggle-notes {
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-toggle-notes:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <!-- Top Bar -->
+    <header class="header-bar">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <span class="badge-subject" style="background:#ecfdf5; border-color:#a7f3d0; color:#047857;">컴퓨터활용능력 2급 필기</span>
+        <span style="font-size: 15px; font-weight: 700; color: #334155;">제2과목 스프레드시트 일반 핵심 요약 (01~06)</span>
+      </div>
+      <!-- 슬라이드 번호 카운터 -->
+      <div class="slide-counter"><span id="curSlideNum">1</span> / <span id="totalSlideNum">22</span></div>
+    </header>
+
+    <!-- Slide Canvas Stage -->
+    <main class="slide-stage">
+      <div class="slide-canvas" id="slideCanvas">
+        <!-- Dynamic Slide Content -->
+      </div>
+    </main>
+
+    <!-- Speaker Notes Panel -->
+    <footer class="notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size: 11px; color: #94a3b8; font-weight: normal;">(단축키: N 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        <!-- Notes Text -->
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Visual Mockups for Right Column (초보자 맞춤형 직관적 그래픽)
+    const visualGenerators = {
+      // Slide 2: Quick Access & Ribbon (Trigger-based Interactive Mockup)
+      2: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window">
+            <!-- 상단 헤더: 빠른 실행 도구 모음 트리거 버튼 -->
+            <div class="excel-window-header">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="display: flex; gap: 4px; background: rgba(255,255,255,0.22); padding: 3px 8px; border-radius: 6px;">
+                  <span onclick="triggerQuickAccess('save')" title="저장 (Ctrl+S)" style="cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">💾</span>
+                  <span onclick="triggerQuickAccess('undo')" title="실행 취소 (Ctrl+Z)" style="cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">↩</span>
+                  <span onclick="triggerQuickAccess('redo')" title="다시 실행 (Ctrl+Y)" style="cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">↪</span>
+                </div>
+                <span style="font-size: 15px; font-weight: 800;">빠른 실행 도구 모음</span>
+              </div>
+              <button onclick="triggerQuickAccess('position')" style="border:none; cursor:pointer; font-size: 12.5px; background: #0284c7; color:white; padding: 4px 10px; border-radius: 6px; font-weight: 700; transition: background 0.2s;" onmouseover="this.style.background='#0369a1'" onmouseout="this.style.background='#0284c7'">
+                📍 리본 위/아래 배치
+              </button>
+            </div>
+
+            <!-- 리본 메뉴 탭 인터랙티브 트리거 바 -->
+            <div style="background: #f1f5f9; padding: 6px 10px; border-bottom: 1.5px solid #cbd5e1; display: flex; gap: 6px; font-size: 14.5px; font-weight: 800; align-items: center; overflow-x: auto;">
+              <button class="ribbon-tab-btn" data-tab="home" onclick="switchRibbonTab('home')" style="border:none; cursor:pointer; padding: 6px 14px; border-radius: 6px; background: #107c41; color: #ffffff; font-weight: 800; font-size: 14.5px; transition: all 0.2s; box-shadow: 0 2px 6px rgba(16, 124, 65, 0.3);">
+                홈
+              </button>
+              <button class="ribbon-tab-btn" data-tab="insert" onclick="switchRibbonTab('insert')" style="border:none; cursor:pointer; padding: 6px 14px; border-radius: 6px; background: transparent; color: #475569; font-weight: 800; font-size: 14.5px; transition: all 0.2s;">
+                삽입
+              </button>
+              <button class="ribbon-tab-btn" data-tab="page" onclick="switchRibbonTab('page')" style="border:none; cursor:pointer; padding: 6px 14px; border-radius: 6px; background: transparent; color: #475569; font-weight: 800; font-size: 14.5px; transition: all 0.2s;">
+                페이지 레이아웃
+              </button>
+              <button class="ribbon-tab-btn" data-tab="formula" onclick="switchRibbonTab('formula')" style="border:none; cursor:pointer; padding: 6px 14px; border-radius: 6px; background: transparent; color: #475569; font-weight: 800; font-size: 14.5px; transition: all 0.2s;">
+                수식
+              </button>
+              <button class="ribbon-tab-btn" data-tab="data" onclick="switchRibbonTab('data')" style="border:none; cursor:pointer; padding: 6px 14px; border-radius: 6px; background: transparent; color: #475569; font-weight: 800; font-size: 14.5px; transition: all 0.2s;">
+                데이터
+              </button>
+              <button class="ribbon-tab-btn" data-tab="review" onclick="switchRibbonTab('review')" style="border:none; cursor:pointer; padding: 6px 14px; border-radius: 6px; background: transparent; color: #475569; font-weight: 800; font-size: 14.5px; transition: all 0.2s;">
+                검토
+              </button>
+            </div>
+
+            <!-- 리본 메뉴 본체: 선택된 탭에 따라 그룹과 명령이 동적으로 트리거 전환 -->
+            <div class="excel-window-body" style="background: #fafafa; padding: 14px;">
+              <div id="ribbonGroupsContainer" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                <!-- 기본: 홈 탭 그룹 -->
+                <div class="ribbon-group-card anim-slide" onclick="highlightRibbonGroup('클립보드 그룹', '붙여넣기, 잘라내기(Ctrl+X), 복사(Ctrl+C), 서식 복사')" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:12px; text-align:center; cursor:pointer; transition:all 0.2s; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                  <div style="font-size:26px; margin-bottom:6px;">📋</div>
+                  <div style="font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">클립보드 그룹</div>
+                  <div style="font-size:12.5px; color:#64748b; line-height:1.4;">붙여넣기, 잘라내기, 복사, 서식 복사</div>
+                </div>
+                <div class="ribbon-group-card anim-slide" onclick="highlightRibbonGroup('글꼴 그룹', '글꼴 선택, 크기 조절, 굵게(Ctrl+B), 밑줄, 채우기 색')" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:12px; text-align:center; cursor:pointer; transition:all 0.2s; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                  <div style="font-size:26px; margin-bottom:6px;">🔤</div>
+                  <div style="font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">글꼴 그룹</div>
+                  <div style="font-size:12.5px; color:#64748b; line-height:1.4;">글꼴, 크기, 굵게, 테두리, 채우기 색</div>
+                </div>
+                <div class="ribbon-group-card anim-slide" onclick="highlightRibbonGroup('맞춤 그룹', '텍스트 맞춤, 병합하고 가운데 맞춤, 텍스트 줄 바꿈')" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:12px; text-align:center; cursor:pointer; transition:all 0.2s; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+                  <div style="font-size:26px; margin-bottom:6px;">📐</div>
+                  <div style="font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">맞춤 그룹</div>
+                  <div style="font-size:12.5px; color:#64748b; line-height:1.4;">맞춤, 병합하고 가운데 맞춤, 줄 바꿈</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 하단 인터랙티브 실시간 트리거 설명창 -->
+          <div id="ribbonDescBox" style="margin-top: 12px; background: #ecfdf5; border: 1.5px solid #86efac; padding: 12px 18px; border-radius: 10px; font-size: 15.5px; color: #166534; line-height: 1.5; width: 100%; font-weight: 700; box-shadow: 0 2px 8px rgba(16,185,129,0.1); transition: all 0.25s ease;">
+            💡 <strong>[홈 탭]</strong>: 가장 빈번하게 사용하는 기본 폰트, 맞춤 서식, 클립보드 명령이 모여 있는 기본 탭입니다. <span style="font-size:13px; color:#059669; font-weight:normal;">(위 탭 및 카드를 클릭해 보세요!)</span>
+          </div>
+        </div>
+      `,
+
+      // Slide 3: Formula Bar & Cell (Trigger-based Interactive Mockup)
+      3: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window">
+            <!-- 함수 변경 & 수식 보기 토글 트리거 바 -->
+            <div style="background: #1e293b; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #334155;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span style="font-size: 13px; color: #94a3b8; font-weight: 700; margin-right: 4px;">함수 트리거:</span>
+                <button class="func-btn" data-func="SUM" onclick="switchFormulaDemo('SUM')" style="border:none; cursor:pointer; padding: 3px 10px; border-radius: 5px; background: #10b981; color: white; font-weight: 800; font-size: 12.5px; transition: all 0.2s;">SUM (합계)</button>
+                <button class="func-btn" data-func="AVERAGE" onclick="switchFormulaDemo('AVERAGE')" style="border:none; cursor:pointer; padding: 3px 10px; border-radius: 5px; background: #334155; color: #cbd5e1; font-weight: 700; font-size: 12.5px; transition: all 0.2s;">AVERAGE (평균)</button>
+                <button class="func-btn" data-func="COUNT" onclick="switchFormulaDemo('COUNT')" style="border:none; cursor:pointer; padding: 3px 10px; border-radius: 5px; background: #334155; color: #cbd5e1; font-weight: 700; font-size: 12.5px; transition: all 0.2s;">COUNT (개수)</button>
+                <button class="func-btn" data-func="MAX" onclick="switchFormulaDemo('MAX')" style="border:none; cursor:pointer; padding: 3px 10px; border-radius: 5px; background: #334155; color: #cbd5e1; font-weight: 700; font-size: 12.5px; transition: all 0.2s;">MAX (최대값)</button>
+              </div>
+              <button id="toggleFormulaViewBtn" onclick="toggleFormulaView()" style="border:none; cursor:pointer; padding: 4px 10px; border-radius: 6px; background: #0284c7; color: white; font-weight: 800; font-size: 12px; transition: all 0.2s;">
+                👁️ 수식 표시 (Ctrl+\`)
+              </button>
+            </div>
+
+            <!-- 수식 입력줄 & 이름 상자 인터랙티브 헤더 -->
+            <div style="background: #f8fafc; padding: 10px 16px; border-bottom: 1.5px solid #cbd5e1; display: flex; align-items: center; gap: 10px;">
+              <div id="interactiveNameBox" onclick="triggerFormulaBarElement('nameBox')" title="클릭하여 이름 상자 설명 보기" style="cursor: pointer; background: #ffffff; border: 1.5px solid #0284c7; padding: 5px 12px; border-radius: 6px; font-family: 'JetBrains Mono'; font-weight: 900; color: #0284c7; font-size: 18px; min-width: 54px; text-align: center; transition: all 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.05);" onmouseover="this.style.background='#e0f2fe'" onmouseout="this.style.background='#ffffff'">
+                A4
+              </div>
+              <span onclick="triggerFormulaBarElement('nameBox')" style="cursor:pointer; font-size: 12px; color: #64748b; font-weight: 800;">[이름 상자]</span>
+              <div onclick="triggerFormulaBarElement('fx')" title="클릭하여 함수 마법사(fx) 설명 보기" style="cursor: pointer; font-weight: 900; color: #64748b; font-size: 20px; padding: 2px 6px; border-radius: 4px; transition: all 0.15s;" onmouseover="this.style.color='#047857'; this.style.background='#ecfdf5';" onmouseout="this.style.color='#64748b'; this.style.background='transparent';">
+                fx
+              </div>
+              <div id="interactiveFormulaBar" onclick="triggerFormulaBarElement('formulaInput')" title="클릭하여 수식 입력줄 설명 보기" style="flex: 1; cursor: pointer; background: #ffffff; border: 2px solid #22c55e; padding: 6px 14px; border-radius: 6px; font-family: 'JetBrains Mono'; font-weight: 900; font-size: 19px; color: #15803d; transition: all 0.2s;" onmouseover="this.style.boxShadow='0 0 0 3px rgba(34,197,94,0.2)'" onmouseout="this.style.boxShadow='none'">
+                =SUM(A1:A3)
+              </div>
+            </div>
+
+            <!-- 워크시트 셀 그리드 (셀 직접 클릭 트리거 인터랙티브) -->
+            <div class="excel-window-body" style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 14px; color: #64748b; font-weight: 800;">워크시트 그리드 <span style="color:#047857; font-weight:normal;">(👇 원하는 셀을 클릭해 보세요!)</span></span>
+                <span id="activeCellBadge" style="font-size: 12.5px; background: #ecfdf5; color: #047857; border: 1px solid #86efac; padding: 2px 8px; border-radius: 4px; font-weight: 800;">선택 셀: A4 (수식 셀)</span>
+              </div>
+              <table style="width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono'; font-size: 18px; text-align: center;">
+                <tr style="background: #e2e8f0; color: #475569; font-weight: 800;">
+                  <th style="padding: 6px; border: 1px solid #cbd5e1; width: 44px;"></th>
+                  <th style="padding: 6px; border: 1px solid #cbd5e1;">A</th>
+                  <th style="padding: 6px; border: 1px solid #cbd5e1; width: 140px; color: #94a3b8; font-size: 14px;">셀 속성</th>
+                </tr>
+                <tr id="row_A1" onclick="selectCell('A1')" style="cursor: pointer; transition: background 0.15s;" onmouseover="if(currentSelectedCell!=='A1') this.style.background='#f8fafc'" onmouseout="if(currentSelectedCell!=='A1') this.style.background='transparent'">
+                  <td style="background: #f1f5f9; border: 1px solid #cbd5e1; font-weight: 700;">1</td>
+                  <td id="cell_A1" style="border: 1px dashed #0284c7; padding: 7px; font-weight: 800; color: #0f172a;">10</td>
+                  <td style="border: 1px solid #cbd5e1; font-size: 13px; color: #64748b; font-weight: 600;">일반 숫자</td>
+                </tr>
+                <tr id="row_A2" onclick="selectCell('A2')" style="cursor: pointer; transition: background 0.15s;" onmouseover="if(currentSelectedCell!=='A2') this.style.background='#f8fafc'" onmouseout="if(currentSelectedCell!=='A2') this.style.background='transparent'">
+                  <td style="background: #f1f5f9; border: 1px solid #cbd5e1; font-weight: 700;">2</td>
+                  <td id="cell_A2" style="border: 1px dashed #0284c7; padding: 7px; font-weight: 800; color: #0f172a;">20</td>
+                  <td style="border: 1px solid #cbd5e1; font-size: 13px; color: #64748b; font-weight: 600;">일반 숫자</td>
+                </tr>
+                <tr id="row_A3" onclick="selectCell('A3')" style="cursor: pointer; transition: background 0.15s;" onmouseover="if(currentSelectedCell!=='A3') this.style.background='#f8fafc'" onmouseout="if(currentSelectedCell!=='A3') this.style.background='transparent'">
+                  <td style="background: #f1f5f9; border: 1px solid #cbd5e1; font-weight: 700;">3</td>
+                  <td id="cell_A3" style="border: 1px dashed #0284c7; padding: 7px; font-weight: 800; color: #0f172a;">30</td>
+                  <td style="border: 1px solid #cbd5e1; font-size: 13px; color: #64748b; font-weight: 600;">일반 숫자</td>
+                </tr>
+                <tr id="row_A4" onclick="selectCell('A4')" style="background: #ecfdf5; cursor: pointer;">
+                  <td style="background: #dcfce7; border: 1px solid #86efac; font-weight: 900; color: #166534;">4</td>
+                  <td id="cell_A4" style="border: 2.5px solid #22c55e; padding: 7px; font-weight: 900; color: #15803d; font-size: 22px; position: relative;">
+                    60
+                  </td>
+                  <td style="border: 1px solid #cbd5e1; font-size: 13px; color: #047857; font-weight: 800;">계산 결과값 🌟</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- 하단 인터랙티브 실시간 트리거 설명창 -->
+          <div id="cellDescBox" style="margin-top: 12px; background: #ecfdf5; border: 1.5px solid #86efac; padding: 12px 18px; border-radius: 10px; font-size: 15.5px; color: #166534; line-height: 1.5; width: 100%; font-weight: 700; box-shadow: 0 2px 8px rgba(16,185,129,0.1); transition: all 0.25s ease;">
+            ⭐ <strong>[A4 셀 선택 상태]</strong>: 셀에는 계산 결과값인 <strong>'60'</strong>이 표시되고, 수식 입력줄에는 원본 수식인 <strong>'=SUM(A1:A3)'</strong>이 표시됩니다! (위의 다른 셀이나 함수 버튼을 눌러보세요!)
+          </div>
+        </div>
+      `,
+
+      // Slide 4: Standard & Macro Formats
+      4: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow-card);">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 20px; font-weight: 900; color: #0284c7;">.xlsx</span>
+                <div style="font-size: 14px; color: #64748b; font-weight: 600;">Excel 통합 문서 (표준 형식)</div>
+              </div>
+              <span style="background: #fee2e2; color: #dc2626; font-size: 14px; font-weight: 800; padding: 4px 10px; border-radius: 6px;">매크로 저장 불가 ❌</span>
+            </div>
+
+            <div style="background: #ffffff; border: 2px solid #7c3aed; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow-card);">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 20px; font-weight: 900; color: #7c3aed;">.xlsm</span>
+                <div style="font-size: 14px; color: #64748b; font-weight: 600;">Excel 매크로 사용 통합 문서</div>
+              </div>
+              <span style="background: #ede9fe; color: #6d28d9; font-size: 14px; font-weight: 800; padding: 4px 10px; border-radius: 6px;">VBA 매크로 포함 ⚙️</span>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 20px; font-weight: 900; color: #059669;">.xltx / .xltm</span>
+                <div style="font-size: 14px; color: #64748b; font-weight: 600;">Excel 서식 파일 (템플릿)</div>
+              </div>
+              <span style="background: #ecfdf5; color: #047857; font-size: 14px; font-weight: 800; padding: 4px 10px; border-radius: 6px;">반복 서식 문서 📑</span>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 5: Binary & Backup & Old formats
+      5: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+            <div style="background: #ffffff; border: 2px solid #10b981; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow-card);">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 900; color: #059669;">.xlsb</span>
+                <div style="font-size: 15px; color: #475569; font-weight: 700; margin-top: 2px;">바이너리(Binary 2진수) 통합 문서</div>
+              </div>
+              <span style="background: #d1fae5; color: #065f46; font-size: 14px; font-weight: 800; padding: 4px 12px; border-radius: 6px;">대용량 고속 로딩 ⚡</span>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 900; color: #d97706;">.xlk</span>
+                <div style="font-size: 15px; color: #475569; font-weight: 700; margin-top: 2px;">Excel 백업 파일 사본</div>
+              </div>
+              <span style="background: #fef3c7; color: #92400e; font-size: 14px; font-weight: 800; padding: 4px 12px; border-radius: 6px;">이전 저장 상태 보존 💾</span>
+            </div>
+
+            <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 900; color: #64748b;">.xls</span>
+                <div style="font-size: 15px; color: #475569; font-weight: 700; margin-top: 2px;">Excel 97 - 2003 구버전 호환</div>
+              </div>
+              <span style="background: #f1f5f9; color: #475569; font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 6px;">최대 65,536행 지원</span>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 6: Text Delimited Formats (.csv, .prn, .txt)
+      6: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 900; color: #0284c7;">.csv</span>
+                <div style="font-size: 15px; color: #475569; font-weight: 700;">CSV (Comma-Separated)</div>
+              </div>
+              <span class="hl-green" style="font-size: 16px;">쉼표( , )로 데이터 구분</span>
+            </div>
+
+            <div style="background: #ffffff; border: 2px solid #7c3aed; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 900; color: #7c3aed;">.prn</span>
+                <div style="font-size: 15px; color: #475569; font-weight: 700;">텍스트 (Formatted Text)</div>
+              </div>
+              <span class="hl-green" style="font-size: 16px;">공백(Space)으로 분리</span>
+            </div>
+
+            <div style="background: #ffffff; border: 2px solid #059669; border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <span style="font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 900; color: #059669;">.txt</span>
+                <div style="font-size: 15px; color: #475569; font-weight: 700;">텍스트 (Tab-Delimited)</div>
+              </div>
+              <span class="hl-green" style="font-size: 16px;">탭(Tab)으로 분리</span>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 7: Save General Options & Backup
+      7: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window" style="max-width: 480px;">
+            <div class="excel-window-header" style="background: #1e293b; font-size: 16px;">
+              <span>저장 일반 옵션 (General Options)</span>
+              <span>단축키: Ctrl+S</span>
+            </div>
+            <div class="excel-window-body">
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: #0f172a; cursor: pointer;">
+                  <input type="checkbox" checked disabled style="width: 20px; height: 20px;">
+                  <span>백업 파일 항상 만들기 <strong style="color: #047857;">(*.xlk)</strong></span>
+                </label>
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 16px;">
+                  <span>열기 암호(R):</span>
+                  <input type="password" value="••••••••" disabled style="padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 6px; width: 180px;">
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 16px;">
+                  <span>쓰기 암호(M):</span>
+                  <input type="password" value="••••••••" disabled style="padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 6px; width: 180px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 8: Open vs Modify Password
+      8: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+            <div style="background: #fff1f2; border: 2px solid #fecaca; border-radius: 14px; padding: 20px; box-shadow: var(--shadow-card);">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                <span style="font-size: 26px;">🔒</span>
+                <span style="font-size: 22px; font-weight: 900; color: #9f1239;">열기 암호</span>
+              </div>
+              <div style="font-size: 18px; color: #881337; line-height: 1.5;">
+                암호를 모르면 <strong>문서 열기(열람) 자체를 전면 차단</strong>합니다.
+              </div>
+            </div>
+
+            <div style="background: #fefce8; border: 2px solid #fef08a; border-radius: 14px; padding: 20px; box-shadow: var(--shadow-card);">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                <span style="font-size: 26px;">✍️</span>
+                <span style="font-size: 22px; font-weight: 900; color: #854d0e;">쓰기 암호</span>
+              </div>
+              <div style="font-size: 18px; color: #713f12; line-height: 1.5;">
+                읽기 전용 열람은 가능하지만, <span class="hl-green">같은 이름으로 덮어쓰기 저장 불가</span>! (다른 이름 저장은 허용)
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 9: Read-Only Recommended
+      9: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window" style="max-width: 480px;">
+            <div class="excel-window-header" style="background: #0284c7;">
+              <span>Microsoft Excel 알림</span>
+              <span>⚠️</span>
+            </div>
+            <div class="excel-window-body" style="padding: 24px; text-align: center;">
+              <div style="font-size: 36px; margin-bottom: 12px;">📑</div>
+              <div style="font-size: 18px; font-weight: 800; color: #1e293b; margin-bottom: 12px; line-height: 1.5;">
+                작성자가 이 문서를 <strong>'읽기 전용'</strong>으로 열도록 지정했습니다.
+              </div>
+              <div style="font-size: 16px; color: #64748b; margin-bottom: 20px;">
+                수정하지 않을 경우 읽기 전용으로 여시겠습니까?
+              </div>
+              <div style="display: flex; justify-content: center; gap: 12px;">
+                <button style="padding: 8px 24px; border-radius: 6px; background: #047857; color: white; border: none; font-weight: 700; font-size: 15px;">예 (읽기 전용)</button>
+                <button style="padding: 8px 24px; border-radius: 6px; background: #e2e8f0; color: #334155; border: none; font-weight: 700; font-size: 15px;">아니요</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 10: Worksheet Insertion (Shift+F11)
+      10: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window" style="width: 100%;">
+            <div class="excel-window-header">
+              <span>워크시트 탭 (시트 삽입 원리)</span>
+              <span class="key-badge" style="background:#ffffff; color:#047857;">Shift + F11</span>
+            </div>
+            <div class="excel-window-body" style="padding: 24px;">
+              <div style="display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700;">
+                <div style="border: 2px dashed #047857; background: #ecfdf5; color: #047857; padding: 12px 18px; border-radius: 8px 8px 0 0;">
+                  ✨ [새 시트 삽입]
+                </div>
+                <div style="font-size: 24px; color: #047857; font-weight: 900;">➔ 바로 앞(왼쪽)</div>
+                <div style="border: 2px solid #0284c7; background: #ffffff; color: #0284c7; padding: 12px 18px; border-radius: 8px 8px 0 0;">
+                  현재 선택 시트 (Sheet1)
+                </div>
+              </div>
+              <div style="border-top: 3px solid #0284c7; padding-top: 14px; margin-top: -2px; font-size: 16px; color: #64748b; font-weight: 600;">
+                ※ 인접한 시트를 여러 개 선택 후 삽입하면 <span class="hl-green">선택한 개수만큼 한 번에 삽입</span>됩니다!
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 11: Sheet Selection (Shift vs Ctrl)
+      11: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 12px; padding: 18px 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span class="key-badge" style="font-size: 18px;">Shift 키</span>
+                <span class="hl-green" style="font-size: 16px;">연속적인 다중 시트 선택</span>
+              </div>
+              <div style="font-size: 17px; color: #475569;">
+                Sheet1 클릭 ➔ Shift 누른 상태로 Sheet4 클릭 ➔ <strong>Sheet1~Sheet4 전체 일괄 선택</strong>
+              </div>
+            </div>
+
+            <div style="background: #ffffff; border: 2px solid #7c3aed; border-radius: 12px; padding: 18px 20px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <span class="key-badge" style="font-size: 18px;">Ctrl 키</span>
+                <span class="hl-green" style="font-size: 16px;">비연속적인 개별 시트 선택</span>
+              </div>
+              <div style="font-size: 17px; color: #475569;">
+                Sheet1 클릭 ➔ Ctrl 누른 상태로 Sheet3, Sheet5 클릭 ➔ <strong>원하는 시트만 콕콕 선택</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 12: Move & Copy Sheet
+      12: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 18px 22px;">
+              <div style="font-size: 20px; font-weight: 800; color: #0284c7; margin-bottom: 6px;">
+                📑 시트 이동 (Move)
+              </div>
+              <div style="font-size: 17.5px; color: #334155;">
+                시트 탭을 마우스로 <strong>그냥 드래그</strong>하여 원하는 위치로 이동
+              </div>
+            </div>
+
+            <div style="background: #ecfdf5; border: 2px solid #86efac; border-radius: 12px; padding: 18px 22px;">
+              <div style="font-size: 20px; font-weight: 900; color: #047857; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
+                <span>📑 시트 복사 (Copy)</span>
+                <span class="key-badge" style="background:#ffffff; color:#047857;">Ctrl + 드래그</span>
+              </div>
+              <div style="font-size: 17.5px; color: #14532d;">
+                <span class="hl-green">Ctrl 키</span>를 누른 상태로 시트 탭을 드래그하면 마우스 커서에 <strong>[+] 기호</strong>가 생기며 복제본 생성!
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 13: Grouped Sheets
+      13: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window" style="width: 100%;">
+            <div class="excel-window-header" style="background: #7c3aed;">
+              <span>Excel 타이틀 표시: 통합 문서 1 <strong style="background:#fef08a; color:#854d0e; padding:2px 8px; border-radius:4px;">[그룹]</strong></span>
+              <span>⚠️ 시트 그룹 활성</span>
+            </div>
+            <div class="excel-window-body">
+              <div style="background: #fff1f2; border: 1.5px solid #fecaca; padding: 16px; border-radius: 10px; margin-bottom: 14px;">
+                <div style="color: #be123c; font-weight: 900; font-size: 18px; margin-bottom: 6px;">🚫 [그룹] 상태에서 절대 실행 불가 기능</div>
+                <div style="font-size: 16px; color: #9f1239; line-height: 1.5;">
+                  • 도형 및 차트 등 <strong>개체의 삽입·삭제 불가</strong><br>
+                  • 데이터 메뉴의 <strong>정렬 및 필터(자동/고급) 실행 불가</strong>
+                </div>
+              </div>
+              <div style="font-size: 16.5px; color: #15803d; background: #ecfdf5; border: 1px solid #86efac; padding: 12px 16px; border-radius: 8px; font-weight: 700;">
+                ⭐ <span class="hl-green">데이터 입력 및 편집은 모든 그룹 시트에 동시 일괄 반영</span>됩니다!
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 14: Sheet Name Rules & Undo Impossible
+      14: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 12px; padding: 18px 20px;">
+              <div style="font-size: 20px; font-weight: 800; color: #0284c7; margin-bottom: 8px;">
+                📝 시트 이름 규칙
+              </div>
+              <div style="font-size: 17.5px; color: #334155; line-height: 1.5;">
+                • <span class="hl-green">공백 포함 최대 31자</span>까지 지정 가능<br>
+                • 금지 특수문자: <code style="background:#fee2e2; color:#dc2626; padding:2px 6px; border-radius:4px; font-weight:800;">/ \ ? * [ ] :</code> 사용 불가
+              </div>
+            </div>
+
+            <div style="background: #fff1f2; border: 2px solid #fecaca; border-radius: 12px; padding: 18px 20px;">
+              <div style="font-size: 20px; font-weight: 900; color: #be123c; margin-bottom: 8px;">
+                ⛔ 되돌리기(Ctrl+Z) 절대 불가!
+              </div>
+              <div style="font-size: 17.5px; color: #9f1239; line-height: 1.5;">
+                <span class="hl-green">시트와 관련된 작업(시트 삭제·이동·복사)은 실행 취소(되돌리기) 안됨</span>! 삭제 시 영구 제거되므로 주의!
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 15: Sheet Protection (Lock & Hide)
+      15: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 14px; width: 100%;">
+            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px 20px;">
+              <div style="font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
+                기본 원칙
+              </div>
+              <div style="font-size: 16.5px; color: #475569;">
+                새 워크시트는 <span class="hl-green">모든 셀에 '잠금' 설정이 기본</span>으로 켜져 있음!
+              </div>
+            </div>
+
+            <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 12px; padding: 16px 20px;">
+              <div style="font-size: 18px; font-weight: 900; color: #166534; margin-bottom: 6px;">
+                🔒 잠금 (Lock)
+              </div>
+              <div style="font-size: 16.5px; color: #14532d;">
+                <span class="hl-green">셀/행/열 삽입, 삭제, 편집, 이동, 크기 변경 등을 못하도록 보호</span>
+              </div>
+            </div>
+
+            <div style="background: #f0f9ff; border: 2px solid #bae6fd; border-radius: 12px; padding: 16px 20px;">
+              <div style="font-size: 18px; font-weight: 900; color: #0369a1; margin-bottom: 6px;">
+                👁️ 숨김 (Hidden)
+              </div>
+              <div style="font-size: 16.5px; color: #075985;">
+                <span class="hl-green">셀에 입력된 데이터(수식)가 수식 입력줄에 표시되지 않도록 보호</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 16: Workbook Protection
+      16: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window" style="width: 100%;">
+            <div class="excel-window-header" style="background: #047857;">
+              <span>통합 문서 보호 (구조 및 창 보호)</span>
+              <span>🛡️ 문서 구조 보호</span>
+            </div>
+            <div class="excel-window-body">
+              <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; padding: 18px; border-radius: 10px; margin-bottom: 12px;">
+                <div style="font-size: 19px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
+                  📋 보호 대상: <span class="hl-green">워크시트의 구조(Structure)</span>
+                </div>
+                <div style="font-size: 16.5px; color: #475569; line-height: 1.6;">
+                  시트 삽입, 시트 삭제, 이름 변경, 시트 이동, 시트 숨기기 등 <strong>통합 문서의 뼈대를 변경하지 못하도록 전면 차단</strong>
+                </div>
+              </div>
+              <div style="font-size: 16px; color: #047857; background: #ecfdf5; border: 1px solid #86efac; padding: 10px 14px; border-radius: 8px; font-weight: 700; text-align: center;">
+                💡 <span class="hl-green">암호 지정은 필수가 아님</span> (암호 없이도 보호 설정 가능)
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 17: Shared Workbook
+      17: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 14px; padding: 20px; box-shadow: var(--shadow-card);">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                <span style="font-size: 26px;">🌐</span>
+                <span style="font-size: 22px; font-weight: 900; color: #0284c7;">통합 문서 공유</span>
+              </div>
+              <div style="font-size: 18px; color: #334155; line-height: 1.5;">
+                네트워크로 연결된 환경에서 <span class="hl-green">여러 사용자가 동시에 편집할 수 있음</span>!
+              </div>
+            </div>
+
+            <div style="background: #f0fdf4; border: 2px solid #86efac; border-radius: 14px; padding: 20px; box-shadow: var(--shadow-card);">
+              <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                <span style="font-size: 26px;">🔗</span>
+                <span style="font-size: 22px; font-weight: 900; color: #047857;">네트워크 위치 복사</span>
+              </div>
+              <div style="font-size: 18px; color: #14532d; line-height: 1.5;">
+                공유 통합 문서를 다른 네트워크 위치에 복사하더라도 <span class="hl-green">문서 간 연결은 그대로 유지됨</span>!
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 18: Excel Options Menu
+      18: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window" style="width: 100%;">
+            <div class="excel-window-header" style="background: #1e293b;">
+              <span>Excel 옵션 메뉴 카테고리 ([파일]-[옵션])</span>
+              <span>⚙️</span>
+            </div>
+            <div class="excel-window-body" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; padding: 14px; border-radius: 8px;">
+                <div style="font-weight: 800; font-size: 18px; color: #0f172a; margin-bottom: 4px;">일반</div>
+                <div style="font-size: 15px; color: #64748b;">기본 글꼴, 글꼴 크기, 기본 시트 수</div>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; padding: 14px; border-radius: 8px;">
+                <div style="font-weight: 800; font-size: 18px; color: #0f172a; margin-bottom: 4px;">언어 교정</div>
+                <div style="font-size: 15px; color: #64748b;">자동 고침 옵션, 서식 지정</div>
+              </div>
+              <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; padding: 14px; border-radius: 8px;">
+                <div style="font-weight: 800; font-size: 18px; color: #0f172a; margin-bottom: 4px;">리본 사용자 지정</div>
+                <div style="font-size: 15px; color: #64748b;">리본 탭 추가/삭제 및 순서 조정</div>
+              </div>
+              <div style="background: #ecfdf5; border: 1.5px solid #86efac; padding: 14px; border-radius: 8px;">
+                <div style="font-weight: 800; font-size: 18px; color: #047857; margin-bottom: 4px;">고급 🌟</div>
+                <div style="font-size: 15px; color: #15803d;">Enter 이동 방향, 소수점 자동 삽입</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 19: Enter Direction & Decimal Auto Insert
+      19: () => `
+        <div class="visual-mockup anim-right">
+          <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+            <div style="background: #ffffff; border: 2px solid #0284c7; border-radius: 12px; padding: 16px 20px;">
+              <div style="font-size: 19px; font-weight: 800; color: #0284c7; margin-bottom: 6px;">
+                🧭 Enter 키 입력 시 <span class="hl-green">셀 포인터의 이동</span> 방향
+              </div>
+              <div style="font-size: 17px; color: #334155;">
+                <span class="hl-green">위쪽, 아래쪽, 왼쪽, 오른쪽</span> 4방향 지정 가능 (기본값: 아래쪽)
+              </div>
+            </div>
+
+            <div style="background: #ecfdf5; border: 2.5px solid #22c55e; border-radius: 12px; padding: 18px 20px; box-shadow: var(--shadow-card);">
+              <div style="font-size: 20px; font-weight: 900; color: #047857; margin-bottom: 8px;">
+                🔢 <span class="hl-green">소수점 자동 삽입</span> 계산 공식
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px; font-size: 17.5px; font-family: 'JetBrains Mono';">
+                <div style="background: #ffffff; padding: 8px 12px; border-radius: 6px; border: 1px solid #86efac;">
+                  소수점 위치 : <strong>3</strong> &nbsp;➔ '1' 입력 시 ➔ <strong style="color:#047857; font-size:20px;">0.001</strong>
+                </div>
+                <div style="background: #ffffff; padding: 8px 12px; border-radius: 6px; border: 1px solid #86efac;">
+                  소수점 위치 : <strong>-3</strong> ➔ '1' 입력 시 ➔ <strong style="color:#047857; font-size:20px;">1000</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+
+      // Slide 20: Custom Lists
+      20: () => `
+        <div class="visual-mockup anim-right">
+          <div class="excel-window" style="width: 100%;">
+            <div class="excel-window-header" style="background: #0284c7;">
+              <span>사용자 지정 목록 자동 채우기</span>
+              <span>➕ 드래그 완성</span>
+            </div>
+            <div class="excel-window-body">
+              <div style="font-size: 16px; color: #64748b; margin-bottom: 12px; font-weight: 700;">
+                반복 데이터를 미리 등록하면 채우기 핸들로 초고속 자동 입력!
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-around; background: #f8fafc; border: 1.5px solid #cbd5e1; padding: 18px; border-radius: 10px;">
+                <div style="background: #ffffff; border: 2px solid #047857; padding: 8px 16px; border-radius: 6px; font-weight: 800; color: #047857; font-size: 18px;">
+                  사원
+                </div>
+                <div style="font-size: 24px; color: #047857;">➔ 드래그 ➔</div>
+                <div style="display: flex; gap: 8px;">
+                  <span style="background:#e0f2fe; padding:8px 12px; border-radius:6px; font-weight:700; color:#0369a1;">대리</span>
+                  <span style="background:#e0f2fe; padding:8px 12px; border-radius:6px; font-weight:700; color:#0369a1;">과장</span>
+                  <span style="background:#e0f2fe; padding:8px 12px; border-radius:6px; font-weight:700; color:#0369a1;">부장</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    };
+
+    // Slides Data Structure (총 22장: 1 Title + 19 Content + 2 Summary)
+    const slidesData = [
+      {
+        id: 1,
+        isTitle: true,
+        tag: "컴활 2급 필기 • 초단기 합격",
+        subtitle: "화면 구성부터 확장자, 시트 관리, 통합 문서 보호, 옵션까지 시험 출제 포인트 완벽 정리",
+        script: "안녕하십니까! 컴퓨터활용능력 2급 필기 제2과목 스프레드시트 일반의 01번부터 06번 핵심 요약 강의를 시작하겠습니다. 이번 강의에서는 시험에 단골 출제되는 엑셀 화면 구성, 파일 형식과 확장자, 저장 옵션, 시트 및 통합 문서 보호, 고급 옵션까지 확실하게 정리해 드리겠습니다."
+      },
+      {
+        id: 2,
+        tag: "01. 엑셀의 화면 구성",
+        title: "01. 엑셀의 화면 구성 (1) - 빠른 실행 & 리본 메뉴",
+        items: [
+          {
+            title: "빠른 실행 도구 모음",
+            desc: "명령 단추를 빠르게 실행하기 위해 모아 놓은 곳으로 <strong>리본 메뉴 위쪽 또는 아래쪽에 표시</strong> 가능합니다.",
+            type: "default"
+          },
+          {
+            title: "리본 메뉴",
+            desc: "탭을 클릭하면 탭과 관련된 다양한 기능을 <strong>그룹별로 분류하여 배치한 핵심 인터페이스</strong>입니다.",
+            type: "success"
+          }
+        ],
+        script: "2번 슬라이드, 엑셀 화면 구성입니다. 빠른 실행 도구 모음은 저장, 실행 취소 같은 자주 쓰는 버튼을 모아둔 곳이며, 리본 메뉴 위나 아래로 위치를 옮길 수 있습니다. 리본 메뉴는 홈, 삽입 등의 탭을 누르면 관련 명령들이 그룹으로 묶여 나타나는 엑셀의 기본 조작 메뉴입니다."
+      },
+      {
+        id: 3,
+        tag: "01. 엑셀의 화면 구성",
+        title: "01. 엑셀의 화면 구성 (2) - 수식 입력줄과 셀(Cell)",
+        items: [
+          {
+            title: "이름 상자 & 수식 입력줄",
+            desc: "선택한 셀의 주소나 이름이 표시되며, 수식 입력줄에는 셀의 데이터를 편집할 수 있고 <span class='hl-green'>수식이 표시됨</span>!",
+            type: "success"
+          },
+          {
+            title: "셀 (Cell)",
+            desc: "데이터를 입력하고 편집할 수 있는 기본 단위이며, 화면의 셀에는 <span class='hl-green'>수식의 결과값</span>이 표시됩니다.",
+            type: "amber"
+          }
+        ],
+        script: "3번 슬라이드, 시험에 매번 나오는 핵심 비교 포인트입니다! 셀을 클릭했을 때, 수식 입력줄에는 계산식 원본인 '수식이 표시'되고, 셀 화면에는 그 계산의 '결과값'이 표시된다는 차이를 반드시 기억하세요."
+      },
+      {
+        id: 4,
+        tag: "02. 파일 형식과 확장자",
+        title: "02. 파일 형식과 확장자 (1) - 기본 및 매크로/서식",
+        items: [
+          {
+            title: "Excel 통합 문서 (.xlsx)",
+            desc: "엑셀 기본 표준 문서 형식. <span class='warn-text'>매크로 저장 불가</span> <span class='hl-green'>.xlsx</span>",
+            type: "default"
+          },
+          {
+            title: "Excel 매크로 사용 (.xlsm)",
+            desc: "VBA 매크로 코드가 포함된 통합 문서 <span class='hl-green'>.xlsm</span>",
+            type: "purple"
+          },
+          {
+            title: "Excel 서식 파일 (.xltx, .xltm)",
+            desc: "반복 양식 템플릿 문서 <span class='hl-green'>.xltx</span> (매크로 포함 시 .xltm)",
+            type: "success"
+          }
+        ],
+        script: "4번 슬라이드는 파일 확장자입니다. .xlsx는 매크로 저장이 절대 안 된다는 점, 매크로를 넣으려면 반드시 .xlsm으로 저장해야 한다는 점, 서식 파일은 템플릿의 T가 들어간 .xltx라는 점을 확실히 외워두세요."
+      },
+      {
+        id: 5,
+        tag: "02. 파일 형식과 확장자",
+        title: "02. 파일 형식과 확장자 (2) - 바이너리 & 백업 & 구버전",
+        items: [
+          {
+            title: "Excel 바이너리 통합 문서 (.xlsb)",
+            desc: "2진수 바이너리 형식으로 저장하여 <strong>대용량 데이터의 열기/저장 속도가 매우 빠름</strong>.",
+            type: "success"
+          },
+          {
+            title: "Excel 백업 파일 (.xlk)",
+            desc: "저장 옵션에서 '백업 파일 항상 만들기' 설정 시 자동 생성되는 백업 사본 파일.",
+            type: "amber"
+          },
+          {
+            title: "Excel 97-2003 구버전 (.xls)",
+            desc: "구버전 호환 문서 형식 (최대 65,536행 × 256열 지원).",
+            type: "default"
+          }
+        ],
+        script: "5번 슬라이드, .xlsb의 B는 Binary의 약자로 고속 로딩에 쓰입니다. .xlk는 백업 파일이며, 구버전 .xls는 최대 65,536행까지만 지원한다는 스펙도 시험에 잘 나옵니다."
+      },
+      {
+        id: 6,
+        tag: "02. 파일 형식과 확장자",
+        title: "02. 파일 형식과 확장자 (3) - 텍스트 및 외부 데이터 분리",
+        items: [
+          {
+            title: "CSV 파일 (.csv)",
+            desc: "데이터 항목들이 <span class='hl-green'>쉼표( , )로 분리</span>된 대표적인 텍스트 데이터 형식.",
+            type: "default"
+          },
+          {
+            title: "서식 있는 텍스트 (.prn)",
+            desc: "데이터 항목들이 <span class='hl-green'>공백(스페이스)으로 분리</span>된 텍스트 형식.",
+            type: "purple"
+          },
+          {
+            title: "일반 텍스트 (.txt)",
+            desc: "데이터 항목들이 <span class='hl-green'>탭(Tab)으로 분리</span>된 텍스트 문서.",
+            type: "success"
+          }
+        ],
+        script: "6번 슬라이드는 외부 텍스트 형식의 구분 기호입니다. CSV는 쉼표, PRN은 공백, TXT는 탭으로 분리됩니다. 각각 어떤 구분 기호로 분리되는지 짝지어 외우셔야 합니다."
+      },
+      {
+        id: 7,
+        tag: "03. 파일 저장 (Ctrl+S)",
+        title: "03. 파일 저장 - 저장 단축키 및 일반 옵션 (백업)",
+        items: [
+          {
+            title: "저장 단축키",
+            desc: "<span class='key-badge'>Ctrl + S</span> 또는 <span class='key-badge'>Shift + F12</span> 로 즉시 저장 가능합니다.",
+            type: "default"
+          },
+          {
+            title: "백업 파일 항상 만들기",
+            desc: "[다른 이름으로 저장]-[도구]-[일반 옵션]에서 설정하며, 저장할 때마다 <strong>백업 파일(*.xlk)</strong>로 함께 보존됩니다.",
+            type: "amber"
+          }
+        ],
+        script: "7번 슬라이드는 파일 저장입니다. 저장 단축키는 Ctrl+S 또는 Shift+F12입니다. 일반 옵션에서 '백업 파일 항상 만들기'를 체크하면 저장할 때마다 이전 상태의 xlk 백업 파일이 자동으로 생성됩니다."
+      },
+      {
+        id: 8,
+        tag: "03. 파일 저장",
+        title: "03. 파일 저장 - 열기 암호 vs 쓰기 암호",
+        items: [
+          {
+            title: "열기 암호",
+            desc: "<span class='hl-green'>암호를 모르면 문서를 열 수 없음</span>! (열람 자체가 완벽 차단됨)",
+            type: "warning"
+          },
+          {
+            title: "쓰기 암호",
+            desc: "암호를 모르더라도 문서를 열어 읽을 수는 있으나, <span class='hl-green'>같은 이름으로 저장할 수 없음</span>! (다른 이름 저장은 가능)",
+            type: "amber"
+          }
+        ],
+        script: "8번 슬라이드, 시험 출제 빈도 최상위입니다! 열기 암호는 암호 모르면 열기 자체가 안 됩니다. 반면 쓰기 암호는 열어서 볼 수는 있지만 같은 이름으로 덮어쓰기 저장이 안 되고 다른 이름으로만 저장할 수 있습니다."
+      },
+      {
+        id: 9,
+        tag: "03. 파일 저장",
+        title: "03. 파일 저장 - 읽기 전용 권장 옵션",
+        items: [
+          {
+            title: "읽기 전용 권장",
+            desc: "파일을 열 때 읽기 전용으로 열 것인지 묻는 <span class='hl-green'>확인 메시지가 표시됨</span>.",
+            type: "success"
+          }
+        ],
+        script: "9번 슬라이드의 읽기 전용 권장은 강제로 잠그는 것이 아니라, 파일을 열 때 '읽기 전용으로 여시겠습니까?' 하고 사용자에게 안내 메시지를 띄워 실수를 방지하는 옵션입니다."
+      },
+      {
+        id: 10,
+        tag: "04. 워크시트 관리",
+        title: "04. 워크시트 관리 (1) - 기본 시트 구성 및 삽입",
+        items: [
+          {
+            title: "시트 구성",
+            desc: "기본적으로 <strong>1개의 워크시트(Sheet1)</strong>가 생성되며 [파일]-[옵션]-[일반]에서 변경 가능.",
+            type: "default"
+          },
+          {
+            title: "시트 삽입 단축키 (Shift+F11)",
+            desc: "<span class='hl-green'>기본적으로 현재 선택된 시트 바로 앞에 삽입되고, 인접한 시트를 선택 삽입하면 선택한 시트의 개수만큼 삽입</span>(인접하지 않은 시트 삽입 안됨).",
+            type: "success"
+          }
+        ],
+        script: "10번 슬라이드, 시트 삽입 단축키 Shift+F11입니다. 시트가 삽입될 때는 현재 시트의 '뒤'가 아니라 '바로 앞(왼쪽)'에 삽입됩니다. 그리고 인접한 시트 3개를 선택하고 삽입하면 3개가 한 번에 삽입됩니다."
+      },
+      {
+        id: 11,
+        tag: "04. 워크시트 관리",
+        title: "04. 워크시트 관리 (2) - 시트 다중 선택 (Shift vs Ctrl)",
+        items: [
+          {
+            title: "연속적인 시트 선택",
+            desc: "<span class='hl-green'>Shift 키</span>를 누른 상태에서 마지막 시트를 클릭하여 범위 전체를 연속 선택합니다.",
+            type: "default"
+          },
+          {
+            title: "비연속적인 시트 선택",
+            desc: "<span class='hl-green'>Ctrl 키</span>를 누른 상태에서 원하는 시트들을 각각 개별 클릭하여 선택합니다.",
+            type: "purple"
+          }
+        ],
+        script: "11번 슬라이드, 윈도우 탐색기와 똑같습니다. Shift는 연속 선택, Ctrl은 띄엄띄엄 비연속 선택입니다."
+      },
+      {
+        id: 12,
+        tag: "04. 워크시트 관리",
+        title: "04. 워크시트 관리 (3) - 시트 이동 및 복사 조작",
+        items: [
+          {
+            title: "시트 이동",
+            desc: "이동할 시트 탭을 마우스로 선택하고 원하는 위치로 <strong>그냥 드래그</strong>합니다.",
+            type: "default"
+          },
+          {
+            title: "시트 복사",
+            desc: "<span class='hl-green'>Ctrl 키</span>를 누른 상태에서 시트 탭을 드래그하면 복제본 시트가 생성됩니다.",
+            type: "success"
+          }
+        ],
+        script: "12번 슬라이드, 시트를 마우스로 그냥 끌면 이동이고, Ctrl 키를 누른 채로 끌면 복사입니다. 아주 간단하지만 실기에서도 매일 쓰는 조작입니다."
+      },
+      {
+        id: 13,
+        tag: "04. 워크시트 관리",
+        title: "04. 워크시트 관리 (4) - [그룹] 시트 상태의 특징",
+        items: [
+          {
+            title: "동일 명령 일괄 실행",
+            desc: "여러 시트를 선택하면 제목줄에 [그룹] 표시되며, <span class='hl-green'>데이터 입력 및 편집 등의 명령을 실행하면 그룹으로 설정된 모든 시트에 동일하게 명령이 실행됨</span>.",
+            type: "success"
+          },
+          {
+            title: "실행 불가능한 기능 (주의!)",
+            desc: "<span class='warn-text'>개체의 삽입·삭제, 데이터 정렬, 필터(자동/고급) 등은 실행되지 않음</span>!",
+            type: "warning"
+          }
+        ],
+        script: "13번 슬라이드, 시험 100% 출제 포인트입니다! 여러 시트를 묶으면 타이틀에 [그룹]이 뜹니다. 데이터 입력은 모든 시트에 똑같이 들어가지만, 도형/차트 개체 삽입이나 데이터 정렬, 필터는 그룹 상태에서 절대 실행할 수 없습니다."
+      },
+      {
+        id: 14,
+        tag: "04. 워크시트 관리",
+        title: "04. 워크시트 관리 (5) - 시트 이름 규칙 및 되돌리기 불가",
+        items: [
+          {
+            title: "시트 이름 규칙",
+            desc: "숫자, 문자, 특수문자로 시작 가능하며 <span class='hl-green'>공백 포함 31자까지</span> 지정 가능 (금지: / \\ ? * [ ] :).",
+            type: "default"
+          },
+          {
+            title: "실행 취소 절대 불가",
+            desc: "※ <span class='hl-green'>시트와 관련된 작업은 되돌리기(실행 취소) 안됨</span>! (삭제·이동 시 주의)",
+            type: "warning"
+          }
+        ],
+        script: "14번 슬라이드, 시트 이름은 공백을 포함해서 최대 31자까지 쓸 수 있습니다. 그리고 시트를 삭제하거나 이동하는 등의 시트 작업은 Ctrl+Z 실행 취소로 되돌릴 수 없으니 절대 주의해야 합니다."
+      },
+      {
+        id: 15,
+        tag: "05. 시트 보호 및 공유",
+        title: "05. 시트 보호 (1) - 시트 보호와 잠금/숨김 개념",
+        items: [
+          {
+            title: "기본 잠금 상태",
+            desc: "새 시트는 <span class='hl-green'>모든 셀에 '잠금' 설정이 기본적으로 설정되어 있음</span> (시트 보호 실행 전까진 작동 안 함).",
+            type: "default"
+          },
+          {
+            title: "잠금 & 숨김 & 암호",
+            desc: "잠금: <span class='hl-green'>셀/행/열 삽입, 삭제, 편집, 이동, 크기 변경 등을 못하도록 보호</span>.<br>숨김: <span class='hl-green'>셀에 입력된 데이터가 수식 입력줄에 표시되지 않도록 보호</span>.<br>※ <span class='hl-green'>암호 지정은 필수 아님</span>!",
+            type: "success"
+          }
+        ],
+        script: "15번 슬라이드, 05단원 시트 보호입니다. 엑셀의 모든 셀은 원래 '잠금' 속성이 체크되어 있습니다. [시트 보호]를 실행해야 비로소 잠금이 작동하여 편집이 방지됩니다. 숨김은 수식입력줄을 감추는 것이며, 암호는 안 걸어도 보호할 수 있습니다."
+      },
+      {
+        id: 16,
+        tag: "05. 시트 보호 및 공유",
+        title: "05. 시트 보호 (2) - 통합 문서 보호 (구조 및 창)",
+        items: [
+          {
+            title: "통합 문서 보호",
+            desc: "<span class='hl-green'>워크시트의 구조를 보거나, 시트 이동·삭제·이름 변경 등 문서의 주요 구조를 변경하지 못하도록 보호</span>하는 기능입니다.",
+            type: "purple"
+          },
+          {
+            title: "실행 및 암호",
+            desc: "[검토]-[보호]-[통합 문서 보호] 메뉴를 실행하며, 암호 지정은 필수가 아닙니다.",
+            type: "default"
+          }
+        ],
+        script: "16번 슬라이드, 시트 보호와 통합 문서 보호의 차이를 반드시 구분하세요! 시트 보호는 셀 안의 '내용'을 지키는 것이고, 통합 문서 보호는 시트의 삽입, 삭제, 이름변경 같은 문서의 '구조'를 지키는 것입니다."
+      },
+      {
+        id: 17,
+        tag: "05. 시트 보호 및 공유",
+        title: "05. 통합 문서 공유 - 공동 작업 환경",
+        items: [
+          {
+            title: "다중 동시 편집",
+            desc: "네트워크로 연결된 환경에서 <span class='hl-green'>공유 통합 문서는 여러 사용자가 동시에 편집할 수 있음</span>.",
+            type: "success"
+          },
+          {
+            title: "연결 유지",
+            desc: "공유 통합 문서를 다른 네트워크 위치에 복사해도 다른 통합 문서나 문서의 연결은 그대로 유지됩니다.",
+            type: "default"
+          }
+        ],
+        script: "17번 슬라이드는 통합 문서 공유입니다. 네트워크 상에서 하나의 엑셀 문서를 여러 명이 동시에 열고 함께 편집할 수 있습니다. 파일을 복사해도 기존 연결은 그대로 유지됩니다."
+      },
+      {
+        id: 18,
+        tag: "06. Excel 옵션",
+        title: "06. Excel 옵션 (1) - 기본 환경 메뉴",
+        items: [
+          {
+            title: "일반 & 언어 교정",
+            desc: "일반: 새 파일의 기본 글꼴, 글꼴 크기, 시트 수 설정.<br>언어 교정: 텍스트 자동 수정 및 자동 고침 서식 설정.",
+            type: "default"
+          },
+          {
+            title: "리본 및 빠른 실행",
+            desc: "리본 사용자 지정 및 빠른 실행 도구 모음 항목을 자유롭게 추가/제거 가능.",
+            type: "purple"
+          }
+        ],
+        script: "18번 슬라이드, 마지막 06단원 엑셀 옵션입니다. [일반]에서는 엑셀을 켤 때 나오는 기본 폰트와 시트 개수를, [언어 교정]에서는 오타를 자동 수정하는 자동 고침을 설정합니다."
+      },
+      {
+        id: 19,
+        tag: "06. Excel 옵션",
+        title: "06. Excel 옵션 (2) - Enter 이동 방향 & 소수점 자동 삽입",
+        items: [
+          {
+            title: "[Enter] 키 셀 이동 방향",
+            desc: "Enter 입력 시 <span class='hl-green'>셀 포인터의 이동</span> 방향을 <span class='hl-green'>위쪽, 아래쪽, 왼쪽, 오른쪽</span> 중에서 지정 가능.",
+            type: "default"
+          },
+          {
+            title: "소수점 자동 삽입 계산 (필수 암기!)",
+            desc: "• 소수점 위치 <strong>3</strong> 설정 시: '1' 입력 ➔ <span class='hl-green'>0.001</span><br>• 소수점 위치 <strong>-3</strong> 설정 시: '1' 입력 ➔ <span class='hl-green'>1000</span>",
+            type: "amber"
+          }
+        ],
+        script: "19번 슬라이드는 시험 문제 계산 예시로 나오는 소수점 자동 삽입입니다! 소수점 위치 3을 두면 1 입력 시 0.001이 되고, 반대로 마이너스 3(-3)을 두면 1 입력 시 1000이 됩니다. Enter 키 이동 4방향과 함께 꼭 기억하세요."
+      },
+      {
+        id: 20,
+        tag: "06. Excel 옵션",
+        title: "06. Excel 옵션 (3) - 사용자 지정 목록",
+        items: [
+          {
+            title: "사용자 지정 목록",
+            desc: "반복적으로 사용하는 데이터(순서, 직급 등)를 미리 등록하여 <strong>자동 채우기 핸들 드래그로 빠르게 입력</strong>하는 기능.",
+            type: "success"
+          }
+        ],
+        script: "20번 슬라이드, 사용자 지정 목록입니다. 사원, 대리, 과장 같은 회사 직급 체계를 등록해 두면, '사원'만 쓰고 채우기 핸들을 쭉 당겨도 다음 직급들이 저절로 완성됩니다."
+      },
+      {
+        id: 21,
+        tag: "핵심 요점 총정리 (1)",
+        title: "01~04 화면 구성, 확장자, 암호, 시트 관리",
+        isSummaryPart1: true,
+        script: "21번 슬라이드, 핵심 요점 총정리 1부입니다! 1번에서는 셀에는 결과값, 수식입력줄에는 수식이 뜬다는 점! 2번 확장자에서는 .xlsx는 매크로 불가, .xlsm은 매크로 포함, CSV는 쉼표 분리라는 점! 3번 암호에서는 열기 암호는 열람 차단, 쓰기 암호는 덮어쓰기 저장만 차단! 4번 시트 관리는 Shift+F11 바로 앞 삽입과 되돌리기(Ctrl+Z) 절대 불가 원칙을 꼭 기억하세요!"
+      },
+      {
+        id: 22,
+        tag: "핵심 요점 총정리 (2)",
+        title: "05~06 시트/통합문서 보호, 공유, Excel 고급 옵션",
+        isSummaryPart2: true,
+        script: "마지막 22번 슬라이드, 핵심 요점 총정리 2부입니다! 5번 시트 보호는 셀 내용을 지키고 통합 문서 보호는 시트 구조를 지킵니다. 공유 통합 문서는 다중 동시 편집이 가능합니다. 6번 고급 옵션에서는 Enter 이동 4방향과 소수점 3은 0.001, 소수점 -3은 1000이 된다는 계산 원리까지 챙기시면 스프레드시트 일반 기초는 완벽히 만점을 받으실 수 있습니다. 수고하셨습니다!"
+      }
+    ];
+
+    let currentIndex = 0;
+    const total = slidesData.length;
+
+    function renderSlide(index) {
+      const data = slidesData[index];
+      const canvas = document.getElementById('slideCanvas');
+      const counter = document.getElementById('curSlideNum');
+      const totalCounter = document.getElementById('totalSlideNum');
+      const notes = document.getElementById('notesContent');
+
+      counter.textContent = index + 1;
+      totalCounter.textContent = total;
+      notes.innerHTML = data.script;
+
+      // Slide 1: Title (No Split)
+      if (data.isTitle) {
+        canvas.innerHTML = `
+          <div class="title-slide anim-slide">
+            <div class="title-badge">${data.tag}</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>2과목 스프레드시트 일반</h1>
+            <p class="title-sub">${data.subtitle}</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Slide 21: Summary Part 1 (3 Large Infographic Tiles with Green Highlights)
+      if (data.isSummaryPart1) {
+        canvas.innerHTML = `
+          <div class="infographic-container anim-slide">
+            <div style="margin-bottom: 16px;">
+              <div class="slide-tag" style="font-size: 28px;">${data.tag}</div>
+              <h2 class="slide-title" style="font-size: 34px; margin-bottom: 4px;">${data.title}</h2>
+            </div>
+
+            <div class="infographic-grid-3col">
+              <!-- Tile 1: 확장자 -->
+              <div class="info-tile blue">
+                <div class="info-tile-header">
+                  <span>📁</span>
+                  <span>1. 확장자 및 구분 기호</span>
+                </div>
+                <div class="info-chip-group" style="flex:1; justify-content:space-between;">
+                  <div class="info-chip"><strong>.xlsx</strong> 기본 <span style="color:#e11d48; font-weight:800;">(매크로 불가)</span></div>
+                  <div class="info-chip"><strong>.xlsm</strong> 매크로 포함 ⚙️</div>
+                  <div class="info-chip"><strong>.csv</strong> <span class="hl-green">쉼표(,) 분리</span></div>
+                  <div class="info-chip"><strong>.prn</strong> <span class="hl-green">공백 분리</span></div>
+                  <div class="info-chip"><strong>.xlsb</strong> 바이너리 초고속 ⚡</div>
+                </div>
+              </div>
+
+              <!-- Tile 2: 암호 -->
+              <div class="info-tile amber">
+                <div class="info-tile-header">
+                  <span>🔐</span>
+                  <span>2. 파일 암호 설정 차이</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:16px; flex:1; justify-content:center;">
+                  <div class="info-sub-box" style="background:#fff1f2; border:1.5px solid #fecaca; color:#9f1239; padding:20px; border-radius:12px;">
+                    <div style="font-weight:900; font-size:20px; margin-bottom:8px;">🔒 열기 암호</div>
+                    <div style="font-size:18px; line-height:1.5;">암호 모르면 <span class="hl-green">문서 열기 전면 차단</span></div>
+                  </div>
+                  <div class="info-sub-box" style="background:#fefce8; border:1.5px solid #fef08a; color:#854d0e; padding:20px; border-radius:12px;">
+                    <div style="font-weight:900; font-size:20px; margin-bottom:8px;">✍️ 쓰기 암호</div>
+                    <div style="font-size:18px; line-height:1.5;">읽기는 가능, <span class="hl-green">같은 이름 덮어쓰기 저장 불가</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tile 3: 시트 조작 -->
+              <div class="info-tile rose">
+                <div class="info-tile-header">
+                  <span>📑</span>
+                  <span>3. 워크시트 핵심 주의사항</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:16px; flex:1; justify-content:center;">
+                  <div style="background:#f0fdf4; border:1.5px solid #bbf7d0; padding:20px; border-radius:12px; font-size:18px; font-weight:700; color:#166534;">
+                    <div style="font-size:19px; font-weight:800; margin-bottom:8px;">⌨️ 시트 삽입 (Shift+F11)</div>
+                    현재 시트의 <span class="hl-green">바로 앞(왼쪽)에 삽입</span>
+                  </div>
+                  <div style="background:#fff1f2; border:1.5px solid #fecaca; padding:20px; border-radius:12px; font-size:18px; font-weight:800; color:#be123c;">
+                    <div style="font-size:20px; font-weight:900; margin-bottom:8px;">⛔ 절대 불가 주의사항</div>
+                    시트 작업은 <span class="hl-green">되돌리기(실행 취소) 안됨</span>!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // Slide 22: Summary Part 2 (2 Wide Infographic Tiles with Green Highlights)
+      if (data.isSummaryPart2) {
+        canvas.innerHTML = `
+          <div class="infographic-container anim-slide">
+            <div style="margin-bottom: 16px;">
+              <div class="slide-tag" style="font-size: 28px;">${data.tag}</div>
+              <h2 class="slide-title" style="font-size: 34px; margin-bottom: 4px;">${data.title}</h2>
+            </div>
+
+            <div class="infographic-grid-2col">
+              <!-- Tile 4: 보호 및 공유 -->
+              <div class="info-tile purple">
+                <div class="info-tile-header">
+                  <span>🛡️</span>
+                  <span>4. 시트 보호 • 통합 문서 보호 • 공유</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:16px; flex:1; justify-content:center;">
+                  <div style="background:#fdf2f8; border:1.5px solid #fbcfe8; padding:16px 20px; border-radius:12px; font-size:18px; font-weight:800; color:#9d174d;">
+                    🚫 <strong>[그룹] 상태 실행 불가</strong>: 도형/차트 개체 삽입·삭제, 데이터 정렬, 필터
+                  </div>
+                  <div class="info-box-dual" style="gap:14px;">
+                    <div class="info-sub-box" style="background:#f8fafc; border:1.5px solid #cbd5e1; color:#1e293b; padding:18px; border-radius:12px;">
+                      <div style="font-size:19px; font-weight:900; color:#0f172a; margin-bottom:6px;">📄 시트 보호</div>
+                      <div style="font-size:16.5px; line-height:1.5;"><span class="hl-green">셀 데이터 내용 수정 보호</span><br>(암호 필수 아님)</div>
+                    </div>
+                    <div class="info-sub-box" style="background:#f0fdf4; border:1.5px solid #86efac; color:#14532d; padding:18px; border-radius:12px;">
+                      <div style="font-size:19px; font-weight:900; color:#059669; margin-bottom:6px;">📁 통합 문서 보호</div>
+                      <div style="font-size:16.5px; line-height:1.5;"><span class="hl-green">시트 탭 구조(Structure) 보호</span><br>(삽입/삭제 방지)</div>
+                    </div>
+                  </div>
+                  <div style="background:#f0f9ff; border:1.5px solid #bae6fd; padding:14px 18px; border-radius:10px; font-size:17px; font-weight:700; color:#0369a1;">
+                    🌐 <strong>통합 문서 공유</strong>: <span class="hl-green">여러 사용자가 동시에 편집할 수 있음</span>!
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tile 5: 고급 옵션 -->
+              <div class="info-tile emerald">
+                <div class="info-tile-header">
+                  <span>⚙️</span>
+                  <span>5. Excel 고급 옵션</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:16px; flex:1; justify-content:center;">
+                  <div class="info-sub-box" style="background:#f0fdf4; border:1.5px solid #bbf7d0; color:#14532d; padding:18px 22px; border-radius:12px;">
+                    <div style="font-size:20px; font-weight:900; margin-bottom:6px;">🧭 Enter 키 이동 방향</div>
+                    <div style="font-size:18px;"><span class="hl-green">위쪽, 아래쪽, 왼쪽, 오른쪽</span> 4방향 지원</div>
+                  </div>
+                  <div class="info-sub-box" style="background:#fffbeb; border:1.5px solid #fde68a; color:#78350f; padding:18px 22px; border-radius:12px;">
+                    <div style="font-size:20px; font-weight:900; margin-bottom:6px;">🔢 소수점 자동 삽입</div>
+                    <div style="font-size:18px;">
+                      • 소수점 <strong>3</strong> 설정 시: '1' ➔ <span class="hl-green">0.001</span><br>
+                      • 소수점 <strong>-3</strong> 설정 시: '1' ➔ <span class="hl-green">1000</span>
+                    </div>
+                  </div>
+                  <div class="info-sub-box" style="background:#f0f9ff; border:1.5px solid #bae6fd; color:#0369a1; padding:18px 22px; border-radius:12px;">
+                    <div style="font-size:20px; font-weight:900; margin-bottom:6px;">📋 사용자 지정 목록</div>
+                    <div style="font-size:18px;">반복 목록 등록 후 <strong>채우기 핸들로 초고속 자동 입력</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // Slides 2~20: 50% Left (Content) : 50% Right (Visual Mockup)
+      let visualHtml = visualGenerators[data.id] ? visualGenerators[data.id]() : `
+        <div class="visual-mockup anim-right">
+          <div style="font-size: 40px; margin-bottom: 12px;">📊</div>
+          <div style="font-size: 16px; font-weight: 700; color: #64748b;">스프레드시트 기능 인터페이스</div>
+        </div>
+      `;
+
+      let leftCardsHtml = '';
+      data.items.forEach(item => {
+        let typeClass = item.type || 'default';
+        leftCardsHtml += `
+          <div class="info-card ${typeClass}">
+            <div class="card-title">${item.title}</div>
+            <div class="card-desc">${item.desc}</div>
+          </div>
+        `;
+      });
+
+      canvas.innerHTML = `
+        <div class="split-container anim-slide">
+          <div class="left-col anim-left">
+            <div>
+              <div class="slide-tag">${data.tag}</div>
+              <h2 class="slide-title">${data.title}</h2>
+            </div>
+            ${leftCardsHtml}
+          </div>
+          <div class="right-col">
+            ${visualHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    function nextSlide() {
+      if (currentIndex < total - 1) {
+        currentIndex++;
+        renderSlide(currentIndex);
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderSlide(currentIndex);
+      }
+    }
+
+    function toggleNotes() {
+      const drawer = document.getElementById('notesDrawer');
+      drawer.classList.toggle('collapsed');
+    }
+
+    // Ribbon Menu Interactive Logic for Slide 2
+    const ribbonTabsData = {
+      home: {
+        name: '홈',
+        desc: '💡 <strong>[홈 탭]</strong>: 가장 빈번하게 사용하는 기본 폰트, 맞춤 서식, 클립보드 명령이 모여 있는 기본 탭입니다. <span style="font-size:13px; color:#059669; font-weight:normal;">(위 탭 및 카드를 클릭해 보세요!)</span>',
+        groups: [
+          { icon: '📋', name: '클립보드 그룹', items: '붙여넣기, 잘라내기(Ctrl+X), 복사(Ctrl+C), 서식 복사' },
+          { icon: '🔤', name: '글꼴 그룹', items: '글꼴 선택, 크기 조절, 굵게(Ctrl+B), 밑줄, 채우기 색' },
+          { icon: '📐', name: '맞춤 그룹', items: '텍스트 맞춤, 병합하고 가운데 맞춤, 텍스트 줄 바꿈' }
+        ]
+      },
+      insert: {
+        name: '삽입',
+        desc: '💡 <strong>[삽입 탭]</strong>: 표, 차트, 도형 등을 시트에 삽입합니다. <span style="color:#e11d48; font-weight:800;">(※ 시트 [그룹] 상태에서는 도형/차트 삽입 불가!)</span>',
+        groups: [
+          { icon: '📊', name: '차트 그룹', items: '추천 차트, 2차원/3차원 막대형, 꺾은선형, 원형 차트' },
+          { icon: '🖼️', name: '일러스트레이션', items: '그림, 도형, 아이콘, 3D 모델, 스마트아트' },
+          { icon: '📑', name: '표 / 피벗 테이블', items: '일반 표 생성, 피벗 테이블(대량 데이터 요약 분석)' }
+        ]
+      },
+      page: {
+        name: '페이지 레이아웃',
+        desc: '💡 <strong>[페이지 레이아웃 탭]</strong>: 용지 방향(가로/세로), 여백, 인쇄 영역 및 반복 인쇄 제목 행/열을 설정합니다.',
+        groups: [
+          { icon: '📄', name: '페이지 설정', items: '여백, 용지 방향(가로/세로), 크기, 인쇄 영역' },
+          { icon: '📏', name: '크기 조정', items: '너비/높이 자동 맞춤, 인쇄 배율(%) 지정' },
+          { icon: '🖨️', name: '시트 옵션', items: '눈금선(보기/인쇄), 제목(행/열 머리글 인쇄)' }
+        ]
+      },
+      formula: {
+        name: '수식',
+        desc: '💡 <strong>[수식 탭]</strong>: 엑셀의 핵심 계산 엔진! 다양한 함수 입력과 수식 오류 검사, 참조 셀 추적을 지원합니다.',
+        groups: [
+          { icon: '🧮', name: '함수 라이브러리', items: '자동 합계(SUM, AVERAGE), 논리(IF), 통계, 텍스트' },
+          { icon: '🔍', name: '수식 분석', items: '참조되는 셀 추적, 종속 셀 추적, 수식 표시(Ctrl+`)' },
+          { icon: '⚙️', name: '계산 옵션', items: '자동 계산 모드, 수동 계산 모드, 지금 계산(F9)' }
+        ]
+      },
+      data: {
+        name: '데이터',
+        desc: '💡 <strong>[데이터 탭]</strong>: 대량 데이터 정렬, 필터, 유효성 검사를 실행합니다. <span style="color:#e11d48; font-weight:800;">(※ 시트 [그룹] 상태에서는 정렬/필터 불가!)</span>',
+        groups: [
+          { icon: '⚡', name: '정렬 및 필터', items: '오름차순/내림차순 정렬, 자동 필터, 고급 필터' },
+          { icon: '📥', name: '데이터 가져오기', items: '텍스트/CSV, 웹, 데이터베이스, 기존 연결' },
+          { icon: '🛠️', name: '데이터 도구', items: '텍스트 나누기, 중복된 항목 제거, 데이터 유효성 검사' }
+        ]
+      },
+      review: {
+        name: '검토',
+        desc: '💡 <strong>[검토 탭]</strong>: <span style="color:#047857; font-weight:800;">[시트 보호](셀 데이터)</span>와 <span style="color:#047857; font-weight:800;">[통합 문서 보호](문서 구조)</span>, 통합 문서 공유를 설정합니다.',
+        groups: [
+          { icon: '🛡️', name: '보호 그룹 (출제 1순위)', items: '시트 보호(셀 내용 보호), 통합 문서 보호(시트 구조 보호)' },
+          { icon: '💬', name: '메모 / 주석', items: '새 메모 작성, 메모 표시/숨기기, 메모 편집' },
+          { icon: '🌐', name: '공유 및 추적', items: '통합 문서 공유, 여러 사용자 동시 편집 허용' }
+        ]
+      }
+    };
+
+    function switchRibbonTab(tabKey) {
+      const tabData = ribbonTabsData[tabKey];
+      if (!tabData) return;
+
+      // Update tab buttons
+      document.querySelectorAll('.ribbon-tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabKey) {
+          btn.style.background = '#107c41';
+          btn.style.color = '#ffffff';
+          btn.style.boxShadow = '0 2px 6px rgba(16, 124, 65, 0.3)';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = '#475569';
+          btn.style.boxShadow = 'none';
+        }
+      });
+
+      // Update groups container
+      const groupsContainer = document.getElementById('ribbonGroupsContainer');
+      if (groupsContainer) {
+        let groupsHtml = '';
+        tabData.groups.forEach((g) => {
+          groupsHtml += `
+            <div class="ribbon-group-card anim-slide" onclick="highlightRibbonGroup('${g.name}', '${g.items}')" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:10px; padding:12px; text-align:center; cursor:pointer; transition:all 0.2s; box-shadow:0 2px 6px rgba(0,0,0,0.04);">
+              <div style="font-size:26px; margin-bottom:6px;">${g.icon}</div>
+              <div style="font-size:15px; font-weight:800; color:#0f172a; margin-bottom:4px;">${g.name}</div>
+              <div style="font-size:12.5px; color:#64748b; line-height:1.4;">${g.items}</div>
+            </div>
+          `;
+        });
+        groupsContainer.innerHTML = groupsHtml;
+      }
+
+      // Update description box
+      const descBox = document.getElementById('ribbonDescBox');
+      if (descBox) {
+        descBox.innerHTML = tabData.desc;
+      }
+    }
+
+    function highlightRibbonGroup(name, items) {
+      const descBox = document.getElementById('ribbonDescBox');
+      if (descBox) {
+        descBox.innerHTML = `👉 <strong>[${name}]</strong>: ${items} <span style="background:#ecfdf5; color:#047857; padding:2px 8px; border-radius:6px; font-weight:800; margin-left:6px; font-size:13px;">선택됨</span>`;
+      }
+    }
+
+    function triggerQuickAccess(action) {
+      const descBox = document.getElementById('ribbonDescBox');
+      if (!descBox) return;
+      if (action === 'save') {
+        descBox.innerHTML = `💾 <strong>빠른 실행 도구: [저장]</strong> <span class="key-badge" style="font-size:14px; padding:1px 6px;">Ctrl + S</span> 현재 편집 중인 통합 문서를 즉시 저장합니다.`;
+      } else if (action === 'undo') {
+        descBox.innerHTML = `↩ <strong>빠른 실행 도구: [실행 취소]</strong> <span class="key-badge" style="font-size:14px; padding:1px 6px;">Ctrl + Z</span> 직전 실행한 명령을 되돌립니다. <span style="color:#e11d48; font-weight:800;">(※ 시트 삭제·이동은 실행 취소 절대 불가!)</span>`;
+      } else if (action === 'redo') {
+        descBox.innerHTML = `↪ <strong>빠른 실행 도구: [다시 실행]</strong> <span class="key-badge" style="font-size:14px; padding:1px 6px;">Ctrl + Y</span> 취소했던 명령을 다시 실행합니다.`;
+      } else if (action === 'position') {
+        descBox.innerHTML = `📍 <strong>빠른 실행 도구 모음 위치 전환</strong>: 사용자의 편의에 따라 <strong>[리본 메뉴 위쪽]</strong> 또는 <strong>[리본 메뉴 아래쪽]</strong>으로 위치를 자유롭게 변경 배치할 수 있습니다.`;
+      }
+    }
+
+    // Slide 3: Formula Bar & Cell Interactive Logic
+    let currentSelectedCell = 'A4';
+    let currentFormulaType = 'SUM';
+    let isFormulaViewMode = false;
+
+    const formulaDemoData = {
+      SUM: { formula: '=SUM(A1:A3)', result: 60, name: '합계', desc: 'A1부터 A3까지의 총합 (10 + 20 + 30 = 60)' },
+      AVERAGE: { formula: '=AVERAGE(A1:A3)', result: 20, name: '평균', desc: 'A1부터 A3까지의 평균 ((10 + 20 + 30) / 3 = 20)' },
+      COUNT: { formula: '=COUNT(A1:A3)', result: 3, name: '개수', desc: 'A1부터 A3까지 숫자가 있는 셀 개수 (3개)' },
+      MAX: { formula: '=MAX(A1:A3)', result: 30, name: '최대값', desc: 'A1부터 A3까지 중 가장 큰 값 (30)' }
+    };
+
+    const cellDataStore = {
+      A1: { val: 10, isFormula: false, typeDesc: '일반 숫자 데이터' },
+      A2: { val: 20, isFormula: false, typeDesc: '일반 숫자 데이터' },
+      A3: { val: 30, isFormula: false, typeDesc: '일반 숫자 데이터' },
+      A4: { isFormula: true, typeDesc: '수식 계산 셀' }
+    };
+
+    function selectCell(cellId) {
+      currentSelectedCell = cellId;
+
+      // Update name box
+      const nameBox = document.getElementById('interactiveNameBox');
+      if (nameBox) nameBox.textContent = cellId;
+
+      // Update formula bar input
+      const formulaBar = document.getElementById('interactiveFormulaBar');
+      const activeBadge = document.getElementById('activeCellBadge');
+      const descBox = document.getElementById('cellDescBox');
+
+      // Update rows styling
+      ['A1', 'A2', 'A3', 'A4'].forEach(id => {
+        const row = document.getElementById('row_' + id);
+        const cell = document.getElementById('cell_' + id);
+        if (row && cell) {
+          if (id === cellId) {
+            row.style.background = '#ecfdf5';
+            cell.style.border = '2.5px solid #22c55e';
+            cell.style.color = '#15803d';
+            cell.style.fontWeight = '900';
+          } else {
+            row.style.background = 'transparent';
+            cell.style.border = id === 'A4' ? '1.5px solid #cbd5e1' : '1px dashed #0284c7';
+            cell.style.color = '#0f172a';
+            cell.style.fontWeight = '800';
+          }
+        }
+      });
+
+      if (cellId === 'A4') {
+        const curFunc = formulaDemoData[currentFormulaType];
+        if (formulaBar) formulaBar.textContent = curFunc.formula;
+        if (activeBadge) activeBadge.innerHTML = `선택 셀: A4 (수식 셀: ${curFunc.name})`;
+        if (descBox) {
+          descBox.innerHTML = `🎯 <strong>[A4 셀 선택됨]</strong>: 화면 셀에는 계산 결과값인 <strong>'${isFormulaViewMode ? curFunc.formula : curFunc.result}'</strong>이 표시되고, 수식 입력줄에는 원본 수식인 <span class="hl-green">${curFunc.formula}</span>이 표시됩니다! (시험 출제 1순위!)`;
+        }
+      } else {
+        const cData = cellDataStore[cellId];
+        if (formulaBar) formulaBar.textContent = cData.val;
+        if (activeBadge) activeBadge.innerHTML = `선택 셀: ${cellId} (${cData.typeDesc})`;
+        if (descBox) {
+          descBox.innerHTML = `📌 <strong>[${cellId} 셀 선택됨]</strong>: 수식이 아닌 일반 상수 데이터이므로 수식 입력줄과 셀 화면 모두에 동일하게 <strong>'${cData.val}'</strong>이 표시됩니다.`;
+        }
+      }
+    }
+
+    function switchFormulaDemo(funcType) {
+      currentFormulaType = funcType;
+      const curFunc = formulaDemoData[funcType];
+      if (!curFunc) return;
+
+      // Update buttons
+      document.querySelectorAll('.func-btn').forEach(btn => {
+        if (btn.getAttribute('data-func') === funcType) {
+          btn.style.background = '#10b981';
+          btn.style.color = '#ffffff';
+          btn.style.fontWeight = '800';
+        } else {
+          btn.style.background = '#334155';
+          btn.style.color = '#cbd5e1';
+          btn.style.fontWeight = '700';
+        }
+      });
+
+      // Update A4 cell value
+      const cellA4 = document.getElementById('cell_A4');
+      if (cellA4) {
+        cellA4.textContent = isFormulaViewMode ? curFunc.formula : curFunc.result;
+      }
+
+      // If A4 is selected, update formula bar & desc
+      if (currentSelectedCell === 'A4') {
+        const formulaBar = document.getElementById('interactiveFormulaBar');
+        if (formulaBar) formulaBar.textContent = curFunc.formula;
+        const activeBadge = document.getElementById('activeCellBadge');
+        if (activeBadge) activeBadge.innerHTML = `선택 셀: A4 (수식: ${curFunc.name})`;
+        const descBox = document.getElementById('cellDescBox');
+        if (descBox) {
+          descBox.innerHTML = `⚡ <strong>[${curFunc.name} 함수 적용]</strong>: 수식 <span class="hl-green">${curFunc.formula}</span> ➔ 결과값 <strong>${curFunc.result}</strong> (${curFunc.desc})`;
+        }
+      }
+    }
+
+    function toggleFormulaView() {
+      isFormulaViewMode = !isFormulaViewMode;
+      const btn = document.getElementById('toggleFormulaViewBtn');
+      const cellA4 = document.getElementById('cell_A4');
+      const curFunc = formulaDemoData[currentFormulaType];
+      const descBox = document.getElementById('cellDescBox');
+
+      if (isFormulaViewMode) {
+        if (btn) {
+          btn.style.background = '#10b981';
+          btn.innerHTML = '✅ 수식 표시 중 (결과값 보기)';
+        }
+        if (cellA4) {
+          cellA4.textContent = curFunc.formula;
+          cellA4.style.fontSize = '16px';
+        }
+        if (descBox) {
+          descBox.innerHTML = `👁️ <strong>[수식 표시 모드 활성화 (단축키 Ctrl+\`)]</strong>: 셀 화면에 결과값 대신 수식 <span class="hl-green">${curFunc.formula}</span>이 직접 표시됩니다!`;
+        }
+      } else {
+        if (btn) {
+          btn.style.background = '#0284c7';
+          btn.innerHTML = '👁️ 수식 표시 (Ctrl+\`)';
+        }
+        if (cellA4) {
+          cellA4.textContent = curFunc.result;
+          cellA4.style.fontSize = '22px';
+        }
+        if (descBox) {
+          descBox.innerHTML = `🔢 <strong>[결과값 보기 모드]</strong>: 일반 상태로 복귀했습니다. 셀에는 결과값 <strong>'${curFunc.result}'</strong>이 표시되고, 수식 입력줄에만 수식이 표시됩니다.`;
+        }
+      }
+    }
+
+    function triggerFormulaBarElement(elem) {
+      const descBox = document.getElementById('cellDescBox');
+      if (!descBox) return;
+      if (elem === 'nameBox') {
+        descBox.innerHTML = `🏷️ <strong>[이름 상자 (Name Box)]</strong>: 현재 선택한 셀의 주소(<strong>${currentSelectedCell}</strong>)나 정의된 이름이 표시됩니다. 셀 주소를 직접 타이핑하여 원하는 셀로 즉시 이동할 수도 있습니다.`;
+      } else if (elem === 'fx') {
+        descBox.innerHTML = `🧮 <strong>[함수 마법사 단추 (fx)]</strong>: 함수 삽입 대화상자를 열어 다양한 엑셀 함수를 검색하고 인수를 입력할 수 있도록 도와줍니다.`;
+      } else if (elem === 'formulaInput') {
+        const curFunc = formulaDemoData[currentFormulaType];
+        descBox.innerHTML = `📝 <strong>[수식 입력줄 (Formula Bar)]</strong>: 셀에 입력된 수식 원본이나 데이터를 직접 입력·편집하는 곳입니다. <span class="hl-green">수식이 표시됨</span>! (현재 수식: <strong>${currentSelectedCell === 'A4' ? curFunc.formula : cellDataStore[currentSelectedCell].val}</strong>)`;
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      }
+    });
+
+    // Initial Render
+    renderSlide(0);
+  </script>
+
+</body>
+
+</html>
