@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 1과목 컴퓨터 일반 (13~20)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-card-hover: 0 10px 25px -5px rgba(2, 132, 199, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* 초록색 핵심 형광 하이라이트 */
+    .hl-green,
+    u,
+    .u-highlight {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    code,
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    /* Top Bar */
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Slide Stage Canvas */
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px 8px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating Navigation Arrows */
+    .side-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      user-select: none;
+    }
+
+    .side-nav-arrow:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+    }
+
+    .side-nav-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .side-nav-arrow.prev {
+      left: 14px;
+    }
+
+    .side-nav-arrow.next {
+      right: 14px;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 1320px;
+      max-height: 720px;
+      background: var(--canvas-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-canvas);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 42px;
+    }
+
+    /* Slide Component Structure */
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 42px;
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* 50:50 좌우 분할 컨테이너 */
+    .split-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .anim-left {
+      animation: animLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: animRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes animLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes animRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* 슬라이드 태그 */
+    .slide-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    /* 슬라이드 제목 */
+    .slide-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    /* 정보 카드 (좌측 칼럼) */
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--accent-blue);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .info-card.warning {
+      border-left-color: var(--accent-rose);
+      background: #fffbfa;
+    }
+
+    .info-card.success {
+      border-left-color: var(--accent-emerald);
+      background: #fbfdfc;
+    }
+
+    .info-card.amber {
+      border-left-color: var(--accent-amber);
+      background: #fffdfa;
+    }
+
+    .info-card.purple {
+      border-left-color: var(--accent-purple);
+      background: #fbfaff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card.warning .card-title {
+      color: var(--accent-rose);
+    }
+
+    .info-card.success .card-title {
+      color: var(--accent-emerald);
+    }
+
+    .info-card.amber .card-title {
+      color: var(--accent-amber);
+    }
+
+    .info-card.purple .card-title {
+      color: var(--accent-purple);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Key Badge 단축키 키캡 */
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: 0 2px 0 #94a3b8;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+
+    .win-key {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background-color: #0078d4;
+      vertical-align: -2px;
+      mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path fill='black' d='M0 2.247l6.545-.898v6.082H0V2.247zm0 6.643h6.545v6.082L0 14.074V8.89zM7.455 1.225L16 0v7.431H7.455V1.225zm8.545 7.665V16l-8.545-1.225V8.89H16z'/></svg>") no-repeat center;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path fill='black' d='M0 2.247l6.545-.898v6.082H0V2.247zm0 6.643h6.545v6.082L0 14.074V8.89zM7.455 1.225L16 0v7.431H7.455V1.225zm8.545 7.665V16l-8.545-1.225V8.89H16z'/></svg>") no-repeat center;
+    }
+
+    /* 우측 시각화 카드 */
+    .morph-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      width: 100%;
+      max-width: 530px;
+      position: relative;
+    }
+
+    .morph-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .morph-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .morph-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .morph-btn.active {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+
+    /* 스타일 테이블 */
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: #f8fafc;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+    }
+
+    .styled-table td.center {
+      text-align: center;
+    }
+
+    /* 그리드 셀 */
+    .excel-morph-grid {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .e-cell {
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .e-cell.header {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #475569;
+      justify-content: center;
+    }
+
+    .e-cell.active-green {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+      font-weight: 800;
+    }
+
+    /* 3D 플립 카드 */
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 125px;
+      cursor: pointer;
+    }
+
+    .flipper {
+      transition: 0.5s transform cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flip-container.flipped .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .flip-front {
+      background: #ffffff;
+      z-index: 2;
+      border-left: 5px solid #0284c7;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #22c55e;
+    }
+
+    /* Title Slide Specifics */
+    .title-h1 {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .title-h1 span {
+      background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 600;
+      text-align: center;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    /* 키보드 단축키 안내 바 */
+    .key-shortcuts-bar {
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #64748b;
+      user-select: none;
+    }
+
+    .key-shortcuts-bar kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    /* 발표자 강의 대본창 (Speaker Notes Drawer) */
+    .speaker-notes-drawer {
+      position: absolute;
+      bottom: 34px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid var(--accent-emerald);
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100%);
+      max-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      padding: 8px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-toggle-notes {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      font-family: inherit;
+    }
+
+    .notes-content {
+      padding: 14px 28px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .notes-content strong {
+      color: #0284c7;
+      font-weight: 800;
+    }
+
+    .notes-content mark {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <!-- 상단 헤더 바 -->
+    <header class="header-bar">
+      <div class="badge-subject">
+        <span>📘</span>
+        <span>컴활 2급 필기 • 1과목 컴퓨터 일반</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#334155;">
+        13. 시스템 ~ 20. 장치 관리자 핵심 요약
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-toggle-notes" onclick="toggleNotes()" title="단축키 N 또는 S">
+          🎙️ 발표자 대본 열기 (N)
+        </button>
+        <div class="slide-counter"><span id="curSlideNum">01</span> / <span id="totalSlideNum">16</span></div>
+      </div>
+    </header>
+
+    <!-- 슬라이드 메인 영역 -->
+    <main class="slide-stage">
+      <button class="side-nav-arrow prev" onclick="prevSlide()" title="이전 슬라이드 (◀ / Backspace)">‹</button>
+      <button class="side-nav-arrow next" onclick="nextSlide()" title="다음 슬라이드 (▶ / Space / Enter)">›</button>
+
+      <div class="slide-canvas" id="slideCanvas">
+
+        <!-- ========================================================
+             SLIDE 1 : Title Slide
+             ======================================================== -->
+        <section class="slide active"
+          data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 컴퓨터 일반의 핵심 단원인 13번 시스템부터 20번 장치 관리자까지의 핵심 요약 강의입니다. 이번 파트에서는 Windows 글꼴 설치 위치와 지원 확장자, 기본 앱과 시작 프로그램의 부팅 최적화 원리, 기출 출제 1순위인 접근성의 키보드 보조 4종 세트, 그리고 관리자 계정과 장치 관리자의 상태 기호까지 시험에 반드시 출제되는 핵심 공식들을 총 16개의 고품질 슬라이드로 완벽 정리해 드리겠습니다.">
+          <div style="margin: auto; text-align: center; max-width: 900px;">
+            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 13~20</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
+            <p class="title-sub">시스템·개인 설정(글꼴) • 앱/시작 프로그램 • 접근성 보조 도구 • 사용자 계정 • 보안 및 장치 관리자 완벽 정복</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
+              <button onclick="nextSlide()"
+                style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                프레젠테이션 시작하기 ▶
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                목차 바로가기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 2 : Table of Contents (Agenda)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="이번 회차에서 학습할 핵심 로드맵입니다. 13 시스템과 14 개인 설정의 글꼴 세부 정보, 15 앱 설정과 시작 프로그램, 16 접근성의 시각·청각 및 키보드 보조 도구, 17 사용자 계정 권한 차이, 18 보안 및 19 업데이트, 그리고 20 장치 관리자의 상태 기호 순서로 진행됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">AGENDA & ROADMAP</div>
+                <h2 class="slide-title">핵심 학습 로드맵 (13~20)</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">13. 시스템 & 14. 개인 설정 (글꼴)</div>
+                <div class="card-desc">디스플레이/정보 사양, 글꼴 설치 경로(C:\Windows\Fonts) 및 4대 확장자</div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">15. 앱 & 시작 프로그램 (부팅 최적화)</div>
+                <div class="card-desc">설치된 앱 제거·수정, 기본 앱 매핑, 시작 프로그램 부팅 영향도 및 작업 관리자</div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">16. 접근성 보조 도구 (★출제 1위)</div>
+                <div class="card-desc">단축키 Win+U, 돋보기/내레이터, 키보드 4종(고정 키·토글 키·필터 키·마우스 키)</div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">17. 계정 & 20. 장치 관리자 (★기출 함정)</div>
+                <div class="card-desc">관리자 vs 표준 계정 권한 비교, 장치 관리자 상태 기호(물음표 ? vs 느낌표 !)</div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px; width: 100%;">
+                <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
+                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button class="morph-btn" onclick="goTo(3)">13. 시스템 (디스플레이/정보)</button>
+                  <button class="morph-btn" onclick="goTo(4)">14. 개인 설정 (배경/테마)</button>
+                  <button class="morph-btn" onclick="goTo(5)">14. 글꼴(Font) 경로·확장자</button>
+                  <button class="morph-btn" onclick="goTo(6)">15. 설치 앱 제거 & 기본 앱</button>
+                  <button class="morph-btn" onclick="goTo(7)">15. 시작 프로그램 부팅 관리</button>
+                  <button class="morph-btn" onclick="goTo(8)">16. 접근성 개요 & 시각/청각</button>
+                  <button class="morph-btn" onclick="goTo(9)">16. 접근성 키보드/마우스 4종</button>
+                  <button class="morph-btn" onclick="goTo(10)">17. 관리자 vs 표준 계정</button>
+                  <button class="morph-btn" onclick="goTo(11)">18~19. 개인정보 보안·업데이트</button>
+                  <button class="morph-btn" onclick="goTo(12)">20. 장치 관리자 & 상태 기호</button>
+                  <button class="morph-btn" onclick="goTo(13)">🎯 킬러 함정 플립 ①</button>
+                  <button class="morph-btn" onclick="goTo(14)">🎯 킬러 함정 플립 ②</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 3 : 13 시스템 (디스플레이 및 사양 정보 확인)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="13번 시스템 설정입니다. Windows 설정의 [시스템] 범주에는 컴퓨터 하드웨어와 전반적인 운영체제 동작을 제어하는 메뉴들이 집약되어 있습니다. 먼저 [디스플레이]에서는 화면 밝기, 야간 모드, 해상도, 화면 방향, 배율을 조절하며, 듀얼 모니터를 사용할 때 모니터 식별과 배치 및 복제/확장 표시 방식을 설정합니다. 그리고 [정보] 메뉴에서는 컴퓨터 이름, 프로세서 즉 CPU 모델, 설치된 RAM 용량, 64비트나 32비트 같은 시스템 종류와 Windows 에디션을 확인하고 PC 이름을 변경할 수 있습니다. 그 외에도 소리, 알림, 전원, 저장소, 원격 데스크톱 등이 모두 시스템 메뉴에 속합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 13 • 시스템 (SYSTEM)</div>
+                <h2 class="slide-title">디스플레이 & <span class="hl-green">장치 사양 정보</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 디스플레이 (Display) 설정</div>
+                <div class="card-desc">
+                  • 화면 밝기, 야간 모드, HDR, 텍스트 배율, <span class="hl-green">해상도 및 화면 방향</span> 설정<br>
+                  • 2대 이상 모니터 연결 시 <span class="hl-green">디스플레이 식별·배치 및 다중 디스플레이 표시 방식</span>(복제/확장) 지정
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 정보 (About) — 하드웨어 & OS 사양</div>
+                <div class="card-desc">
+                  • <strong>장치 사양</strong>: 장치 이름, <span class="hl-green">프로세서(CPU), 설치된 RAM, 시스템 종류(64/32비트)</span> 확인<br>
+                  • <strong>Windows 사양</strong>: 에디션, 버전, 설치 날짜 등 확인 및 <strong>PC 이름 바꾸기</strong> 지원
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 그 외 주요 시스템 기능</div>
+                <div class="card-desc">
+                  • 소리, 알림, 집중 지원, 전원 및 배터리, 저장소, 원격 데스크톱, 클립보드 관리
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>💻 Windows 시스템 정보 확인 시뮬레이터</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 32%;">항목</th>
+                      <th>확인 및 설정 가능 내용</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">장치 이름</td>
+                      <td>DESKTOP-COM2026 (<span style="color:#0284c7; font-weight:700;">이름 변경 가능</span>)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">프로세서</td>
+                      <td>Intel(R) Core(TM) i7-12700 CPU @ 2.10GHz</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">설치된 RAM</td>
+                      <td>16.0 GB (사용 가능한 용량 표시)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">시스템 종류</td>
+                      <td><span class="hl-green">64비트 운영 체제</span>, x64 기반 프로세서</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">Windows 사양</td>
+                      <td>Windows 11 Pro / 버전 23H2</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "컴퓨터의 CPU 종류, RAM 용량, 운영체제 버전은 [설정]-[시스템]-[정보]에서 확인할 수 있다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 4 : 14 개인 설정 (배경, 테마, 잠금 화면)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="14번 개인 설정입니다. 사용자의 취향에 맞춰 컴퓨터의 화면 디자인과 스타일을 변경하는 곳입니다. [배경]에서는 바탕 화면의 그림, 단색, 슬라이드 쇼 등을 선택하고, [테마]에서는 바탕 화면의 배경 사진, 포인트 컬러, 효과음 소리, 마우스 커서를 한 번에 묶어서 설정합니다. [잠금 화면]에서는 화면이 잠겼을 때 표시할 이미지와 날씨나 일정 같은 간단한 앱 상태, 그리고 화면 보호기를 지정할 수 있습니다. [시작]과 [작업 표시줄]에서는 시작 메뉴의 레이아웃과 작업 표시줄 단추 표시 방식을 편집할 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 14 • 개인 설정 (PERSONALIZATION)</div>
+                <h2 class="slide-title">바탕 화면 배경, <span class="hl-green">테마 & 잠금 화면</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 배경 & 테마 (Theme)</div>
+                <div class="card-desc">
+                  • <strong>배경</strong>: 단색, 사진, 슬라이드 쇼, Windows 추천 등으로 바탕 화면 변경<br>
+                  • <strong>테마</strong>: <span class="hl-green">배경, 테마 색, 소리, 마우스 커서 등을 한 번에 묶어서 종합 설정</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 잠금 화면 & 화면 보호기</div>
+                <div class="card-desc">
+                  • 잠금 화면 이미지 선택 및 잠금 화면에 상태를 표시할 앱(날씨, 일정 등) 선택<br>
+                  • <span class="hl-green">화면 보호기(Screen Saver) 설정</span> 지원
+                </div>
+              </div>
+              <div class="info-card amber">
+                <div class="card-title">3. 시작 & 작업 표시줄 편집</div>
+                <div class="card-desc">
+                  • 시작 메뉴 항목 배치, 최근 추가된 앱 표시 여부<br>
+                  • 작업 표시줄 정렬(가운데/왼쪽), 작업 표시줄 자동 숨기기 설정
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🎨 개인 설정 주요 메뉴별 기능 비교</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">설정 메뉴</div>
+                  <div class="e-cell header">주요 기능 및 변경 대상</div>
+                  <div class="e-cell" style="font-weight:700;">배경</div>
+                  <div class="e-cell">바탕 화면의 이미지, 단색, 슬라이드 쇼 변경</div>
+                  <div class="e-cell active-green" style="font-weight:700;">테마 ★</div>
+                  <div class="e-cell active-green"><strong>배경 + 색 + 소리 + 마우스 커서를 세트로 일괄 변경</strong></div>
+                  <div class="e-cell" style="font-weight:700;">잠금 화면</div>
+                  <div class="e-cell">잠금 배경, 표시 앱, 화면 보호기 설정</div>
+                  <div class="e-cell" style="font-weight:700;">글꼴 ★</div>
+                  <div class="e-cell">설치된 글꼴 확인, 글꼴 추가 및 제거 (C:\Windows\Fonts)</div>
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>포인트</strong>: 테마(Theme)는 배경 화면뿐만 아니라 <strong>소리와 마우스 포인터 스타일까지 한꺼번에 변경</strong>할 수 있는 통합 설정입니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 5 : 14 글꼴(Font) 집중 분석 (★출제 초빈출)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="시험에 단골로 출제되는 14번 글꼴 설정입니다. 글꼴 파트에서는 3가지를 반드시 외워야 합니다. 첫째, 폰트 파일이 저장되는 기본 폴더 위치는 'C 드라이브의 Windows 폴더 속 Fonts 폴더'입니다. 둘째, 사용자는 새로운 글꼴 파일을 Fonts 폴더에 드래그하거나 설치 버튼을 눌러 추가할 수 있고, 사용하지 않는 글꼴은 삭제할 수 있습니다. 셋째, 글꼴 파일의 확장자 4가지입니다. 트루타입 폰트인 TTF, 트루타입 컬렉션인 TTC, 오픈타입인 OTF, 그리고 비트맵 폰트인 FON입니다. 시험 문제에서 '글꼴 파일의 확장자로 옳지 않은 것은?' 또는 '글꼴이 저장되는 기본 경로는?'으로 반드시 출제됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 14 • 글꼴 (FONTS) ★출제 1위</div>
+                <h2 class="slide-title">글꼴 설치 경로 & <span class="hl-green">4대 확장자 규격</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 글꼴의 기본 설치 위치 (암기 필수)</div>
+                <div class="card-desc">
+                  • 경로: <span class="hl-green"><code>C:\Windows\Fonts</code></span> 폴더에 저장<br>
+                  • 시스템에 설치된 모든 글꼴 파일이 중앙 집중 보관되는 장소
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 글꼴 추가 및 제거 관리</div>
+                <div class="card-desc">
+                  • <strong>글꼴 추가</strong>: 글꼴 파일을 Fonts 폴더로 드래그 앤 드롭하거나 마우스 우클릭 [설치]<br>
+                  • <strong>글꼴 제거</strong>: 필요 없는 글꼴을 선택하여 <span class="hl-green">언제든지 삭제(제거) 가능</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">3. 지원하는 4대 글꼴 파일 확장자</div>
+                <div class="card-desc">
+                  • <span class="warn-text">OTF, TTC, TTF, FON</span> (4가지 확장자 완벽 암기!)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔤 글꼴(Font) 확장자 및 시험 정답 공식</span>
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:14px;">
+                  <div
+                    style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:18px; font-weight:900; color:#15803d; font-family:'JetBrains Mono';">.TTF</div>
+                    <div style="font-size:12px; color:#475569; margin-top:4px;">TrueType Font (가장 보편적)</div>
+                  </div>
+                  <div
+                    style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:18px; font-weight:900; color:#15803d; font-family:'JetBrains Mono';">.OTF</div>
+                    <div style="font-size:12px; color:#475569; margin-top:4px;">OpenType Font (고해상도 인쇄용)</div>
+                  </div>
+                  <div
+                    style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:18px; font-weight:900; color:#15803d; font-family:'JetBrains Mono';">.TTC</div>
+                    <div style="font-size:12px; color:#475569; margin-top:4px;">TrueType Collection (글꼴 모음집)</div>
+                  </div>
+                  <div
+                    style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:18px; font-weight:900; color:#15803d; font-family:'JetBrains Mono';">.FON</div>
+                    <div style="font-size:12px; color:#475569; margin-top:4px;">Bitmap Font (화면용 비트맵 글꼴)</div>
+                  </div>
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #b91c1c; background: #fef2f2; padding: 10px; border-radius: 8px; border: 1px solid #fecaca; margin-top: 14px;">
+                  ⚠️ <strong>오답 주의</strong>: 텍스트 파일(<code>.TXT</code>), 문서 파일(<code>.DOCX</code>), 실행 파일(<code>.EXE</code>)은 <strong>글꼴 파일이 아닙니다</strong>!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 6 : 15 앱 (설치된 앱 제거 및 기본 앱 설정)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="15번 앱 설정입니다. [설치된 앱] 메뉴에서는 현재 내 컴퓨터에 설치된 응용 프로그램의 목록을 확인하고, 불필요한 프로그램을 제거하거나 오류가 있을 때 수정할 수 있습니다. 그리고 [기본 앱]은 특정 작업이나 파일 확장자를 더블클릭했을 때 자동으로 실행될 프로그램을 지정하는 곳입니다. 예를 들어 웹사이트 링크를 클릭했을 때 크롬이 열릴지 엣지가 열릴지, 음악 파일을 열었을 때 어떤 미디어 플레이어가 켜질지, 메일이나 지도, 사진 뷰어의 기본 프로그램을 설정합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 15 • 앱 (APPS)</div>
+                <h2 class="slide-title">설치된 앱 제거·수정 & <span class="hl-green">기본 앱 지정</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 설치된 앱 (앱 및 기능)</div>
+                <div class="card-desc">
+                  • 컴퓨터에 설치된 <span class="hl-green">프로그램을 제거(삭제)하거나 수정</span><br>
+                  • 앱 설치 위치 지정 및 고급 옵션을 통한 앱 초기화/복구 지원
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 기본 앱 (Default Apps) 설정</div>
+                <div class="card-desc">
+                  • 특정 작업 및 파일 형식에 대해 <span class="hl-green">자동으로 실행될 기본 응용 프로그램 지정</span><br>
+                  • 대상 작업: <span class="hl-green">웹 브라우저, 전자 메일, 지도, 음악 플레이어, 비디오 플레이어, 사진 뷰어</span>
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 파일 형식/프로토콜별 연결 프로그램</div>
+                <div class="card-desc">
+                  • <code>.pdf</code>, <code>.mp4</code>, <code>.html</code> 등 특정 확장자별로 실행할 기본 앱 매핑 가능
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚙️ Windows 기본 앱 매핑 시뮬레이터</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 35%;">작업 유형</th>
+                      <th>지정 가능한 기본 앱 예시</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">웹 브라우저</td>
+                      <td>Microsoft Edge, Google Chrome, Whale</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">전자 메일</td>
+                      <td>Outlook, Windows Mail</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">사진 뷰어</td>
+                      <td>Windows 사진, 그림판</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">음악 플레이어</td>
+                      <td>Media Player, 알송</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">비디오 플레이어</td>
+                      <td>미디어 플레이어, 곰플레이어, 팟플레이어</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "웹 브라우저, 전자 메일, 사진 뷰어 등의 기본 앱은 [설정]-[앱]-[기본 앱]에서 변경할 수 있다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 7 : 15 시작 프로그램 & 부팅 최적화
+             ======================================================== -->
+        <section class="slide"
+          data-notes="15번의 세부 항목인 시작 프로그램입니다. 시작 프로그램이란 컴퓨터가 부팅되어 Windows에 로그인할 때 사용자가 일일이 실행하지 않아도 백그라운드에서 자동으로 켜지는 프로그램을 말합니다. 시작 프로그램이 너무 많으면 부팅 속도가 느려지고 RAM 메모리가 부족해지는 원인이 됩니다. 따라서 부팅 속도를 개선하고 메모리를 확보하려면 불필요한 시작 앱의 실행을 끔 상태로 비활성화해야 합니다. 시작 프로그램은 [설정]-[앱]-[시작 프로그램]뿐만 아니라, 단축키 Ctrl+Shift+Esc로 실행하는 [작업 관리자]의 [시작 앱] 탭에서도 편리하게 관리할 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 15 • 시작 프로그램 (STARTUP)</div>
+                <h2 class="slide-title">부팅 자동 실행 관리 & <span class="hl-green">성능 최적화</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 시작 프로그램의 정의</div>
+                <div class="card-desc">
+                  • Windows <span class="hl-green">부팅(로그온) 시 자동으로 실행</span>되도록 등록된 응용 프로그램<br>
+                  • 메신저, 백신, 클라우드 동기화 앱 등이 주로 등록됨
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 부팅 속도 개선 및 메모리 관리</div>
+                <div class="card-desc">
+                  • 시작 프로그램이 많으면 <strong>부팅 시간이 지연</strong>되고 RAM 메모리 점유율 증가<br>
+                  • <span class="hl-green">불필요한 시작 프로그램을 '끔(사용 안 함)'으로 변경하면 부팅 속도 개선</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 관리 위치 (2가지 경로)</div>
+                <div class="card-desc">
+                  • 경로 1: [Windows 설정] ➔ [앱] ➔ [시작 프로그램]<br>
+                  • 경로 2: [작업 관리자](<span class="key-badge">Ctrl</span>+<span class="key-badge">Shift</span>+<span class="key-badge">Esc</span>) ➔ [시작 앱] 탭
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🚀 시작 프로그램 관리 시뮬레이터</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>앱 이름</th>
+                      <th>시작 시 영향</th>
+                      <th>상태</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">Windows Security</td>
+                      <td>낮음</td>
+                      <td><span style="color:#059669; font-weight:700;">켜짐 (필수)</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">Microsoft OneDrive</td>
+                      <td>중간</td>
+                      <td><span style="color:#059669; font-weight:700;">켜짐</span></td>
+                    </tr>
+                    <tr style="background:#fff1f2;">
+                      <td style="font-weight:700;">불필요한 메신저/유틸</td>
+                      <td><span style="color:#e11d48; font-weight:800;">높음 (지연 유발)</span></td>
+                      <td><span style="color:#dc2626; font-weight:800;">끔 (비활성화 권장)</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>주의</strong>: 시작 프로그램을 비활성화한다고 해서 <strong>프로그램이 컴퓨터에서 삭제되는 것은 아니며</strong>, 부팅 시 자동 실행만 중단됩니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 8 : 16 접근성 개요 (Win+U) & 시각/청각 보조 도구
+             ======================================================== -->
+        <section class="slide"
+          data-notes="기출 출제 빈도 1위인 16번 접근성입니다. 접근성의 바로 가기 단축키는 Windows 로고 키와 알파벳 U 키입니다. 접근성은 신체에 장애가 있거나 컴퓨터 조작이 미숙한 사용자가 컴퓨터를 편리하게 쓸 수 있도록 돕는 기능입니다. 시각 보조 도구로는 화면의 일부나 전체를 확대하는 돋보기, 화면에 있는 텍스트나 단추를 인공지능 음성으로 읽어주는 내레이터, 글자와 배경의 명암 대비를 극대화하는 고대비가 있습니다. 청각 보조 도구로는 소리를 화면의 텍스트 자막으로 보여주거나 알림음이 울릴 때 화면 창을 깜빡거리게 하는 시각적 경고가 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 16 • 접근성 (ACCESSIBILITY) ★</div>
+                <h2 class="slide-title">접근성 단축키 <span class="key-badge"><span class="win-key"></span></span>+<span class="key-badge">U</span> & <span class="hl-green">시각/청각 보조</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 접근성의 정의와 목적</div>
+                <div class="card-desc">
+                  • 신체에 <span class="hl-green">장애가 있거나 컴퓨터 사용이 익숙하지 않은 사람</span>을 위한 환경 지원<br>
+                  • 단축키: <span class="key-badge"><span class="win-key"></span></span> + <span class="key-badge">U</span> (Accessibility 즉시 실행)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 시각 보조 기능</div>
+                <div class="card-desc">
+                  • <strong>돋보기</strong> (<span class="key-badge"><span class="win-key"></span></span>+<span class="key-badge">+</span>): 화면의 특정 영역 또는 전체 확대<br>
+                  • <strong>내레이터</strong>: 화면의 텍스트와 UI 요소를 <span class="hl-green">음성으로 읽어주는 기능</span><br>
+                  • <strong>고대비 / 텍스트 커서</strong>: 명암 대비를 높여 시인성 개선
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 청각 보조 기능</div>
+                <div class="card-desc">
+                  • <strong>오디오 자막</strong>: 소리를 화면에 텍스트 자막으로 변환 표시<br>
+                  • <strong>시각적 알림</strong>: 소리 재생 시 활성 창이나 화면 전체를 깜빡이게 설정
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>👁️ 시각/청각 접근성 보조 도구 요약</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 28%;">보조 도구</th>
+                      <th>핵심 기능 및 특징</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">돋보기</td>
+                      <td>화면의 특정 부분이나 전체를 최대 1600%까지 확대 표시</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">내레이터 ★</td>
+                      <td><strong>시각 장애인을 위해 화면의 모든 글자를 음성으로 낭독</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">고대비</td>
+                      <td>색상 구분이 어려운 사용자를 위해 흑백/고채도 색상 배합 적용</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">자막/깜빡임</td>
+                      <td>청각 장애인을 위해 시스템 소리를 텍스트나 화면 점멸로 대체</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "화면의 텍스트를 음성으로 읽어주는 접근성 보조 프로그램은 <strong>내레이터(Narrator)</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 9 : 16 접근성 키보드/마우스 4대 기능 (★출제 1위)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="컴활 1과목에서 가장 많이 출제되는 접근성 키보드/마우스 4대 보조 기능입니다. 4가지를 정확히 구분해야 합니다. 첫째, [고정 키]는 Shift, Ctrl, Alt, Windows 키처럼 두 개 이상의 키를 동시에 누르기 힘든 사용자를 위해, 키를 동시에 누르지 않고 한 번씩 차례대로 눌러도 조합키가 작동하도록 하는 기능입니다. 둘째, [토글 키]는 Caps Lock, Num Lock, Scroll Lock 키를 누를 때마다 삑 하는 신호음을 내어 상태 변경을 알려주는 기능입니다. 셋째, [필터 키]는 손 떨림 등으로 인해 키가 잠깐 눌리거나 반복해서 눌리는 것을 무시하고 입력 속도를 조절하는 기능입니다. 넷째, [마우스 키]는 마우스가 없거나 고장 났을 때 키보드의 오른쪽 숫자 키패드를 사용하여 마우스 커서를 상하좌우로 이동하고 클릭하는 기능입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 16 • 입력 보조 기능 ★최다 빈출</div>
+                <h2 class="slide-title">키보드·마우스 <span class="hl-green">4대 보조 기능</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 고정 키 (Sticky Keys) ★</div>
+                <div class="card-desc">
+                  • <span class="key-badge">Ctrl</span>, <span class="key-badge">Alt</span>, <span class="key-badge">Shift</span>, <span class="key-badge"><span class="win-key"></span></span> 처럼 <span class="hl-green">두 개 이상의 키를 동시에 누르기 힘들 때</span><br>
+                  • 키를 하나씩 <strong>차례대로 눌러도 조합 키가 동작</strong>하도록 지원
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 토글 키 (Toggle Keys) ★</div>
+                <div class="card-desc">
+                  • <span class="key-badge">Caps Lock</span>, <span class="key-badge">Num Lock</span>, <span class="key-badge">Scroll Lock</span> 누를 때 <span class="hl-green">신호음(삐 소리)</span> 발생
+                </div>
+              </div>
+              <div class="info-card amber">
+                <div class="card-title">3. 필터 키 & 4. 마우스 키 ★</div>
+                <div class="card-desc">
+                  • <strong>필터 키</strong>: 짧거나 반복된 키 입력을 무시하여 잘못된 입력 방지<br>
+                  • <strong>마우스 키</strong>: 마우스 대신 <span class="hl-green">숫자 키패드로 마우스 포인터 이동</span> 및 클릭
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⌨️ 접근성 4대 입력 보조 기능 비교 매트릭스</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">기능명</th>
+                      <th style="width: 38%;">대상 키</th>
+                      <th>작동 방식 및 시험 정답</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">고정 키</td>
+                      <td>Ctrl, Shift, Alt, Win</td>
+                      <td><strong>동시에 누르지 않고 차례대로 누름</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">토글 키</td>
+                      <td>Caps/Num/Scroll Lock</td>
+                      <td><strong>누를 때마다 소리(신호음)로 알림</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">필터 키</td>
+                      <td>모든 키보드 자판</td>
+                      <td><strong>반복되거나 짧은 키 입력 무시</strong></td>
+                    </tr>
+                    <tr style="background:#e0f2fe;">
+                      <td style="font-weight:700; color:#0284c7;">마우스 키</td>
+                      <td>숫자 키패드 (NumPad)</td>
+                      <td><strong>숫자 키패드로 마우스 커서 조작</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "Ctrl+Alt+Del 처럼 여러 키를 동시에 누르기 어려운 사용자를 위한 기능은 <strong>고정 키</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 10 : 17 사용자 계정 (관리자 vs 표준 계정)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="17번 사용자 계정입니다. Windows의 계정은 크게 관리자 계정과 표준 계정으로 나뉩니다. 관리자 계정은 컴퓨터의 모든 권한을 가진 계정으로, 시스템 설정 변경, 프로그램 및 하드웨어 설치와 제거, 다른 사용자 계정의 생성이나 삭제 등 컴퓨터의 모든 자원을 완벽하게 제어할 수 있습니다. 반면에 표준 계정은 문서 작성이나 인터넷 서핑 같은 일반적인 컴퓨터 사용은 가능하지만, 시스템 전체에 영향을 미치는 설정 변경이나 새로운 프로그램 설치, 보안 설정 변경 등 중요한 작업은 제한됩니다. 표준 계정 사용자가 프로그램을 설치하려고 하면 관리자의 암호를 묻는 사용자 계정 컨트롤(UAC) 창이 뜹니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 17 • 사용자 계정 (ACCOUNTS)</div>
+                <h2 class="slide-title">관리자 계정 vs <span class="hl-green">표준 사용자 계정</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 관리자 계정 (Administrator) — 완전한 제어</div>
+                <div class="card-desc">
+                  • 시스템 설정 변경, 프로그램/하드웨어 설치 및 제거<br>
+                  • 다른 사용자 계정 관리, 보안 권한 등 <span class="hl-green">컴퓨터의 모든 자원을 완벽하게 관리</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 표준 계정 (Standard User) — 제한된 사용</div>
+                <div class="card-desc">
+                  • 일상적인 작업(앱 실행, 파일 작성, 개인 설정)은 가능<br>
+                  • <span class="warn-text">시스템 설정 변경, 프로그램 설치/제거, 보안 작업 등 중요 권한 제한</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 사용자 계정 컨트롤 (UAC) 팝업</div>
+                <div class="card-desc">
+                  • 표준 사용자가 관리자 권한 작업 시도시 관리자 암호 입력 창 표시
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>👤 계정 유형별 권한 비교 매트릭스</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>작업 유형</th>
+                      <th style="width: 25%; text-align:center;">관리자 계정</th>
+                      <th style="width: 25%; text-align:center;">표준 계정</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>일반 소프트웨어 실행 및 문서 작성</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                    </tr>
+                    <tr>
+                      <td>새 프로그램 및 하드웨어 드라이버 설치</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                      <td class="center" style="color:#dc2626; font-weight:800;">X (제한됨)</td>
+                    </tr>
+                    <tr>
+                      <td>다른 사용자 계정 추가/삭제/변경</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                      <td class="center" style="color:#dc2626; font-weight:800;">X (불가)</td>
+                    </tr>
+                    <tr>
+                      <td>Windows 방화벽 및 시스템 보안 변경</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                      <td class="center" style="color:#dc2626; font-weight:800;">X (불가)</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "표준 계정 사용자는 컴퓨터의 보안 설정이나 시스템 소프트웨어 설치를 임의로 수행할 수 없다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 11 : 18 개인 정보 보안 & 19 Windows 업데이트
+             ======================================================== -->
+        <section class="slide"
+          data-notes="18번 개인 정보 및 보안, 그리고 19번 Windows 업데이트입니다. Windows 보안은 컴퓨터를 바이러스, 랜섬웨어 등 악성 프로그램으로부터 지키기 위한 종합 보안 센터로, 실시간 바이러스 검사, 계정 보호, 방화벽 및 네트워크 보호, 악성 웹사이트 차단 기능을 수행합니다. 또한 앱 사용 권한 설정을 통해 카메라, 마이크, 위치 정보, 연락처 등에 특정 앱이 접근할 수 있는지 허용하거나 차단할 수 있습니다. 19번 Windows 업데이트는 운영체제의 보안 취약점과 버그를 수정하고 최신 기능과 드라이버를 설치하여 PC를 항상 최신 보안 상태로 유지해 주는 핵심 기능입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 18~19 • 보안 & 업데이트</div>
+                <h2 class="slide-title">개인정보 보안 권한 & <span class="hl-green">Windows 업데이트</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. Windows 보안 (통합 보안 센터)</div>
+                <div class="card-desc">
+                  • <strong>바이러스 및 위협 방지</strong>: 악성 코드 실시간 검사 및 치료<br>
+                  • <strong>방화벽 및 네트워크 보호</strong>: 인가되지 않은 외부 침입 차단<br>
+                  • <strong>앱 및 브라우저 컨트롤</strong>: 위험한 사이트 및 다운로드 차단
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 앱 사용 권한 (개인 정보 보호)</div>
+                <div class="card-desc">
+                  • 앱별로 <span class="hl-green">카메라, 마이크, 위치, 연락처, 파일 시스템, 생성형 AI</span> 등의 접근 권한을 개별적으로 허용하거나 차단
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. Windows 업데이트의 목적</div>
+                <div class="card-desc">
+                  • <span class="hl-green">보안 취약점 수정, 버그 패치, 최신 기능 및 드라이버 설치</span>로 운영체제를 안전하고 최신 상태로 유지
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🛡️ Windows 보안 4대 방어 체계</span>
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:14px;">
+                  <div
+                    style="background:#f0fdf4; border:1px solid #86efac; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:20px;">🦠</div>
+                    <div style="font-weight:800; color:#15803d; font-size:14px; margin-top:4px;">바이러스 방지</div>
+                    <div style="font-size:11.5px; color:#64748b; margin-top:2px;">실시간 악성코드 검사</div>
+                  </div>
+                  <div
+                    style="background:#e0f2fe; border:1px solid #7dd3fc; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:20px;">🧱</div>
+                    <div style="font-weight:800; color:#0284c7; font-size:14px; margin-top:4px;">Windows 방화벽</div>
+                    <div style="font-size:11.5px; color:#64748b; margin-top:2px;">네트워크 침입 차단</div>
+                  </div>
+                  <div
+                    style="background:#fef3c7; border:1px solid #fcd34d; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:20px;">🔒</div>
+                    <div style="font-weight:800; color:#b45309; font-size:14px; margin-top:4px;">앱 권한 제어</div>
+                    <div style="font-size:11.5px; color:#64748b; margin-top:2px;">카메라·마이크 차단</div>
+                  </div>
+                  <div
+                    style="background:#ede9fe; border:1px solid #c4b5fd; border-radius:10px; padding:12px; text-align:center;">
+                    <div style="font-size:20px;">🔄</div>
+                    <div style="font-weight:800; color:#6d28d9; font-size:14px; margin-top:4px;">OS 업데이트</div>
+                    <div style="font-size:11.5px; color:#64748b; margin-top:2px;">취약점 자동 패치</div>
+                  </div>
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>포인트</strong>: Windows 업데이트는 보안 취약점 해결과 최신 드라이버 유지 관리에 필수적인 기능입니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 12 : 20 장치 관리자 & 상태 기호 (★기출 1순위)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="20번 장치 관리자입니다. 컴퓨터에 장착된 모든 하드웨어 장치를 한눈에 트리 구조로 보여주고, 드라이버를 설치하거나 업데이트하고, 고장 난 장치를 진단하는 곳입니다. 장치 관리자에서 시험에 무조건 출제되는 것은 장치 아이콘 옆에 붙는 상태 기호의 의미입니다. 첫째, 노란색 물음표(?)는 드라이버가 아예 설치되지 않았거나 장치 정보가 불완전함을 의미합니다. 둘째, 노란색 느낌표(!)는 드라이버는 설치되어 있지만 다른 장치와 충돌이 났거나 인식 오류로 인해 하드웨어가 정상 작동하지 않음을 의미합니다. 셋째, 아래쪽 화살표(↓)는 고장이 아니라 사용자가 수동으로 '디바이스 사용 안 함'을 선택하여 비활성화된 상태를 나타냅니다. 물음표와 느낌표의 차이를 묻는 문제가 가장 많이 출제됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 20 • 장치 관리자 (DEVICE MANAGER) ★</div>
+                <h2 class="slide-title">하드웨어 상태 점검 & <span class="hl-green">상태 기호 3대 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 장치 관리자의 주요 역할</div>
+                <div class="card-desc">
+                  • 컴퓨터에 설치된 모든 하드웨어 디바이스 목록 확인<br>
+                  • <span class="hl-green">드라이버 소프트웨어 업데이트, 롤백, 제거</span><br>
+                  • 문제가 발생한 하드웨어의 오류 상태 진단 및 문제 해결
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 물음표(?) vs 느낌표(!) 암기 공식 ★</div>
+                <div class="card-desc">
+                  • <strong>물음표( ? )</strong>: <span class="warn-text">드라이버 미설치 또는 장치 정보 불완전</span><br>
+                  • <strong>느낌표( ! )</strong>: <span class="warn-text">드라이버 충돌/인식 오류로 하드웨어 정상 작동 불가</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 아래 화살표 ( ↓ ) 기호의 의미</div>
+                <div class="card-desc">
+                  • 고장이 아니며, 사용자가 <span class="hl-green">'디바이스 사용 안 함(비활성화)'</span>으로 설정함
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚠️ 장치 관리자 기호별 의미 완벽 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 20%;">기호</th>
+                      <th style="width: 32%;">표시 상태</th>
+                      <th>발생 원인 및 시험 핵심 정답</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#fef2f2;">
+                      <td class="center" style="font-size:22px; font-weight:900; color:#dc2626;">?</td>
+                      <td style="font-weight:800; color:#dc2626;">물음표</td>
+                      <td><strong>드라이버가 설치되지 않았거나 장치 정보 불완전</strong></td>
+                    </tr>
+                    <tr style="background:#fffbeb;">
+                      <td class="center" style="font-size:22px; font-weight:900; color:#d97706;">!</td>
+                      <td style="font-weight:800; color:#d97706;">느낌표</td>
+                      <td><strong>드라이버 미설치·충돌·인식 오류로 정상 작동 안 됨</strong></td>
+                    </tr>
+                    <tr style="background:#f8fafc;">
+                      <td class="center" style="font-size:20px; font-weight:900; color:#475569;">↓</td>
+                      <td style="font-weight:800; color:#475569;">아래 화살표</td>
+                      <td><strong>사용자가 수동으로 '디바이스 사용 안 함' 설정</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #b91c1c; background: #fef2f2; padding: 10px; border-radius: 8px; border: 1px solid #fecaca; margin-top: 14px;">
+                  ⚠️ <strong>오답 함정 1위</strong>: "물음표(?)는 사용자가 장치를 사용 안 함으로 설정한 것이다" ➔ <span style="font-weight:900;">X (사용 안 함은 아래쪽 화살표 ↓ !)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 13 : 🎯 킬러 함정 플립카드 ①
+             ======================================================== -->
+        <section class="slide"
+          data-notes="13단원부터 16단원까지의 킬러 기출 문제입니다. 수험생들이 가장 많이 헷갈려하는 3가지 오답 함정을 플립 카드로 정리했습니다. 카드를 클릭하면 정답과 해설이 뒤집혀 나타납니다. 글꼴 파일의 경로와 확장자, 시작 프로그램 비활성화의 진정한 의미, 그리고 고정 키와 토글 키의 개념 차이를 직접 클릭해 보면서 완벽하게 마스터하시기 바랍니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">KILLER TRAP • PART 1</div>
+                <h2 class="slide-title">🎯 킬러 기출 함정 <span class="hl-green">플립카드 ①</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">💡 플립 카드 학습 안내</div>
+                <div class="card-desc">
+                  • 우측 카드를 <strong>클릭(터치)</strong>하면 카드가 180도 회전하며 <strong>O/X 정답 및 상세 기출 해설</strong>이 나타납니다.<br>
+                  • 시험 직전 실전 감각을 끌어올리기 위한 최고난도 OX 훈련입니다.
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">체크 포인트</div>
+                <div class="card-desc">
+                  • <strong>Q1</strong>: 글꼴의 설치 폴더와 지원 확장자<br>
+                  • <strong>Q2</strong>: 시작 프로그램 비활성화 시 앱 삭제 여부<br>
+                  • <strong>Q3</strong>: 접근성 고정 키와 토글 키의 동작 차이
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right" style="gap: 12px; width: 100%; max-width: 530px;">
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 글꼴 설치 위치 및 확장자 여부</div>
+                    <div style="font-size: 13.5px;">"Windows의 글꼴 파일은 C:\Windows\System32에 저장되며, 대표 확장자로 TXT, DOCX가 있다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (폴더 및 확장자 모두 오류!)</div>
+                    <div style="font-size: 13px;">글꼴은 <strong>C:\Windows\Fonts</strong>에 저장되며, 확장자는 <strong>TTF, OTF, TTC, FON</strong>입니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. 시작 프로그램 비활성화 동작</div>
+                    <div style="font-size: 13.5px;">"시작 프로그램 목록에서 특정 앱을 '끔'으로 설정하면 컴퓨터에서 해당 프로그램이 영구 삭제된다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (프로그램 삭제 아님!)</div>
+                    <div style="font-size: 13px;">부팅 시 <strong>자동 실행만 중단</strong>되는 것이며, 프로그램 파일은 하드디스크에 그대로 유지됩니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. 접근성 고정 키와 토글 키의 개념</div>
+                    <div style="font-size: 13.5px;">"Caps Lock이나 Num Lock 키를 누를 때 신호음을 발생시키는 접근성 기능은 '고정 키'이다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (신호음은 '토글 키'!)</div>
+                    <div style="font-size: 13px;">신호음 발생은 <strong>토글 키</strong>이며, 여러 키를 차례로 누르게 해주는 기능이 <strong>고정 키</strong>입니다!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 14 : 🎯 킬러 함정 플립카드 ②
+             ======================================================== -->
+        <section class="slide"
+          data-notes="17단원부터 20단원까지의 킬러 기출 플립카드입니다. 표준 계정의 프로그램 설치 권한 한계, 장치 관리자에서 노란색 물음표와 느낌표의 결정적인 차이점, 그리고 아래쪽 화살표가 의미하는 장치 사용 안 함 상태를 완벽히 숙지하시기 바랍니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">KILLER TRAP • PART 2</div>
+                <h2 class="slide-title">🎯 킬러 기출 함정 <span class="hl-green">플립카드 ②</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">💡 실전 문제 풀이 팁</div>
+                <div class="card-desc">
+                  • 시험장에서는 '장치 관리자의 물음표(?)'와 '느낌표(!)'를 서로 맞바꾸어 오답을 유도하는 패턴이 압도적으로 많습니다.<br>
+                  • 카드를 클릭하여 정답을 확인하고 오답 함정을 완벽히 피하세요.
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">체크 포인트</div>
+                <div class="card-desc">
+                  • <strong>Q1</strong>: 표준 사용자 계정의 권한 한계<br>
+                  • <strong>Q2</strong>: 장치 관리자 물음표(?)의 의미<br>
+                  • <strong>Q3</strong>: 장치 관리자 아래쪽 화살표(↓)의 상태
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right" style="gap: 12px; width: 100%; max-width: 530px;">
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 표준 사용자 계정의 시스템 변경 권한</div>
+                    <div style="font-size: 13.5px;">"표준 계정 사용자는 관리자의 승인 없이도 모든 시스템 소프트웨어를 자유롭게 설치하고 제거할 수 있다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (표준 계정은 권한 제한!)</div>
+                    <div style="font-size: 13px;">프로그램 설치/제거 및 시스템 중요 설정 변경은 <strong>관리자 계정만 가능</strong>합니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. 장치 관리자의 물음표(?) 기호 의미</div>
+                    <div style="font-size: 13.5px;">"장치 관리자에서 노란색 물음표(?)는 드라이버가 정상 설치되었으나 사용자가 사용 안 함으로 설정한 상태이다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (물음표는 미설치/정보 불완전!)</div>
+                    <div style="font-size: 13px;">물음표는 <strong>드라이버 미설치 또는 정보 불완전</strong>이며, 사용 안 함은 <strong>아래쪽 화살표(↓)</strong>입니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. 장치 관리자의 느낌표(!) 기호 의미</div>
+                    <div style="font-size: 13.5px;">"노란색 느낌표(!)는 드라이버 미설치 또는 리소스 충돌로 인해 하드웨어가 정상 작동하지 않음을 의미한다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (정확한 설명!)</div>
+                    <div style="font-size: 13px;">느낌표는 <strong>인식 오류, 리소스 충돌 등으로 장치가 제대로 작동하지 않을 때</strong> 표시됩니다!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 15 : 13~20단원 핵심 10대 공식 총정리
+             ======================================================== -->
+        <section class="slide"
+          data-notes="13단원부터 20단원까지 시험에 무조건 출제되는 10대 핵심 키워드 총정리 매트릭스입니다. 글꼴 폴더 경로 C:\Windows\Fonts, 4대 확장자 OTF, TTC, TTF, FON, 접근성 단축키 Win+U, 키보드 4종 세트인 고정키, 토글키, 필터키, 마우스키, 그리고 장치 관리자의 물음표와 느낌표까지 이 10가지만 확실하게 머릿속에 넣고 시험장에 들어가시면 1과목 3페이지 문제는 100% 다 맞히실 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">FINAL SUMMARY MATRIX</div>
+                <h2 class="slide-title">13~20단원 <span class="hl-green">핵심 10대 공식</span> 총정리</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 시스템 & 개인 설정 공식</div>
+                <div class="card-desc">
+                  • <strong>글꼴 경로</strong>: <span class="hl-green"><code>C:\Windows\Fonts</code></span><br>
+                  • <strong>글꼴 확장자</strong>: <span class="hl-green">OTF, TTC, TTF, FON</span><br>
+                  • <strong>테마</strong>: 배경+색+소리+마우스 커서 일괄 변경
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 앱 & 접근성 공식</div>
+                <div class="card-desc">
+                  • <strong>접근성 단축키</strong>: <span class="key-badge"><span class="win-key"></span></span>+<span class="key-badge">U</span><br>
+                  • <strong>고정 키</strong>: 조합 키 차례대로 누름 / <strong>토글 키</strong>: 누르면 신호음 발생<br>
+                  • <strong>마우스 키</strong>: 숫자 키패드로 마우스 커서 조작
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 16px;">
+                <div class="morph-title">
+                  <span>🏆 기출 정답 1순위 키워드 요약표</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">단원</th>
+                      <th style="width: 35%;">핵심 주제</th>
+                      <th>기출 정답 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">14 글꼴</td>
+                      <td>설치 위치 & 확장자</td>
+                      <td><code>C:\Windows\Fonts</code> / OTF, TTC, TTF, FON</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">15 시작앱</td>
+                      <td>부팅 최적화</td>
+                      <td>비활성화 시 앱 삭제 X, 부팅 속도 개선</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">16 접근성</td>
+                      <td>입력 보조 4종</td>
+                      <td>고정키(순차입력), 토글키(신호음), 마우스키(숫자패드)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">17 계정</td>
+                      <td>관리자 vs 표준</td>
+                      <td>관리자(전체 제어) vs 표준(시스템 변경 불가)</td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">20 장치관리자</td>
+                      <td>상태 기호 3종</td>
+                      <td>물음표(?)=미설치 / 느낌표(!)=충돌·오류 / ↓=사용안함</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13px; color: #15803d; background: #f0fdf4; padding: 8px 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 12px;">
+                  💡 위 10가지 공식은 실제 시험에서 매회 2~3문제 이상 반드시 출제되는 핵심 중의 핵심입니다!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 16 : 기출 오답 판별 필승 공식 & 응원
+             ======================================================== -->
+        <section class="slide"
+          data-notes="수고 많으셨습니다. 1과목 3페이지인 13번 시스템부터 20번 장치 관리자까지 모든 내용을 완벽하게 정리했습니다. 시험장에서 자주 나오는 오답 패턴 3가지를 꼭 기억하세요. 첫째, 고정 키와 토글 키의 개념을 바꾸는 지문, 둘째, 장치 관리자의 물음표와 느낌표를 맞바꾸는 지문, 셋째, 글꼴 확장자에 문서나 텍스트 확장자를 끼워 넣는 지문입니다. 이 함정들만 꿰뚫어 보신다면 고득점 합격은 확실합니다. 여러분의 컴활 2급 최종 합격을 진심으로 응원합니다!">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">EXAM PASS STRATEGY</div>
+                <h2 class="slide-title">기출 오답 판별 <span class="hl-green">필승 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 고정 키 vs 토글 키 맞바꾸기 함정 파훼법</div>
+                <div class="card-desc">
+                  • 지문에 "동시에 누르지 않고 차례대로"가 나오면 무조건 <span class="hl-green">고정 키</span>!<br>
+                  • 지문에 "소리(신호음)가 난다"가 나오면 무조건 <span class="hl-green">토글 키</span>!
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 장치 관리자 기호 맞바꾸기 함정 파훼법</div>
+                <div class="card-desc">
+                  • <strong>물음표( ? )</strong>: "드라이버 미설치, 정보 불완전"<br>
+                  • <strong>느낌표( ! )</strong>: "드라이버 충돌, 정상 작동 불가"<br>
+                  • <strong>아래 화살표( ↓ )</strong>: "수동으로 디바이스 사용 안 함"
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 글꼴 확장자 가짜 보기 걸러내기</div>
+                <div class="card-desc">
+                  • 글꼴 확장자는 오직 4개: <span class="hl-green">OTF, TTC, TTF, FON</span>!
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="text-align: center; padding: 32px 24px;">
+                <div style="font-size: 52px; margin-bottom: 12px;">🎯</div>
+                <div style="font-size: 24px; font-weight: 900; color: #0284c7; margin-bottom: 10px;">
+                  1과목 13~20단원 완전 정복!
+                </div>
+                <p style="font-size: 14.5px; color: #475569; line-height: 1.6; margin-bottom: 18px;">
+                  시스템 사양, 글꼴 규격, 시작 프로그램 최적화, 접근성 입력 보조, 사용자 계정, 장치 관리자 상태 기호까지 핵심 이론을 완벽히 정리했습니다.
+                </p>
+                <div
+                  style="font-size: 15px; color: #047857; background: #ecfdf5; padding: 12px; border-radius: 10px; border: 1.5px solid #a7f3d0; font-weight: 800;">
+                  🎉 컴퓨터활용능력 2급 필기 합격을 진심으로 응원합니다!
+                </div>
+                <div style="margin-top: 20px;">
+                  <button onclick="goTo(1)"
+                    style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:8px 18px; border-radius:8px; font-weight:700; cursor:pointer; font-size:13.5px;"
+                    onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                    첫 슬라이드로 돌아가기 ↺
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- 발표자 대본창 (Speaker Notes Drawer) -->
+    <div class="speaker-notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(단축키: N 또는 S 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        대본이 여기에 표시됩니다.
+      </div>
+    </div>
+
+    <!-- 하단 키보드 단축키 안내 바 -->
+    <footer class="key-shortcuts-bar">
+      <span><kbd>◀</kbd> / <kbd>Backspace</kbd> 이전 슬라이드</span>
+      <span><kbd>▶</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> 다음 슬라이드</span>
+      <span><kbd>N</kbd> 또는 <kbd>S</kbd> 발표자 대본창 토글</span>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const curSlideNumEl = document.getElementById('curSlideNum');
+    const totalSlideNumEl = document.getElementById('totalSlideNum');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    totalSlideNumEl.textContent = String(totalSlides).padStart(2, '0');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx === index) {
+          s.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+      curSlideNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+
+      // 대본창 내용 갱신
+      const notes = slides[currentSlide].getAttribute('data-notes') || '해당 슬라이드에 등록된 강의 대본이 없습니다.';
+      notesContent.innerHTML = notes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function goTo(slideNumber) {
+      updateSlide(slideNumber - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    // 키보드 내비게이션
+    window.addEventListener('keydown', (e) => {
+      // 텍스트 입력창에서는 키보드 제어 방지
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N' || e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    // 초기화
+    updateSlide(0);
+  </script>
+</body>
+
+</html>
