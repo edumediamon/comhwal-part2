@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 1과목 컴퓨터 일반 (29~35)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-card-hover: 0 10px 25px -5px rgba(2, 132, 199, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* 초록색 핵심 형광 하이라이트 */
+    .hl-green,
+    u,
+    .u-highlight {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    code,
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    /* Top Bar */
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Slide Stage Canvas */
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px 8px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating Navigation Arrows */
+    .side-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      user-select: none;
+    }
+
+    .side-nav-arrow:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+    }
+
+    .side-nav-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .side-nav-arrow.prev {
+      left: 14px;
+    }
+
+    .side-nav-arrow.next {
+      right: 14px;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 1320px;
+      max-height: 720px;
+      background: var(--canvas-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-canvas);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 42px;
+    }
+
+    /* Slide Component Structure */
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 42px;
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* 50:50 좌우 분할 컨테이너 */
+    .split-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .anim-left {
+      animation: animLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: animRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes animLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes animRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* 슬라이드 태그 */
+    .slide-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    /* 슬라이드 제목 */
+    .slide-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    /* 정보 카드 (좌측 칼럼) */
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--accent-blue);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .info-card.warning {
+      border-left-color: var(--accent-rose);
+      background: #fffbfa;
+    }
+
+    .info-card.success {
+      border-left-color: var(--accent-emerald);
+      background: #fbfdfc;
+    }
+
+    .info-card.amber {
+      border-left-color: var(--accent-amber);
+      background: #fffdfa;
+    }
+
+    .info-card.purple {
+      border-left-color: var(--accent-purple);
+      background: #fbfaff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card.warning .card-title {
+      color: var(--accent-rose);
+    }
+
+    .info-card.success .card-title {
+      color: var(--accent-emerald);
+    }
+
+    .info-card.amber .card-title {
+      color: var(--accent-amber);
+    }
+
+    .info-card.purple .card-title {
+      color: var(--accent-purple);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Key Badge 단축키 키캡 */
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: 0 2px 0 #94a3b8;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+
+    /* 우측 시각화 카드 */
+    .morph-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      width: 100%;
+      max-width: 530px;
+      position: relative;
+    }
+
+    .morph-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .morph-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .morph-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .morph-btn.active {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+
+    /* 스타일 테이블 */
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: #f8fafc;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+    }
+
+    .styled-table td.center {
+      text-align: center;
+    }
+
+    /* 그리드 셀 */
+    .excel-morph-grid {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .e-cell {
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .e-cell.header {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #475569;
+      justify-content: center;
+    }
+
+    .e-cell.active-green {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+      font-weight: 800;
+    }
+
+    /* 3D 플립 카드 */
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 125px;
+      cursor: pointer;
+    }
+
+    .flipper {
+      transition: 0.5s transform cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flip-container.flipped .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .flip-front {
+      background: #ffffff;
+      z-index: 2;
+      border-left: 5px solid #0284c7;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #22c55e;
+    }
+
+    /* Title Slide Specifics */
+    .title-h1 {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .title-h1 span {
+      background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 600;
+      text-align: center;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    /* 키보드 단축키 안내 바 */
+    .key-shortcuts-bar {
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #64748b;
+      user-select: none;
+    }
+
+    .key-shortcuts-bar kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    /* 발표자 강의 대본창 (Speaker Notes Drawer) */
+    .speaker-notes-drawer {
+      position: absolute;
+      bottom: 34px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid var(--accent-emerald);
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100%);
+      max-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      padding: 8px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-toggle-notes {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      font-family: inherit;
+    }
+
+    .notes-content {
+      padding: 14px 28px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .notes-content strong {
+      color: #0284c7;
+      font-weight: 800;
+    }
+
+    .notes-content mark {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <!-- 상단 헤더 바 -->
+    <header class="header-bar">
+      <div class="badge-subject">
+        <span>📘</span>
+        <span>컴활 2급 필기 • 1과목 컴퓨터 일반</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#334155;">
+        29. 자료 표현 단위 ~ 35. 제어장치 핵심 요약
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-toggle-notes" onclick="toggleNotes()" title="단축키 N 또는 S">
+          🎙️ 발표자 대본 열기 (N)
+        </button>
+        <div class="slide-counter"><span id="curSlideNum">01</span> / <span id="totalSlideNum">16</span></div>
+      </div>
+    </header>
+
+    <!-- 슬라이드 메인 영역 -->
+    <main class="slide-stage">
+      <button class="side-nav-arrow prev" onclick="prevSlide()" title="이전 슬라이드 (◀ / Backspace)">‹</button>
+      <button class="side-nav-arrow next" onclick="nextSlide()" title="다음 슬라이드 (▶ / Space / Enter)">›</button>
+
+      <div class="slide-canvas" id="slideCanvas">
+
+        <!-- ========================================================
+             SLIDE 1 : Title Slide
+             ======================================================== -->
+        <section class="slide active"
+          data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 컴퓨터 일반 5페이지 핵심 강의입니다. 29단원 자료 표현 단위부터 35단원 제어장치까지는 컴퓨터 하드웨어 아키텍처와 디지털 데이터 구조의 핵심 영역입니다. 비트·니블·바이트·워드의 계층 구조, 1024 배수의 기억 용량 및 피코·펨토초 처리 속도 단위, 아스키·유니코드 문자 코드, 해밍 코드의 에러 교정 원리, 2진수를 8진수/16진수로 변환하는 비트 묶음 공식, 그리고 시험 출제 1위인 CPU 프로그램 카운터(PC)까지 총 16장의 고품질 대화형 슬라이드로 완벽 정리해 드리겠습니다.">
+          <div style="margin: auto; text-align: center; max-width: 900px;">
+            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 29~35</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
+            <p class="title-sub">자료 표현 계층 • 용량/속도 단위 • 문자 코드 & 에러 검출 • 진수 변환 • CPU 및 제어장치(PC) 완전 정복</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
+              <button onclick="nextSlide()"
+                style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                프레젠테이션 시작하기 ▶
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                목차 바로가기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 2 : Table of Contents (Agenda)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="오늘 학습할 핵심 로드맵입니다. 29 자료 표현 8단계 단위, 30 기억 용량 및 속도 단위, 31 문자 코드와 32 에러 검출 코드, 33 진수 변환 묶음 공식, 34 CPU 구조와 성능 단위, 35 제어장치 핵심 레지스터와 회로 순으로 진행됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">AGENDA & ROADMAP</div>
+                <h2 class="slide-title">핵심 학습 로드맵 (29~35)</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">29. 자료 표현 단위 & 30. 용량/속도 단위</div>
+                <div class="card-desc">비트➔니블➔바이트➔워드➔필드➔레코드, 1024배수 용량(KB~EB) & 처리 속도(ms~as)</div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">31. 문자 코드 & 32. 에러 검출 (★출제 1위)</div>
+                <div class="card-desc">ASCII 7비트 vs 유니코드 2바이트, 패리티 비트(검출) vs 해밍 코드(검출+교정)</div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">33. 진수 변환 (2진수 ➔ 8/16진수)</div>
+                <div class="card-desc">8진수는 3비트(4,2,1) 묶음, 16진수는 4비트(8,4,2,1) 묶음 변환 공식</div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">34. CPU 구조 & 35. 제어장치 핵심 레지스터</div>
+                <div class="card-desc">레지스터, 성능 단위(MIPS/FLOPS), 프로그램 카운터(PC) & 명령 레지스터(IR)</div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px; width: 100%;">
+                <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
+                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button class="morph-btn" onclick="goTo(3)">29. 자료 표현 8단계 크기</button>
+                  <button class="morph-btn" onclick="goTo(4)">29. 단위별 세부 규격</button>
+                  <button class="morph-btn" onclick="goTo(5)">30. 용량 배수 & 처리 속도</button>
+                  <button class="morph-btn" onclick="goTo(6)">31. 4대 문자 표현 코드</button>
+                  <button class="morph-btn" onclick="goTo(7)">32. 에러 검출 & 교정 코드</button>
+                  <button class="morph-btn" onclick="goTo(8)">33. 2진수 ➔ 8/16진수 변환</button>
+                  <button class="morph-btn" onclick="goTo(9)">34. CPU 3대 구조 & 성능</button>
+                  <button class="morph-btn" onclick="goTo(10)">35. 제어장치 레지스터(PC)</button>
+                  <button class="morph-btn" onclick="goTo(11)">35. 해독기 & 부호기 회로</button>
+                  <button class="morph-btn" onclick="goTo(12)">🎯 킬러 함정 플립 ①</button>
+                  <button class="morph-btn" onclick="goTo(13)">🎯 킬러 함정 플립 ②</button>
+                  <button class="morph-btn" onclick="goTo(14)">10대 공식 총정리 매트릭스</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 3 : 29 자료의 표현 단위 (8단계 계층 구조)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="29번 자료의 표현 단위 8단계 계층입니다. 자료의 크기 순서는 시험에 가장 자주 나오는 암기 공식입니다. 가장 작은 비트부터 시작해서 니블, 바이트, 워드, 필드, 레코드, 파일, 데이터베이스 순서로 커집니다. 비트(Bit)는 0과 1로 표현되는 정보의 최소 단위이고, 4비트가 모이면 니블, 8비트가 모이면 한 문자를 표현하는 바이트가 됩니다. CPU가 한 번에 처리하는 명령 단위를 워드라고 하며, 파일 구성의 최소 단위인 필드가 모여 레코드가 되고, 레코드가 모여 파일, 파일이 모여 거대한 데이터베이스를 이룹니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 29 • 자료 표현 단위 ★암기 필수</div>
+                <h2 class="slide-title">자료 표현 단위 <span class="hl-green">8단계 크기 순서</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 자료 표현 단위 크기 공식 (작음 ➔ 큼)</div>
+                <div class="card-desc">
+                  • <span class="hl-green">비트(Bit) &lt; 니블(Nibble) &lt; 바이트(Byte) &lt; 워드(Word) &lt; 필드(Field) &lt; 레코드(Record) &lt; 파일(File) &lt; 데이터베이스(DB)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 물리적 단위 (Bit ~ Word)</div>
+                <div class="card-desc">
+                  • <strong>비트</strong>: 정보 표현의 최소 단위 (0, 1)<br>
+                  • <strong>니블</strong>: 4 Bit (16가지 표현)<br>
+                  • <strong>바이트</strong>: <span class="hl-green">문자 표현의 최소 단위 (8 Bit)</span><br>
+                  • <strong>워드</strong>: <span class="hl-green">CPU가 한 번에 처리하는 명령 단위</span>
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 논리적 단위 (Field ~ Database)</div>
+                <div class="card-desc">
+                  • <strong>필드(항목)</strong>: 파일 구성의 최소 단위 ➔ <strong>레코드</strong> ➔ <strong>파일</strong> ➔ <strong>데이터베이스</strong>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🪜 자료 단위 피라미드 계층도</span>
+                </div>
+                <div style="font-family:'JetBrains Mono', monospace; font-size:13.5px; line-height:1.75; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:16px; margin-top:12px;">
+                  [최상위] 🗄️ <strong>Database</strong> (파일들의 유기적 집합)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 <strong>File</strong> (여러 레코드의 집합)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📋 <strong>Record</strong> (관련 필드들의 모임)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🏷️ <strong>Field (Item)</strong> (파일 구성의 최소 단위)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;⚙️ <span style="color:#0284c7; font-weight:800;">Word</span> (CPU 처리 명령 단위)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔤 <span style="color:#059669; font-weight:800;">Byte</span> (8 Bit, 문자 표현 최소 단위)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔢 <strong>Nibble</strong> (4 Bit)<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
+                  [최하위] 💡 <span style="color:#e11d48; font-weight:800;">Bit</span> (자료 표현의 최소 단위, 0/1)
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 4 : 29 단위별 세부 규격 (바이트 & 워드)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="자료 표현 단위의 세부 규격입니다. 시험에 가장 많이 나오는 포인트는 바이트입니다. 1바이트는 8개 비트로 구성되며 2의 8승인 256가지의 상태를 표현합니다. 특히 영문자와 숫자는 1바이트로 표현되지만, 한글과 한자는 2바이트로 표현된다는 점이 단골 출제됩니다. 워드는 CPU에 따라 하프워드(2바이트), 풀워드(4바이트), 더블워드(8바이트) 등으로 나뉘며, 현대 64비트 컴퓨터의 1워드는 64비트, 즉 8바이트가 됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 29 • 세부 규격 분석</div>
+                <h2 class="slide-title">바이트(Byte) & <span class="hl-green">워드(Word)의 핵심 규격</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 바이트 (Byte) — 문자 표현 최소 단위 ★</div>
+                <div class="card-desc">
+                  • <strong>1 Byte = 8 Bit</strong> ➔ 2<sup>8</sup> = <span class="hl-green">256가지 정보</span> 표현<br>
+                  • <strong>영문자 / 숫자 / 특수기호</strong>: <span class="hl-green">1 Byte</span> 소모<br>
+                  • <strong>한글 / 한자</strong>: <span class="warn-text">2 Byte</span> 소모 (시험 단골 정답!)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 워드 (Word) — CPU 처리 단위</div>
+                <div class="card-desc">
+                  • CPU가 한 번의 연산으로 처리할 수 있는 데이터의 폭<br>
+                  • <strong>반워드 (Half Word)</strong>: 2 Byte (16 Bit)<br>
+                  • <strong>전워드 (Full Word)</strong>: 4 Byte (32 Bit)<br>
+                  • <strong>더블워드 (Double Word)</strong>: 8 Byte (64 Bit)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📏 바이트 및 문자 표현 크기 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 30%;">문자 유형</th>
+                      <th style="width: 25%;">소모 바이트</th>
+                      <th>소모 비트 수</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">영문자 (A, b, c)</td>
+                      <td>1 Byte</td>
+                      <td>8 Bit</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">숫자 (0 ~ 9)</td>
+                      <td>1 Byte</td>
+                      <td>8 Bit</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">한글 (가, 나, 다) ★</td>
+                      <td style="font-weight:800; color:#15803d;">2 Byte</td>
+                      <td>16 Bit</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">한자 (漢, 字) ★</td>
+                      <td style="font-weight:800; color:#15803d;">2 Byte</td>
+                      <td>16 Bit</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 계산 문제</strong>: "컴퓨터에서 'KOREA대한민국'을 저장하는 데 필요한 바이트 수는?" ➔ KOREA(5B) + 대한민국(8B) = <strong>13 바이트</strong>!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 5 : 30 기억 용량 & 처리 속도 단위 (1024 배수 & ms~as)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="30번 기억 용량 단위와 처리 속도 단위입니다. 기억 용량은 2의 10승, 즉 1024 배수씩 증가합니다. 바이트 다음 KB, MB, GB, TB, PB, EB 순서입니다. 1KB는 2의 10승 바이트, 1MB는 2의 20승, 1GB는 2의 30승입니다. 처리 속도 단위는 느린 것부터 빠른 순서로 ms(밀리초, 10^-3), μs(마이크로초, 10^-6), ns(나노초, 10^-9), ps(피코초, 10^-12), fs(펨토초, 10^-15), as(아토초, 10^-18)입니다. 지수가 음수로 커질수록 속도는 빨라집니다. 밀리, 마이크로, 나노, 피코의 순서를 바꾸는 문제가 기출에 자주 나옵니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 30 • 용량 & 속도 단위 ★</div>
+                <h2 class="slide-title">1024배수 용량 & <span class="hl-green">초고속 처리 단위(ms~as)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 기억 용량 단위 (1024 = 2<sup>10</sup> 배수)</div>
+                <div class="card-desc">
+                  • <strong>Byte</strong> ➔ <strong>KB</strong> (2<sup>10</sup>) ➔ <strong>MB</strong> (2<sup>20</sup>) ➔ <strong>GB</strong> (2<sup>30</sup>) ➔ <strong>TB</strong> (2<sup>40</sup>) ➔ <strong>PB</strong> (2<sup>50</sup>) ➔ <strong>EB</strong> (2<sup>60</sup>)<br>
+                  • 1 KB = <span class="hl-green">1,024 Byte</span> (2진수 기준)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 컴퓨터 처리 속도 단위 (느림 ➔ 빠름) ★</div>
+                <div class="card-desc">
+                  • <span class="hl-green">ms (10<sup>-3</sup>) ➔ μs (10<sup>-6</sup>) ➔ ns (10<sup>-9</sup>) ➔ ps (10<sup>-12</sup>) ➔ fs (10<sup>-15</sup>) ➔ as (10<sup>-18</sup>)</span><br>
+                  • 밀리(ms) ➔ 마이크로(μs) ➔ 나노(ns) ➔ 피코(ps) ➔ 펨토(fs) ➔ 아토(as)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚡ 처리 속도 단위 지수 비교 매트릭스</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>기호</th>
+                      <th>단위 명칭</th>
+                      <th>시간 (초)</th>
+                      <th style="width: 25%; text-align:center;">속도 비교</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">ms</td>
+                      <td>밀리초 (Millisecond)</td>
+                      <td>10<sup>-3</sup> 초</td>
+                      <td class="center">가장 느림</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">μs</td>
+                      <td>마이크로초 (Microsecond)</td>
+                      <td>10<sup>-6</sup> 초</td>
+                      <td class="center">▲</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">ns</td>
+                      <td>나노초 (Nanosecond)</td>
+                      <td>10<sup>-9</sup> 초</td>
+                      <td class="center">▲</td>
+                    </tr>
+                    <tr style="background:#e0f2fe;">
+                      <td style="font-weight:800; color:#0284c7;">ps</td>
+                      <td>피코초 (Picosecond)</td>
+                      <td>10<sup>-12</sup> 초</td>
+                      <td class="center">▲</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">fs</td>
+                      <td>펨토초 (Femtosecond)</td>
+                      <td>10<sup>-15</sup> 초</td>
+                      <td class="center">▲</td>
+                    </tr>
+                    <tr style="background:#fdf4ff;">
+                      <td style="font-weight:800; color:#7c3aed;">as</td>
+                      <td>아토초 (Attosecond)</td>
+                      <td>10<sup>-18</sup> 초</td>
+                      <td class="center">가장 빠름</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "처리 속도가 빠른 것부터 나열한 것은?" ➔ <strong>ps(피코초) &gt; ns(나노초) &gt; μs(마이크로초) &gt; ms(밀리초)</strong>!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 6 : 31 문자 표현 코드 (BCD, ASCII, EBCDIC, Unicode)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="31번 문자 표현 코드입니다. 4대 문자 코드의 비트 수와 특징을 완벽하게 외워야 합니다. 첫째, BCD 코드는 6비트로 64개 문자를 표현하며 영문 소문자를 지원하지 못합니다. 둘째, ASCII 코드는 미국 표준으로 7비트이며 128개 문자를 표현합니다. 대소문자 구별이 가능하고 데이터 통신용과 일반 개인용 컴퓨터의 기본 코드로 사용됩니다. 오류 검출을 위해 1비트 패리티를 붙여 8비트로 전송하기도 합니다. 셋째, EBCDIC 코드는 8비트로 256개 문자를 표현하며 대형 컴퓨터에서 씁니다. 넷째, 유니코드(Unicode)는 국제 표준 코드로 2바이트(16비트)를 사용하여 전 세계의 모든 언어와 기호를 65,536가지로 표현할 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 31 • 문자 표현 코드 ★최다 빈출</div>
+                <h2 class="slide-title">ASCII 7비트 vs <span class="hl-green">유니코드 2바이트</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. BCD 코드 (6 Bit) — 64문자</div>
+                <div class="card-desc">
+                  • Zone 2비트 + Digit 4비트 = 6비트 (2<sup>6</sup> = 64개 표현)<br>
+                  • <span class="warn-text">영문 소문자를 구별하지 못함</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. ASCII 코드 (7 Bit) — 128문자 ★</div>
+                <div class="card-desc">
+                  • Zone 3비트 + Digit 4비트 = <span class="hl-green">7비트 (2<sup>7</sup> = 128개 표현)</span><br>
+                  • <strong>미국 표준, 대소문자 구별, 데이터 통신용, 일반 PC 문자 코드</strong><br>
+                  • 오류 검출용 1비트 패리티를 붙여 확장형(8비트)으로 전송 가능
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. EBCDIC (8 Bit) & 유니코드 (2 Byte) ★</div>
+                <div class="card-desc">
+                  • <strong>EBCDIC</strong>: 8비트 (256개), 대형 컴퓨터용<br>
+                  • <strong>유니코드(Unicode)</strong>: <span class="hl-green">국제 표준, 2바이트(16비트, 65,536문자)</span> 전 세계 문자 표현
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔡 4대 문자 표현 코드 비교 매트릭스</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>코드명</th>
+                      <th style="width: 22%;">비트 수</th>
+                      <th style="width: 25%;">표현 문자 수</th>
+                      <th>주요 특징 및 출제 포인트</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">BCD</td>
+                      <td>6 Bit</td>
+                      <td>64개</td>
+                      <td>영문 소문자 표현 불가</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">ASCII ★</td>
+                      <td style="font-weight:800; color:#15803d;">7 Bit</td>
+                      <td>128개</td>
+                      <td><strong>일반 PC, 데이터 통신용, 대소문자 구별</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">EBCDIC</td>
+                      <td>8 Bit</td>
+                      <td>256개</td>
+                      <td>대형 컴퓨터용 확장 BCD</td>
+                    </tr>
+                    <tr style="background:#e0f2fe;">
+                      <td style="font-weight:800; color:#0284c7;">유니코드 ★</td>
+                      <td style="font-weight:800; color:#0284c7;">2 Byte (16b)</td>
+                      <td>65,536개</td>
+                      <td><strong>국제 표준, 한글/한자/외국어 통합</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "일반 개인용 컴퓨터에서 널리 사용되며 데이터 통신용으로 7비트를 사용하는 코드는 <strong>ASCII 코드</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 7 : 32 에러 검출 코드 (패리티 비트 vs 해밍 코드)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="32번 에러 검출 코드입니다. 시험에 100% 출제되는 공식이 있습니다. 패리티 비트는 '에러 검출만 가능하고 교정(수정)은 불가능'합니다. 데이터에 1의 개수를 짝수 또는 홀수로 맞추어 1비트의 에러 발생 여부만 알아챕니다. 반면에 해밍 코드는 '에러를 검출할 뿐만 아니라 스스로 에러를 교정(Correction)까지' 할 수 있는 코드입니다. '에러 검출 및 교정'이라는 단어가 나오면 무조건 해밍 코드를 고르셔야 합니다. 그 외 순환 중복 검사(CRC)와 블록합 검사(BSC)도 에러 검출 방식으로 출제됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 32 • 에러 검출 코드 ★기출 1순위</div>
+                <h2 class="slide-title">패리티 비트(검출) vs <span class="hl-green">해밍 코드(교정)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 패리티 비트 (Parity Bit) — 단순 검출용</div>
+                <div class="card-desc">
+                  • 1의 개수가 짝수(우수) 또는 홀수(기수)가 되도록 1비트 추가<br>
+                  • <span class="hl-green">에러 발생 여부만 '검출' 가능</span><br>
+                  • <span class="warn-text">어느 비트가 틀렸는지 알 수 없어 '에러 교정 불가'!</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 해밍 코드 (Hamming Code) — 검출 + 교정 ★</div>
+                <div class="card-desc">
+                  • 오류 발생 위치를 찾아내어 <span class="hl-green">에러 '검출 및 자동 교정(수정)'</span> 수행<br>
+                  • 시험에 "에러 교정" 단어가 나오면 무조건 해밍 코드!
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 기타 오류 검사 방식</div>
+                <div class="card-desc">
+                  • <strong>CRC (순환 중복 검사)</strong>: 다항식 코드를 이용한 신뢰성 높은 검사<br>
+                  • <strong>블록합 검사 (BSC)</strong>: 2차원 패리티 검사 방식
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🛡️ 에러 검출 코드 핵심 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 30%;">코드 종류</th>
+                      <th style="width: 25%; text-align:center;">에러 검출</th>
+                      <th style="width: 25%; text-align:center;">에러 교정</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">패리티 비트</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                      <td class="center" style="color:#dc2626; font-weight:800;">X (불가 ★)</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">해밍 코드 ★</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                      <td class="center" style="color:#059669; font-weight:900;">O (가능 ★)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">순환중복(CRC)</td>
+                      <td class="center" style="color:#059669; font-weight:800;">O (가능)</td>
+                      <td class="center" style="color:#dc2626; font-weight:800;">X (재전송 요청)</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "데이터 통신 중 오류를 스스로 검출하고 수정(교정)까지 할 수 있는 코드는 <strong>해밍 코드</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 8 : 33 진수 변환 (2진수 ➔ 8진수 & 16진수)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="33번 진수 변환 공식입니다. 2진수를 8진수나 16진수로 바꾸는 문제는 아주 간단한 묶기 공식만 알면 5초 만에 풀 수 있습니다. 8은 2의 3승이므로, 2진수를 소수점 기준 오른쪽 끝에서부터 '3자리씩' 묶어서 4, 2, 1 가중치를 더해 하나의 8진수 숫자로 바꿉니다. 예를 들어 11101101은 11 / 101 / 101 로 묶어 3, 5, 5 가 됩니다. 16은 2의 4승이므로, '4자리씩' 묶어서 8, 4, 2, 1 가중치를 적용합니다. 이때 10부터 15까지는 A, B, C, D, E, F 문자로 바꿉니다. 예를 들어 10100101은 1010 / 0101 로 묶어 10인 A와 5, 즉 A5가 됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 33 • 진수 변환 공식</div>
+                <h2 class="slide-title">2진수를 <span class="hl-green">8진수 & 16진수로 쾌속 변환</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 2진수 ➔ 8진수 변환 (3자리 묶음) ★</div>
+                <div class="card-desc">
+                  • 8 = 2<sup>3</sup> 이므로, 2진수를 뒤에서부터 <span class="hl-green">3자리씩(4, 2, 1)</span> 묶어서 계산<br>
+                  • 예: <code>11 101 101</code><sub>(2)</sub> ➔ (2+1) / (4+0+1) / (4+0+1) = <span class="hl-green"><code>355</code><sub>(8)</sub></span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 2진수 ➔ 16진수 변환 (4자리 묶음) ★</div>
+                <div class="card-desc">
+                  • 16 = 2<sup>4</sup> 이므로, 2진수를 뒤에서부터 <span class="hl-green">4자리씩(8, 4, 2, 1)</span> 묶어서 계산<br>
+                  • 10=A, 11=B, 12=C, 13=D, 14=E, 15=F<br>
+                  • 예: <code>1010 0101</code><sub>(2)</sub> ➔ (8+2=10 ➔ A) / (4+1=5) = <span class="hl-green"><code>A5</code><sub>(16)</sub></span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔢 16진수 표기법 (10 ~ 15 알파벳)</span>
+                </div>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-top:14px; text-align:center;">
+                  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">10 = <span style="font-weight:900; color:#0284c7;">A</span></div>
+                  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">11 = <span style="font-weight:900; color:#0284c7;">B</span></div>
+                  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">12 = <span style="font-weight:900; color:#0284c7;">C</span></div>
+                  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">13 = <span style="font-weight:900; color:#0284c7;">D</span></div>
+                  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">14 = <span style="font-weight:900; color:#0284c7;">E</span></div>
+                  <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">15 = <span style="font-weight:900; color:#0284c7;">F</span></div>
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>암기 공식</strong>: 8진수는 <strong>3비트</strong>씩 묶고, 16진수는 <strong>4비트</strong>씩 묶는다!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 9 : 34 중앙처리장치(CPU) 구조 & 성능 단위
+             ======================================================== -->
+        <section class="slide"
+          data-notes="34번 중앙처리장치 CPU의 구조입니다. CPU는 컴퓨터의 두뇌로서 제어장치(CU), 연산장치(ALU), 그리고 레지스터(Register)의 3대 요소로 구성됩니다. 레지스터는 CPU 내부에 위치한 초고속 임시 기억 장치로 메모리 계층 구조 중 가장 속도가 빠릅니다. CPU의 성능을 평가하는 단위로는 1초에 백만 개의 명령을 처리하는 MIPS, 1초에 부동소수점 연산을 몇 번 하는지 나타내는 FLOPS, 그리고 메가헤르츠나 기가헤르츠 단위의 클럭 속도(Hz)가 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 34 • CPU 구조 (PROCESSOR)</div>
+                <h2 class="slide-title">CPU 3대 구성 & <span class="hl-green">레지스터·성능 단위</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. CPU의 3대 핵심 구성 요소</div>
+                <div class="card-desc">
+                  • <strong>제어장치 (CU)</strong>: 명령어를 인출·해독하고 모든 장치에 제어 신호 전달<br>
+                  • <strong>연산장치 (ALU)</strong>: 산술 연산(+,-,*,/) 및 논리 연산(AND, OR, NOT) 수행<br>
+                  • <strong>레지스터 (Register)</strong>: <span class="hl-green">CPU 내부의 초고속 임시 기억 장소</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. CPU 성능 평가 단위 ★</div>
+                <div class="card-desc">
+                  • <strong>MIPS</strong>: 초당 100만 개 명령어 처리 단위 (Million Instructions Per Second)<br>
+                  • <strong>FLOPS</strong>: 초당 부동소수점 연산 횟수 (과학기술 계산)<br>
+                  • <strong>클럭 속도 (Hz)</strong>: CPU의 1초당 동작 주기 주파수 (GHz)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🧠 메모리 계층 속도 피라미드</span>
+                </div>
+                <div style="font-family:'JetBrains Mono', monospace; font-size:13.5px; line-height:1.8; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:16px; margin-top:12px; text-align:center;">
+                  [속도 가장 빠름 / 용량 작음]<br>
+                  🥇 <span style="color:#e11d48; font-weight:900;">레지스터 (Register)</span><br>
+                  ▼<br>
+                  🥈 <strong>캐시 메모리 (SRAM)</strong><br>
+                  ▼<br>
+                  🥉 <strong>주기억장치 (DRAM)</strong><br>
+                  ▼<br>
+                  💾 <strong>보조기억장치 (SSD, HDD)</strong><br>
+                  [속도 가장 느림 / 용량 큼]
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "컴퓨터 기억 장치 중 접근 속도가 가장 빠른 것은 <strong>레지스터(Register)</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 10 : 35 제어장치(CU) 핵심 레지스터 (프로그램 카운터 PC ★)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="컴활 1과목 하드웨어 분야 출제율 1위인 35번 제어장치 핵심 레지스터입니다. 프로그램 카운터(PC)는 시험에 무조건 나옵니다. 프로그램 카운터는 '다음에 실행할 명령어의 주소(번지)'를 기억하는 레지스터입니다. '다음'이라는 단어가 나오면 무조건 PC입니다. 반면에 명령 레지스터(IR)는 '현재 실행 중인 명령어' 자체를 임시 보관하는 레지스터입니다. 현재 명령은 IR, 다음 명령 주소는 PC입니다. 이 둘을 서로 바꾸어 오답을 유도하는 문제가 매회 출제됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 35 • 제어장치 레지스터 ★출제 1위</div>
+                <h2 class="slide-title">프로그램 카운터(PC) vs <span class="hl-green">명령 레지스터(IR)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 프로그램 카운터 (PC, Program Counter) ★★★</div>
+                <div class="card-desc">
+                  • <span class="hl-green"><strong>다음에 실행될 명령어의 번지(주소)</strong></span>를 기억하는 레지스터<br>
+                  • 명령어가 하나 인출되면 자동으로 값이 증가하여 다음 명령을 가리킴
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 명령 레지스터 (IR, Instruction Register) ★</div>
+                <div class="card-desc">
+                  • <span class="warn-text"><strong>현재 실행 중인 명령어 코드</strong></span>를 임시로 저장하는 레지스터
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. MAR & MBR</div>
+                <div class="card-desc">
+                  • <strong>MAR (메모리 주소 레지스터)</strong>: 읽기/쓰기할 데이터의 기억장치 주소 보관<br>
+                  • <strong>MBR (메모리 버퍼 레지스터)</strong>: 기억장치와 주고받는 실제 데이터 임시 보관
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚖️ PC vs IR 기출 정답 완벽 대비표</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 32%;">레지스터</th>
+                      <th style="width: 28%;">기억 대상</th>
+                      <th>핵심 키워드 및 시험 정답</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">프로그램 카운터 (PC)</td>
+                      <td><strong>다음 명령 주소</strong></td>
+                      <td>"다음에 실행할 명령어의 번지를 기억"</td>
+                    </tr>
+                    <tr style="background:#fff1f2;">
+                      <td style="font-weight:800; color:#e11d48;">명령 레지스터 (IR)</td>
+                      <td><strong>현재 명령 코드</strong></td>
+                      <td>"현재 실행 중인 명령어를 임시 저장"</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">메모리 주소 (MAR)</td>
+                      <td>기억장치 주소</td>
+                      <td>주소 버스와 연결된 번지 기억</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">메모리 버퍼 (MBR)</td>
+                      <td>실제 데이터 내용</td>
+                      <td>데이터 버스와 연결된 자료 임시 기억</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "다음에 실행할 명령어의 번지(주소)를 기억하는 레지스터는 <strong>프로그램 카운터(PC)</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 11 : 35 제어장치 핵심 회로 (명령 해독기 vs 부호기)
+             ======================================================== -->
+        <section class="slide"
+          data-notes="제어장치의 핵심 회로인 명령 해독기와 부호기입니다. 명령 레지스터(IR)에 담긴 2진수 기계어 명령어를 사람이 이해할 수 있는 명령으로 번역하는 회로를 명령 해독기(디코더)라고 합니다. 그리고 해독된 명령에 따라 CPU 안팎의 각 장치가 작동할 수 있도록 제어 신호를 생성해서 보내주는 회로를 부호기(인코더)라고 합니다. 해독기는 명령어를 해독하는 회로, 부호기는 제어 신호를 발생시키는 회로로 기억하세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 35 • 제어 회로 (CIRCUITS)</div>
+                <h2 class="slide-title">명령 해독기(디코더) & <span class="hl-green">부호기(인코더)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 명령 해독기 (Decoder) ★</div>
+                <div class="card-desc">
+                  • 명령 레지스터(IR)에 있는 <span class="hl-green">명령어를 해독하는 회로</span><br>
+                  • 2진수 명령어 코드를 해독하여 어떤 동작을 수행할지 판별
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 부호기 (Encoder) ★</div>
+                <div class="card-desc">
+                  • 해독된 명령에 따라 각 장치로 보낼 <span class="hl-green">제어 신호를 생성·발생</span>시키는 회로
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 제어장치 명령어 실행 흐름도</div>
+                <div class="card-desc">
+                  • PC(다음주소) ➔ 메모리 인출 ➔ IR(현재명령저장) ➔ 해독기(명령해독) ➔ 부호기(제어신호발생)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔄 제어장치 명령어 처리 파이프라인</span>
+                </div>
+                <div style="font-family:'JetBrains Mono', monospace; font-size:13px; line-height:1.75; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:16px; margin-top:12px;">
+                  1️⃣ <strong>PC (프로그램 카운터)</strong>: 다음 실행할 주소 지정<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                  2️⃣ <strong>MAR ➔ MBR</strong>: 주기억장치에서 명령 읽어옴<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                  3️⃣ <strong>IR (명령 레지스터)</strong>: 현재 명령 보관<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                  4️⃣ <span style="color:#0284c7; font-weight:800;">명령 해독기 (Decoder)</span>: 명령의 종류 해독<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;▼<br>
+                  5️⃣ <span style="color:#059669; font-weight:800;">부호기 (Encoder)</span>: 각 장치로 제어 신호 전달!
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "해독된 명령어에 따라 각 장치로 보낼 제어 신호를 생성하는 회로는 <strong>부호기(Encoder)</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 12 : 🎯 킬러 함정 플립카드 ①
+             ======================================================== -->
+        <section class="slide"
+          data-notes="29단원부터 32단원까지의 킬러 함정 플립카드입니다. 한글 1글자의 바이트 수, 처리 속도 단위의 대소 비교, 그리고 패리티 비트의 에러 교정 가능 여부를 직접 카드를 클릭해서 확인해 보세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">KILLER TRAP • PART 1</div>
+                <h2 class="slide-title">🎯 킬러 기출 함정 <span class="hl-green">플립카드 ①</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">💡 플립 카드 학습 안내</div>
+                <div class="card-desc">
+                  • 우측 카드를 <strong>클릭</strong>하면 카드가 180도 회전하며 <strong>O/X 정답 및 기출 해설</strong>이 나타납니다.<br>
+                  • 시험 직전 실전 감각을 끌어올리기 위한 최고난도 OX 훈련입니다.
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">체크 포인트</div>
+                <div class="card-desc">
+                  • <strong>Q1</strong>: 한글 1글자 저장에 필요한 바이트 수<br>
+                  • <strong>Q2</strong>: 나노초(ns)와 마이크로초(μs) 속도 비교<br>
+                  • <strong>Q3</strong>: 패리티 비트의 에러 교정 가능 여부
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right" style="gap: 12px; width: 100%; max-width: 530px;">
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 한글과 영문의 바이트 표현 크기</div>
+                    <div style="font-size: 13.5px;">"컴퓨터에서 영문자와 숫자는 1바이트를 사용하지만, 한글 1글자를 표현하기 위해서는 4바이트가 필요하다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (한글은 2바이트!)</div>
+                    <div style="font-size: 13px;">한글과 한자는 <strong>2바이트(16비트)</strong>로 표현되며, 영문/숫자는 <strong>1바이트(8비트)</strong>입니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. 나노초(ns)와 피코초(ps)의 속도 비교</div>
+                    <div style="font-size: 13.5px;">"컴퓨터 처리 속도 단위 중 나노초(10^-9초)는 피코초(10^-12초)보다 연산 속도가 더 빠르다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (피코초가 더 빠름!)</div>
+                    <div style="font-size: 13px;">지수가 작을수록 더 짧은 시간이므로 <strong>피코초(ps)가 나노초(ns)보다 1000배 더 빠릅니다</strong>!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. 패리티 비트의 에러 교정 여부</div>
+                    <div style="font-size: 13.5px;">"패리티 비트를 사용하면 전송된 데이터의 오류를 검출함과 동시에 원래 데이터로 스스로 교정할 수 있다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (패리티는 교정 불가!)</div>
+                    <div style="font-size: 13px;">패리티는 <strong>검출만 가능</strong>하며, 에러 교정까지 가능한 코드는 <strong>해밍 코드</strong>입니다!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 13 : 🎯 킬러 함정 플립카드 ②
+             ======================================================== -->
+        <section class="slide"
+          data-notes="33단원부터 35단원까지의 킬러 함정 플립카드입니다. 2진수를 16진수로 바꿀 때 비트 묶음 수, 프로그램 카운터(PC)의 역할, 그리고 레지스터의 속도 순위를 직접 클릭해서 확인해 보세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">KILLER TRAP • PART 2</div>
+                <h2 class="slide-title">🎯 킬러 기출 함정 <span class="hl-green">플립카드 ②</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">💡 실전 문제 풀이 팁</div>
+                <div class="card-desc">
+                  • 시험에서는 '프로그램 카운터'와 '명령 레지스터'의 설명을 서로 뒤바꾸는 문제가 가장 높은 빈도로 출제됩니다.<br>
+                  • 카드를 클릭하여 완벽하게 정답을 각인시키세요.
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">체크 포인트</div>
+                <div class="card-desc">
+                  • <strong>Q1</strong>: 2진수 ➔ 16진수 변환 시 묶음 비트 수<br>
+                  • <strong>Q2</strong>: 프로그램 카운터(PC)가 기억하는 대상<br>
+                  • <strong>Q3</strong>: 기억장치 중 레지스터의 접근 속도 순위
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right" style="gap: 12px; width: 100%; max-width: 530px;">
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 16진수 변환 시 비트 묶음</div>
+                    <div style="font-size: 13.5px;">"2진수를 16진수로 변환할 때는 2진수를 오른쪽 끝에서부터 3자리씩 묶어서 계산한다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (16진수는 4자리씩 묶음!)</div>
+                    <div style="font-size: 13px;">3자리씩 묶는 것은 <strong>8진수</strong>이며, 16진수는 <strong>4자리(8,4,2,1)씩 묶어야</strong> 합니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. 프로그램 카운터(PC)의 역할</div>
+                    <div style="font-size: 13.5px;">"프로그램 카운터(PC)는 현재 CPU에서 실행 중인 명령어 자체를 임시 보관하는 레지스터이다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (현재 실행은 IR!)</div>
+                    <div style="font-size: 13px;">현재 실행 명령은 <strong>명령 레지스터(IR)</strong>이며, PC는 <strong>'다음에 실행할 명령의 주소'</strong>를 기억합니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. 레지스터의 접근 속도</div>
+                    <div style="font-size: 13.5px;">"컴퓨터의 기억 장치 중 CPU 내부에 있는 레지스터(Register)가 접근 속도가 가장 빠르다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (압도적 1위 속도!)</div>
+                    <div style="font-size: 13px;"><strong>레지스터 &gt; 캐시 메모리(SRAM) &gt; 주기억장치(DRAM) &gt; 보조기억장치</strong> 순서로 빠릅니다!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 14 : 29~35단원 핵심 10대 공식 총정리
+             ======================================================== -->
+        <section class="slide"
+          data-notes="29단원부터 35단원까지 시험에 출제되는 10대 핵심 키워드 총정리 매트릭스입니다. 비트부터 데이터베이스까지 8단계 크기 순서, 한글 2바이트 영문 1바이트, 용량 1024배수와 처리 속도 순서, 아스키 7비트 vs 유니코드 2바이트, 패리티 검출 vs 해밍 교정, 2진수의 8진수/16진수 묶음, 그리고 프로그램 카운터(PC)의 다음 명령 주소 기억까지 이 10가지를 완벽히 암기하세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">FINAL SUMMARY MATRIX</div>
+                <h2 class="slide-title">29~35단원 <span class="hl-green">핵심 10대 공식</span> 총정리</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 데이터 단위 & 코드 공식</div>
+                <div class="card-desc">
+                  • <strong>크기 순서</strong>: <span class="hl-green">Bit &lt; Nibble &lt; Byte &lt; Word &lt; Field &lt; Record &lt; File &lt; DB</span><br>
+                  • <strong>바이트 크기</strong>: 영문/숫자 1B, <span class="hl-green">한글/한자 2B</span><br>
+                  • <strong>코드 규격</strong>: ASCII(7비트/128개), 유니코드(2바이트/65,536개)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 에러 검출 & CPU 레지스터 공식</div>
+                <div class="card-desc">
+                  • <strong>에러 교정</strong>: 무조건 <span class="hl-green">해밍 코드 (Hamming)</span><br>
+                  • <strong>진수 변환</strong>: 8진수(3비트 묶음), 16진수(4비트 묶음)<br>
+                  • <strong>프로그램 카운터 (PC)</strong>: <span class="hl-green">다음에 실행될 명령어의 주소 기억 ★</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 16px;">
+                <div class="morph-title">
+                  <span>🏆 기출 정답 1순위 키워드 요약표</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">단원</th>
+                      <th style="width: 35%;">핵심 주제</th>
+                      <th>기출 정답 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">29 자료단위</td>
+                      <td>문자/명령 단위</td>
+                      <td>바이트(문자최소 8b), 워드(CPU처리단위)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">30 속도단위</td>
+                      <td>처리 속도 순서</td>
+                      <td>ms ➔ μs ➔ ns ➔ ps ➔ fs ➔ as</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">31 문자코드</td>
+                      <td>ASCII & 유니코드</td>
+                      <td>ASCII(7b, 일반PC), 유니코드(2B, 국제표준)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">32 에러검출</td>
+                      <td>에러 교정 코드</td>
+                      <td>해밍 코드(에러 검출 및 자동 교정)</td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">35 제어장치</td>
+                      <td>PC vs IR</td>
+                      <td>PC(다음 명령 주소), IR(현재 실행 명령)</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13px; color: #15803d; background: #f0fdf4; padding: 8px 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 12px;">
+                  💡 위 10가지 공식은 실제 시험에서 매회 3~4문제 이상 출제되는 핵심 공식입니다!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 15 : 기출 오답 판별 필승 공식
+             ======================================================== -->
+        <section class="slide"
+          data-notes="기출 오답 판별 필승 공식입니다. 첫째, 프로그램 카운터 문제에서 '현재 실행'이라는 단어가 나오면 오답이며, 무조건 '다음 명령 주소'가 나와야 정답입니다. 둘째, 패리티 비트에 '에러 교정'이 붙으면 오답입니다. 셋째, 아스키코드의 비트 수를 8비트나 6비트로 왜곡하는 보기를 주의하세요. 기본 아스키는 7비트입니다. 이 함정들을 철저히 파악해 두세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">EXAM PASS STRATEGY</div>
+                <h2 class="slide-title">기출 오답 판별 <span class="hl-green">필승 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 프로그램 카운터(PC) 함정 판별법</div>
+                <div class="card-desc">
+                  • 지문에 "현재 실행 중인 명령"이 나오면 ➔ <span class="warn-text">IR (명령 레지스터)</span><br>
+                  • 지문에 "다음에 실행할 명령의 번지(주소)"가 나오면 ➔ <span class="hl-green">PC (프로그램 카운터)</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 에러 코드 함정 판별법</div>
+                <div class="card-desc">
+                  • "에러 검출 및 교정" ➔ <span class="hl-green">해밍 코드</span> (패리티 X!)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 문자 코드 비트 수 함정</div>
+                <div class="card-desc">
+                  • ASCII: <span class="hl-green">7 Bit</span> / BCD: <span class="hl-green">6 Bit</span> / 유니코드: <span class="hl-green">2 Byte (16 Bit)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🎯 시험장 직전 핵심 체크포인트</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 유형</div>
+                  <div class="e-cell header">정답 공식</div>
+                  <div class="e-cell" style="font-weight:700;">다음 실행 번지</div>
+                  <div class="e-cell active-green"><strong>프로그램 카운터 (PC)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">에러 자동 수정</div>
+                  <div class="e-cell active-green"><strong>해밍 코드 (Hamming)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">국제 표준 2B</div>
+                  <div class="e-cell"><strong>유니코드 (Unicode)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">기억장치 최고속</div>
+                  <div class="e-cell"><strong>레지스터 (Register)</strong></div>
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 시험장에서 문제 지문을 꼼꼼히 읽고 함정 키워드를 빠르게 걸러내세요!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             SLIDE 16 : 합격 응원 카드
+             ======================================================== -->
+        <section class="slide"
+          data-notes="수고 많으셨습니다. 29단원 자료 표현 단위부터 35단원 제어장치까지의 모든 내용을 정리했습니다. 이제 1과목 컴퓨터 일반의 핵심 하드웨어 및 데이터 기초 이론을 완벽하게 마스터하셨습니다. 여러분의 컴활 2급 필기 합격을 진심으로 응원합니다!">
+          <div style="margin: auto; text-align: center; max-width: 860px;">
+            <div style="font-size: 56px; margin-bottom: 16px;">🎉</div>
+            <div class="title-badge">1과목 컴퓨터 일반 • 5페이지 완전 정복</div>
+            <h2 class="title-h1" style="font-size: 38px;">29~35단원 학습을<br><span>완벽하게 완료하셨습니다!</span></h2>
+            <p class="title-sub" style="font-size: 17px; margin-bottom: 24px;">
+              자료 표현 계층, 용량 및 처리 속도 단위, 문자 코드, 해밍 코드, 2진수 8/16진수 변환, 그리고 CPU 제어장치의 프로그램 카운터(PC)까지 핵심 이론과 기출 함정을 마스터했습니다.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button onclick="goTo(1)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer; font-size:14.5px;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                첫 슬라이드로 돌아가기 ↺
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#0284c7; color:#fff; border:none; padding:10px 22px; border-radius:10px; font-weight:800; cursor:pointer; font-size:14.5px; box-shadow:0 4px 12px rgba(2,132,199,0.3);"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                목차 다시 보기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- 발표자 대본창 (Speaker Notes Drawer) -->
+    <div class="speaker-notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(단축키: N 또는 S 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        대본이 여기에 표시됩니다.
+      </div>
+    </div>
+
+    <!-- 하단 키보드 단축키 안내 바 -->
+    <footer class="key-shortcuts-bar">
+      <span><kbd>◀</kbd> / <kbd>Backspace</kbd> 이전 슬라이드</span>
+      <span><kbd>▶</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> 다음 슬라이드</span>
+      <span><kbd>N</kbd> 또는 <kbd>S</kbd> 발표자 대본창 토글</span>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const curSlideNumEl = document.getElementById('curSlideNum');
+    const totalSlideNumEl = document.getElementById('totalSlideNum');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    totalSlideNumEl.textContent = String(totalSlides).padStart(2, '0');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx === index) {
+          s.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+      curSlideNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+
+      // 대본창 내용 갱신
+      const notes = slides[currentSlide].getAttribute('data-notes') || '해당 슬라이드에 등록된 강의 대본이 없습니다.';
+      notesContent.innerHTML = notes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function goTo(slideNumber) {
+      updateSlide(slideNumber - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    // 키보드 내비게이션
+    window.addEventListener('keydown', (e) => {
+      // 텍스트 입력창에서는 키보드 제어 방지
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N' || e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    // 초기화
+    updateSlide(0);
+  </script>
+</body>
+
+</html>

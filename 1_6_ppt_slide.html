@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 1과목 컴퓨터 일반 (36~41)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+      --shadow-card-hover: 0 10px 25px -5px rgba(2, 132, 199, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hl-green,
+    u,
+    .u-highlight {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    code,
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px 8px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      user-select: none;
+    }
+
+    .side-nav-arrow:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+    }
+
+    .side-nav-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .side-nav-arrow.prev {
+      left: 14px;
+    }
+
+    .side-nav-arrow.next {
+      right: 14px;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 1320px;
+      max-height: 720px;
+      background: var(--canvas-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-canvas);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 42px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 42px;
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .split-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .anim-left {
+      animation: animLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: animRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes animLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes animRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    .slide-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--accent-blue);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .info-card.warning {
+      border-left-color: var(--accent-rose);
+      background: #fffbfa;
+    }
+
+    .info-card.success {
+      border-left-color: var(--accent-emerald);
+      background: #fbfdfc;
+    }
+
+    .info-card.amber {
+      border-left-color: var(--accent-amber);
+      background: #fffdfa;
+    }
+
+    .info-card.purple {
+      border-left-color: var(--accent-purple);
+      background: #fbfaff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card.warning .card-title {
+      color: var(--accent-rose);
+    }
+
+    .info-card.success .card-title {
+      color: var(--accent-emerald);
+    }
+
+    .info-card.amber .card-title {
+      color: var(--accent-amber);
+    }
+
+    .info-card.purple .card-title {
+      color: var(--accent-purple);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: 0 2px 0 #94a3b8;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+
+    .morph-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      width: 100%;
+      max-width: 530px;
+      position: relative;
+    }
+
+    .morph-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .morph-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .morph-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: #f8fafc;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+    }
+
+    .styled-table td.center {
+      text-align: center;
+    }
+
+    .excel-morph-grid {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .e-cell {
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .e-cell.header {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #475569;
+      justify-content: center;
+    }
+
+    .e-cell.active-green {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+      font-weight: 800;
+    }
+
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 125px;
+      cursor: pointer;
+    }
+
+    .flipper {
+      transition: 0.5s transform cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flip-container.flipped .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .flip-front {
+      background: #ffffff;
+      z-index: 2;
+      border-left: 5px solid #0284c7;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #22c55e;
+    }
+
+    .title-h1 {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .title-h1 span {
+      background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 600;
+      text-align: center;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    .key-shortcuts-bar {
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #64748b;
+      user-select: none;
+    }
+
+    .key-shortcuts-bar kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .speaker-notes-drawer {
+      position: absolute;
+      bottom: 34px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid var(--accent-emerald);
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100%);
+      max-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      padding: 8px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-toggle-notes {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      font-family: inherit;
+    }
+
+    .notes-content {
+      padding: 14px 28px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #1e293b;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <header class="header-bar">
+      <div class="badge-subject">
+        <span>📘</span>
+        <span>컴활 2급 필기 • 1과목 컴퓨터 일반</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#334155;">
+        36. 연산장치 ~ 41. 출력 장치 핵심 요약
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-toggle-notes" onclick="toggleNotes()" title="단축키 N 또는 S">
+          🎙️ 발표자 대본 열기 (N)
+        </button>
+        <div class="slide-counter"><span id="curSlideNum">01</span> / <span id="totalSlideNum">16</span></div>
+      </div>
+    </header>
+
+    <main class="slide-stage">
+      <button class="side-nav-arrow prev" onclick="prevSlide()" title="이전 슬라이드 (◀ / Backspace)">‹</button>
+      <button class="side-nav-arrow next" onclick="nextSlide()" title="다음 슬라이드 (▶ / Space / Enter)">›</button>
+
+      <div class="slide-canvas" id="slideCanvas">
+
+        <!-- SLIDE 1 : Title -->
+        <section class="slide active"
+          data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 6페이지 특강을 시작하겠습니다. 이번 36단원 연산장치부터 41단원 출력 장치까지는 하드웨어 컴퓨터 부품의 핵심 시험 영역입니다. 누산기(AC)의 연산 결과 임시 저장, 비휘발성 ROM과 휘발성 RAM의 SRAM·DRAM 비교, HDD와 SSD의 차이점, 캐시·가상·플래시·연관 메모리 등 특수 기억장치, 그리고 레이저 프린터와 해상도 단위까지 총 16개 슬라이드로 완벽 정리합니다.">
+          <div style="margin: auto; text-align: center; max-width: 900px;">
+            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 36~41</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
+            <p class="title-sub">연산장치(누산기) • ROM/RAM • HDD/SSD(파티션) • 특수 기억장치(가상/캐시/연관) • 입출력 장치 완전 정복</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
+              <button onclick="nextSlide()"
+                style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                프레젠테이션 시작하기 ▶
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                목차 바로가기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2 : Table of Contents -->
+        <section class="slide"
+          data-notes="핵심 학습 로드맵입니다. 36 연산장치의 누산기와 가산기, 37 주기억장치 ROM과 RAM의 종류, 38 보조기억장치 HDD와 SSD 및 파티션, 39 캐시·가상·연관 메모리, 40 입력 장치와 41 출력 장치 순서로 진행됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">AGENDA & ROADMAP</div>
+                <h2 class="slide-title">핵심 학습 로드맵 (36~41)</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">36. 연산장치(ALU) & 37. 주기억장치(ROM/RAM)</div>
+                <div class="card-desc">누산기(AC) 연산결과 임시저장, ROM(비휘발성/EPROM/EEPROM), SRAM vs DRAM</div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">38. 보조기억장치(HDD/SSD) & 파티션</div>
+                <div class="card-desc">자기 회전 HDD vs 반도체 SSD(불량섹터 없음), 디스크 파티션(분할/포맷)</div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">39. 기타 기억장치 (★출제 1위)</div>
+                <div class="card-desc">캐시(SRAM), 가상 메모리(보조기억➔주기억확장), 연관 메모리(내용으로 검색)</div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">40. 입력 장치 & 41. 출력 장치 (모니터/프린터)</div>
+                <div class="card-desc">스캐너/디지타이저, 픽셀/해상도, 레이저 프린터, 속도 단위(PPM/IPM)</div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px; width: 100%;">
+                <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
+                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button class="morph-btn" onclick="goTo(3)">36. 연산장치(누산기 AC)</button>
+                  <button class="morph-btn" onclick="goTo(4)">37. 주기억장치 ROM & RAM</button>
+                  <button class="morph-btn" onclick="goTo(5)">37. SRAM vs DRAM 비교</button>
+                  <button class="morph-btn" onclick="goTo(6)">38. HDD vs SSD 핵심 비교</button>
+                  <button class="morph-btn" onclick="goTo(7)">38. SATA 포트 & 파티션</button>
+                  <button class="morph-btn" onclick="goTo(8)">39. 캐시/가상/플래시 메모리</button>
+                  <button class="morph-btn" onclick="goTo(9)">39. 연관 메모리 (내용 검색)</button>
+                  <button class="morph-btn" onclick="goTo(10)">40. 입력 장치 (OMR/스캐너)</button>
+                  <button class="morph-btn" onclick="goTo(11)">41. 출력 장치 & 해상도</button>
+                  <button class="morph-btn" onclick="goTo(12)">🎯 킬러 함정 플립 ①</button>
+                  <button class="morph-btn" onclick="goTo(13)">🎯 킬러 함정 플립 ②</button>
+                  <button class="morph-btn" onclick="goTo(14)">10대 공식 총정리 매트릭스</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3 : 36 연산장치(ALU) -->
+        <section class="slide"
+          data-notes="36번 연산장치(ALU)입니다. 연산장치에서는 산술 연산과 논리 연산을 수행합니다. 핵심 구성 요소로 누산기(AC)가 시험에 가장 많이 나옵니다. 누산기는 '연산된 결과를 일시적으로 저장'하는 레지스터입니다. 가산기는 덧셈을 수행하는 회로이고, 보수기는 뺄셈을 하기 위해 입력된 숫자를 보수로 변환해 주는 회로입니다. 상태 레지스터는 올림수, 오버플로 등 연산 중 발생하는 상태를 기록합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 36 • 연산장치 (ALU) ★출제 1위</div>
+                <h2 class="slide-title">누산기(AC) & <span class="hl-green">연산 회로 4총사</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 누산기 (AC, Accumulator) ★★★</div>
+                <div class="card-desc">
+                  • <span class="hl-green"><strong>연산된 결과(중간 및 최종 결과)</strong></span>를 일시적으로 기억하는 레지스터<br>
+                  • 시험에 "연산 결과 일시 저장" 문구가 나오면 무조건 누산기!
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 가산기 & 보수기</div>
+                <div class="card-desc">
+                  • <strong>가산기 (Adder)</strong>: 2진수의 <span class="hl-green">덧셈</span>을 수행하는 논리 회로<br>
+                  • <strong>보수기 (Complementer)</strong>: <span class="hl-green">뺄셈</span>을 수행하기 위해 숫자를 보수로 변환
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 상태 레지스터 (Status Register)</div>
+                <div class="card-desc">
+                  • 연산 과정에서 발생하는 부호, 0, 캐리(올림수), 오버플로 등 상태 플래그 보관
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚙️ ALU 핵심 구성 요소 요약표</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>구성 요소</th>
+                      <th>핵심 기능 및 시험 정답</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">누산기 (AC) ★</td>
+                      <td><strong>연산된 결과를 일시적으로 저장하는 레지스터</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">가산기</td>
+                      <td>덧셈(Addition) 연산 회로</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">보수기</td>
+                      <td>뺄셈(Subtraction) 연산을 위한 보수 변환 회로</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">상태 레지스터</td>
+                      <td>연산 도중 발생하는 올림수/오버플로 등 상태값 기억</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "연산 장치에서 덧셈 연산 후 그 결과를 일시적으로 저장하는 레지스터는 <strong>누산기(Accumulator)</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4 : 37 주기억장치 ROM & RAM -->
+        <section class="slide"
+          data-notes="37번 주기억장치 ROM과 RAM의 기본 특징입니다. ROM은 Read Only Memory로 전원이 꺼져도 내용이 지워지지 않는 비휘발성 메모리입니다. 기본 입출력 시스템인 BIOS와 펌웨어가 저장됩니다. EPROM은 자외선으로 내용을 지우고 다시 쓸 수 있으며, EEPROM은 전기를 이용해 내용을 수정할 수 있습니다. 반면 RAM은 Random Access Memory로 전원이 꺼지면 내용이 모두 날아가는 휘발성 메모리이며 자유롭게 읽고 쓸 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 37 • 주기억장치 (MAIN MEMORY)</div>
+                <h2 class="slide-title">비휘발성 ROM vs <span class="hl-green">휘발성 RAM</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. ROM (Read Only Memory) — 비휘발성</div>
+                <div class="card-desc">
+                  • 전원이 차단되어도 데이터가 지워지지 않는 <span class="hl-green">비휘발성 메모리</span><br>
+                  • 읽기 전용, <strong>BIOS(기본 입출력 시스템), 펌웨어(Firmware)</strong> 저장<br>
+                  • <strong>EPROM</strong>: <span class="hl-green">자외선</span>으로 내용 수정 / <strong>EEPROM</strong>: <span class="hl-green">전기</span>로 내용 수정
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. RAM (Random Access Memory) — 휘발성</div>
+                <div class="card-desc">
+                  • 전원이 꺼지면 기억된 내용이 모두 소멸하는 <span class="warn-text">휘발성 메모리</span><br>
+                  • 사용자가 자유롭게 <strong>읽고 쓰기(Read/Write)</strong> 가능
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>💡 펌웨어(Firmware)의 정의와 특징</span>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px; margin-top:12px; font-size:14px; line-height:1.7;">
+                  • <strong>성격</strong>: <span class="hl-green">하드웨어와 소프트웨어의 중간</span>적 특성<br>
+                  • <strong>저장 위치</strong>: 주로 <span class="hl-green">EEPROM (플래시 ROM)</span>에 저장<br>
+                  • <strong>장점</strong>: <span class="hl-green">하드웨어 교체 없이 소프트웨어 업데이트만으로 기기 성능과 기능을 향상</span>시킬 수 있음
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "전기를 이용하여 기억된 내용을 여러 번 수정할 수 있는 ROM은 <strong>EEPROM</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5 : 37 SRAM vs DRAM 비교 -->
+        <section class="slide"
+          data-notes="RAM의 두 가지 종류인 SRAM과 DRAM의 비교입니다. 출제율 1위 파트입니다. SRAM(정적 램)은 플립플롭 회로로 구성되어 재충전이 필요 없고 속도가 매우 빠르지만 가격이 비싸서 캐시 메모리로 쓰입니다. DRAM(동적 램)은 콘덴서 구조라 시간이 지나면 방전되므로 주기적으로 재충전(Refresh)을 해주어야 합니다. 대신 구조가 단순하여 대용량 제작이 가능하고 저렴해서 일반 PC의 주기억장치로 사용됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 37 • RAM 정밀 비교 ★출제 1위</div>
+                <h2 class="slide-title">캐시 메모리 SRAM vs <span class="hl-green">주기억장치 DRAM</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. SRAM (Static RAM, 정적 램)</div>
+                <div class="card-desc">
+                  • <strong>구성 소자</strong>: 플립플롭 (Flip-Flop) 회로<br>
+                  • <strong>재충전</strong>: <span class="hl-green">재충전 필요 없음</span><br>
+                  • <strong>특징</strong>: <span class="hl-green">속도가 대단히 빠름</span>, 고가, 적은 용량<br>
+                  • <strong>사용처</strong>: <span class="hl-green">캐시 메모리 (Cache Memory)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. DRAM (Dynamic RAM, 동적 램)</div>
+                <div class="card-desc">
+                  • <strong>구성 소자</strong>: 콘덴서 (커패시터)<br>
+                  • <strong>재충전</strong>: <span class="warn-text">주기적인 재충전(Refresh) 필수!</span><br>
+                  • <strong>특징</strong>: 대용량, 저렴한 가격, 상대적으로 느림<br>
+                  • <strong>사용처</strong>: <span class="hl-green">일반 PC의 주기억장치 (메인 메모리)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚖️ SRAM vs DRAM 완전 비교표</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>비교 항목</th>
+                      <th style="width: 38%;">SRAM (정적 램)</th>
+                      <th style="width: 38%;">DRAM (동적 램)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">구성 회로</td>
+                      <td>플립플롭 (Flip-Flop)</td>
+                      <td>콘덴서 (Capacitor)</td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:800; color:#dc2626;">재충전(Refresh)</td>
+                      <td style="font-weight:700;">필요 없음</td>
+                      <td style="font-weight:800; color:#dc2626;"><strong>주기적 재충전 필수 ★</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">접근 속도</td>
+                      <td><span class="hl-green">매우 빠름</span></td>
+                      <td>보통</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">가격 / 집적도</td>
+                      <td>고가 / 저집적도 (소용량)</td>
+                      <td>저렴 / 고집적도 (대용량)</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">주요 용도 ★</td>
+                      <td><strong>캐시 메모리 (Cache)</strong></td>
+                      <td><strong>일반 PC 주기억장치</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "DRAM은 콘덴서의 전하 방전을 막기 위해 주기적으로 <strong>재충전(Refresh)</strong>이 필요하다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6 : 38 보조기억장치 HDD vs SSD -->
+        <section class="slide"
+          data-notes="38번 보조기억장치 HDD와 SSD의 비교입니다. HDD는 자성체로 코팅된 금속 원판 플래터가 모터로 회전하며 헤드가 데이터를 읽고 쓰는 기계식 장치입니다. 동심원 트랙과 부채꼴 섹터로 구성됩니다. 반면 SSD는 모터나 헤드 같은 기계적 부품 없이 순수 반도체 플래시 메모리 칩을 연결한 차세대 저장장치입니다. HDD에 비해 데이터 입출력 속도가 월등히 빠르고, 소음과 발열이 없으며, 충격에 강하고 전력 소모가 적습니다. 특히 반도체 칩이므로 기계적 마모에 의한 '불량 섹터(Bad Sector)'가 발생하지 않는다는 점이 시험에 잘 나옵니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 38 • 보조기억장치 ★기출 빈출</div>
+                <h2 class="slide-title">자기 회전 HDD vs <span class="hl-green">반도체 SSD</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 하드디스크 (HDD) — 기계식 자기 저장</div>
+                <div class="card-desc">
+                  • 자성 물질이 코팅된 원판(플래터)을 모터로 회전시켜 헤드로 읽고 씀<br>
+                  • 동심원 형태의 <strong>트랙(Track)</strong>과 부채꼴 모양의 <strong>섹터(Sector)</strong>로 구성<br>
+                  • 기계적 소음, 발열, 외부 충격에 취약
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. SSD (Solid State Drive) — 반도체 저장 ★</div>
+                <div class="card-desc">
+                  • 기계적 모터 부품 없이 <span class="hl-green">순수 반도체 플래시 메모리 칩</span>으로 구성<br>
+                  • 읽기·쓰기 속도가 HDD 대비 압도적으로 빠름<br>
+                  • <span class="hl-green">무소음, 저전력, 내충격성 우수, 불량 섹터 미발생 ★</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>💾 HDD vs SSD 주요 특성 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>비교 항목</th>
+                      <th style="width: 38%;">하드디스크 (HDD)</th>
+                      <th style="width: 38%;">SSD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">저장 매체</td>
+                      <td>자기 원판 (플래터)</td>
+                      <td><span class="hl-green">반도체 플래시 메모리</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">전송 속도</td>
+                      <td>느림 (물리적 회전)</td>
+                      <td><span class="hl-green">매우 빠름 (전자적 전송)</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">소음 / 전력</td>
+                      <td>모터 회전 소음 있음</td>
+                      <td><span class="hl-green">무소음, 저전력</span></td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">불량 섹터 ★</td>
+                      <td>충격 시 발생 가능</td>
+                      <td><strong>물리적 불량 섹터 없음</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "SSD는 반도체 메모리를 사용하여 HDD보다 속도가 빠르고 충격에 강하며 소음이 없다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 7 : 38 SATA 포트 & 파티션 원리 -->
+        <section class="slide"
+          data-notes="보조기억장치 연결 인터페이스인 SATA와 파티션 원리입니다. SATA는 과거 병렬 IDE 방식을 대체한 직렬(Serial) 연결 방식으로, 전송 속도가 빠르고 컴퓨터가 켜진 상태에서 장치를 탈부착할 수 있는 핫 스왑(Hot Swap)을 지원합니다. 파티션은 하나의 물리적 디스크를 여러 논리적 영역으로 나누는 작업으로, 파티션별로 서로 다른 운영체제를 설치할 수 있습니다. 단, 하나의 파티션에는 단 하나의 파일 시스템만 적용할 수 있으며, 파티션 설정 후 반드시 포맷 과정을 거쳐야 사용 가능합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 38 • 인터페이스 & 파티션</div>
+                <h2 class="slide-title">SATA 직렬 포트 & <span class="hl-green">디스크 파티션 원칙</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. SATA (Serial ATA) 인터페이스 ★</div>
+                <div class="card-desc">
+                  • HDD와 SSD를 메인보드에 연결하는 <span class="hl-green">직렬(Serial) 전송 방식</span><br>
+                  • 컴퓨터 전원이 켜진 상태에서 장치 연결/분리 가능한 <span class="hl-green">핫 스왑(Hot Swap) 지원</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 디스크 파티션(Partition) 3대 원칙 ★</div>
+                <div class="card-desc">
+                  • <strong>개념</strong>: <span class="hl-green">하나의 물리 디스크를 여러 개의 논리 영역으로 분할</span><br>
+                  • <strong>다중 OS</strong>: 파티션마다 <span class="hl-green">서로 다른 운영체제 설치 가능</span> (Windows + Linux)<br>
+                  • <strong>파일 시스템</strong>: <span class="warn-text">한 파티션에는 오직 한 가지 파일 시스템만 사용</span> (포맷 필수)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>💽 파티션 분할 논리 구조도</span>
+                </div>
+                <div style="font-family:'JetBrains Mono', monospace; font-size:13.5px; line-height:1.75; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:16px; margin-top:12px;">
+                  [물리 디스크 1개: 1TB NVMe/SATA]<br>
+                  &nbsp;&nbsp;├─ <strong>파티션 1 (C: 드라이브)</strong><br>
+                  &nbsp;&nbsp;│&nbsp;&nbsp;• OS: Windows 11 / 파일시스템: NTFS<br>
+                  &nbsp;&nbsp;└─ <strong>파티션 2 (D: 드라이브)</strong><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• OS: Linux Ubuntu / 파일시스템: ext4<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• 데이터 전용 분리 보관
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "하나의 물리적 하드디스크를 여러 개의 논리적 파티션으로 나누어 각각 다른 운영체제를 설치할 수 있다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8 : 39 기타 기억장치 (캐시/가상/플래시) -->
+        <section class="slide"
+          data-notes="39번 특수 기억장치 3총사입니다. 캐시 메모리는 속도가 빠른 CPU와 상대적으로 느린 주기억장치 사이의 속도 차이를 완화하기 위해 중간에 두는 고속 메모리로 SRAM을 사용합니다. 가상 메모리는 주기억장치 용량이 부족할 때 하드디스크 같은 보조기억장치의 일부를 마치 주기억장치인 것처럼 속여서 주기억장치보다 더 큰 용량의 프로그램을 실행할 수 있게 해주는 기술입니다. 플래시 메모리는 EEPROM을 기반으로 한 비휘발성 반도체 메모리로 USB 메모리나 SD카드 등에 널리 쓰입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 39 • 특수 기억장치 ★출제 1위</div>
+                <h2 class="slide-title">캐시 메모리 & <span class="hl-green">가상 메모리(Virtual)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 캐시 메모리 (Cache Memory) — SRAM</div>
+                <div class="card-desc">
+                  • <span class="hl-green">CPU와 주기억장치 간의 속도 차이 극복</span><br>
+                  • 자주 사용하는 명령어/데이터를 임시 보관하여 시스템 속도 향상
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 가상 메모리 (Virtual Memory) ★★★</div>
+                <div class="card-desc">
+                  • <span class="hl-green"><strong>보조기억장치(HDD/SSD)의 일부를 주기억장치처럼 사용</strong></span><br>
+                  • 실제 주기억장치 물리 용량보다 <span class="warn-text">훨씬 더 큰 대용량 프로그램 실행 가능</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 플래시 메모리 (Flash Memory)</div>
+                <div class="card-desc">
+                  • EEPROM 기반 비휘발성 반도체, 저전력·고속, USB/SD카드/스마트폰 저장장치
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔍 특수 기억장치 핵심 키워드 매핑</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>메모리</th>
+                      <th>핵심 출제 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">캐시 메모리</td>
+                      <td><strong>CPU와 주기억장치 사이 속도 차이 완화 (SRAM)</strong></td>
+                    </tr>
+                    <tr style="background:#fff1f2;">
+                      <td style="font-weight:800; color:#e11d48;">가상 메모리 ★</td>
+                      <td><strong>보조기억장치를 주기억장치처럼 사용하여 큰 프로그램 실행</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">버퍼 메모리</td>
+                      <td>두 장치 사이의 데이터 전송 속도 차이 해결</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">플래시 메모리</td>
+                      <td>EEPROM 기반 비휘발성 반도체 (USB, SD카드)</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "보조기억장치의 일부를 주기억장치처럼 활용하여 주기억장치 용량보다 큰 프로그램을 실행하는 것은 <strong>가상 메모리</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 9 : 39 연관 메모리 (내용 검색) -->
+        <section class="slide"
+          data-notes="39번 연관 메모리(Associative Memory)입니다. 일반적인 메모리는 0번지, 100번지처럼 '주소(Address)'를 지정하여 데이터를 읽고 씁니다. 하지만 연관 메모리는 저장된 주소가 아니라 '데이터 내용의 일부(Content)'를 가지고 메모리를 병렬로 검색하는 고속 메모리입니다. 내용으로 검색한다고 해서 내용 참조 메모리(CAM)라고도 부릅니다. 시험에 '주소가 아닌 내용으로 검색' 문구가 나오면 무조건 연관 메모리를 선택해야 합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 39 • 특수 기억장치 ★단골</div>
+                <h2 class="slide-title">연관 메모리 <span class="hl-green">(내용 기반 검색)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 연관 메모리 (Associative Memory)의 정의 ★</div>
+                <div class="card-desc">
+                  • 일반 메모리처럼 기억장치 주소(Address)로 접근하지 않고<br>
+                  • <span class="hl-green"><strong>저장된 내용(Content)의 일부를 제시하여 데이터를 병렬 검색</strong></span>하는 고속 메모리
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 다른 명칭 및 특징</div>
+                <div class="card-desc">
+                  • <strong>CAM (Content Addressable Memory)</strong> 이라고도 부름<br>
+                  • 주소 변환 과정이 생략되므로 정보 검색 속도가 매우 빠름<br>
+                  • 하드웨어 회로가 복잡하여 고가임
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🧠 일반 메모리 vs 연관 메모리 검색 비교</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">구분</div>
+                  <div class="e-cell header">검색 방식</div>
+                  <div class="e-cell" style="font-weight:700;">일반 메모리</div>
+                  <div class="e-cell">주소(0x10FF)를 찾아가서 그 번지의 데이터 읽기</div>
+                  <div class="e-cell active-green" style="font-weight:700;">연관 메모리 ★</div>
+                  <div class="e-cell active-green"><strong>데이터 내용("홍길동")을 제시하여 즉시 찾아내기!</strong></div>
+                </div>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "기억 장치에 저장된 정보의 주소가 아닌 내용의 일부를 이용하여 접근하는 메모리는 <strong>연관 메모리(Associative Memory)</strong>이다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 10 : 40 입력 장치 -->
+        <section class="slide"
+          data-notes="40번 입력 장치입니다. 컴퓨터에 문자나 이미지 데이터를 입력하는 장치들의 종류를 묻는 문제입니다. OMR은 컴퓨터용 사인펜 마크를 판독하고, OCR은 인쇄되거나 손으로 쓴 문자를 광학적으로 읽습니다. MICR은 은행 수표에 자성 잉크로 인쇄된 문자를 읽습니다. 이미지 입력 장치로는 종이 문서를 디지털화하는 스캐너, 디지털카메라, 그리고 도면 설계 시 좌표를 정밀하게 입력하는 디지타이저(Digitizer)가 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 40 • 입력 장치 (INPUT DEVICES)</div>
+                <h2 class="slide-title">광학 판독기 & <span class="hl-green">이미지 입력 장치</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 마크 및 문자 광학 판독 장치</div>
+                <div class="card-desc">
+                  • <strong>OMR (광학 마크 판독기)</strong>: 시험 답안지 컴퓨터용 사인펜 마킹 판독<br>
+                  • <strong>OCR (광학 문자 판독기)</strong>: 지로용지나 인쇄된 문자 광학 인식<br>
+                  • <strong>MICR (자기 잉크 문자 판독기)</strong>: 은행 수표의 마그네틱 잉크 문자 인식
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 그래픽 & 이미지 입력 장치</div>
+                <div class="card-desc">
+                  • <strong>스캐너 (Scanner)</strong>: 사진/도면을 디지털 그래픽 데이터로 변환<br>
+                  • <strong>디지타이저 (Digitizer / 타블렛)</strong>: CAD 도면 설계용 좌표 입력 장치
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📋 판독 장치 약어 및 출제 포인트</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>약어</th>
+                      <th>장치 명칭</th>
+                      <th>주요 사용처</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">OMR</td>
+                      <td>광학 마크 판독기</td>
+                      <td>시험 답안지 마킹 판독</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">OCR</td>
+                      <td>광학 문자 판독기</td>
+                      <td>지로 공과금 영수증 문자 판독</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">MICR</td>
+                      <td>자기 잉크 문자 판독기</td>
+                      <td>은행 수표 하단 번호 판독</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">BCR</td>
+                      <td>바코드 판독기</td>
+                      <td>유통 마트 상품 바코드 판독</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11 : 41 출력 장치 & 해상도 단위 -->
+        <section class="slide"
+          data-notes="41번 출력 장치와 모니터/프린터 관련 용어입니다. 픽셀(Pixel)은 화면을 이루는 최소 단위인 화소이며, 해상도는 화면의 정밀도를 나타냅니다. 픽셀 수가 많을수록 고해상도가 되어 이미지가 선명해지지만, 동일 모니터 크기에서는 아이콘과 글자 크기가 작게 표시됩니다. 프린터에서는 레이저 프린터가 복사기처럼 토너 가루를 전사하여 고속 출력하며, 프린터 속도 단위로는 PPM(분당 페이지 수)과 국제표준인 IPM(분당 이미지 수)을 씁니다. 인쇄 해상도 단위는 1인치당 점의 개수를 뜻하는 DPI입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 41 • 출력 장치 (OUTPUT DEVICES)</div>
+                <h2 class="slide-title">픽셀·해상도 & <span class="hl-green">프린터 속도 규격</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 모니터 해상도 핵심 원리 ★</div>
+                <div class="card-desc">
+                  • <strong>픽셀 (Pixel, 화소)</strong>: <span class="hl-green">화면을 구성하는 최소 단위</span><br>
+                  • <strong>해상도 (Resolution)</strong>: 픽셀 수가 많을수록 <span class="hl-green">화면이 선명해지고</span>, 상대적으로 아이콘과 텍스트의 표시 크기는 <span class="warn-text">작아짐</span>!
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 레이저 프린터 & 단위 규격</div>
+                <div class="card-desc">
+                  • <strong>레이저 프린터</strong>: 복사기 원리로 토너를 종이에 전사하는 비충격식<br>
+                  • <strong>해상도 단위</strong>: <span class="hl-green">DPI (Dots Per Inch)</span> — 1인치당 인쇄 점 수<br>
+                  • <strong>속도 단위</strong>: <strong>PPM</strong> (분당 페이지 수), <span class="hl-green"><strong>IPM</strong> (ISO 표준 분당 이미지 수)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🖨️ 프린터 속도 및 해상도 단위 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>단위</th>
+                      <th>전체 명칭</th>
+                      <th>의미 및 특징</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">DPI</td>
+                      <td>Dots Per Inch</td>
+                      <td>인쇄 해상도 (점의 밀도)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">PPM</td>
+                      <td>Pages Per Minute</td>
+                      <td>1분당 출력 가능한 페이지 수</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:800; color:#15803d;">IPM ★</td>
+                      <td>Images Per Minute</td>
+                      <td><strong>국제표준기구(ISO) 공식 실측 속도</strong></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">CPS</td>
+                      <td>Characters Per Second</td>
+                      <td>1초당 출력 가능한 문자 수</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
+                  💡 <strong>기출 지문 정답</strong>: "모니터 해상도를 높게 설정하면 화면이 선명해지는 대신 화면에 표시되는 아이콘의 크기는 작아진다."
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 12 : 🎯 킬러 함정 플립카드 ① -->
+        <section class="slide"
+          data-notes="36단원부터 38단원까지의 킬러 함정 플립카드입니다. 누산기의 역할, SRAM과 DRAM의 재충전 여부, 그리고 SSD의 불량섹터 유무를 직접 카드를 클릭해서 확인해 보세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">KILLER TRAP • PART 1</div>
+                <h2 class="slide-title">🎯 킬러 기출 함정 <span class="hl-green">플립카드 ①</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">💡 플립 카드 학습 안내</div>
+                <div class="card-desc">
+                  • 우측 카드를 <strong>클릭</strong>하면 카드가 180도 회전하며 <strong>O/X 정답 및 기출 해설</strong>이 나타납니다.<br>
+                  • 시험 직전 실전 감각을 끌어올리기 위한 최고난도 OX 훈련입니다.
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">체크 포인트</div>
+                <div class="card-desc">
+                  • <strong>Q1</strong>: 연산 장치 누산기(AC)의 역할<br>
+                  • <strong>Q2</strong>: SRAM의 재충전 필요 여부<br>
+                  • <strong>Q3</strong>: SSD의 물리적 불량 섹터 발생 여부
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right" style="gap: 12px; width: 100%; max-width: 530px;">
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 누산기(AC)가 기억하는 대상</div>
+                    <div style="font-size: 13.5px;">"누산기(Accumulator)는 다음에 실행될 명령어의 주소 번지를 기억하는 레지스터이다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (누산기는 연산 결과 저장!)</div>
+                    <div style="font-size: 13px;">다음 명령 주소는 <strong>프로그램 카운터(PC)</strong>이며, 누산기는 <strong>'연산 결과'를 일시 저장</strong>합니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. SRAM의 재충전 회로 필요성</div>
+                    <div style="font-size: 13.5px;">"캐시 메모리로 사용되는 SRAM은 전하 방전을 막기 위해 주기적으로 재충전(Refresh) 회로가 필요하다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (재충전은 DRAM!)</div>
+                    <div style="font-size: 13px;">SRAM은 플립플롭 구조라 <strong>재충전이 필요 없으며</strong>, 재충전이 필요한 것은 <strong>DRAM</strong>입니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. SSD의 물리적 불량 섹터</div>
+                    <div style="font-size: 13.5px;">"SSD는 반도체 메모리 칩을 사용하므로 HDD와 달리 물리적인 불량 섹터가 발생하지 않는다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (정확한 설명!)</div>
+                    <div style="font-size: 13px;">SSD는 모터와 헤드가 없는 반도체 저장 매체이므로 <strong>기계적 충격에 의한 불량 섹터가 없습니다</strong>!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 13 : 🎯 킬러 함정 플립카드 ② -->
+        <section class="slide"
+          data-notes="39단원부터 41단원까지의 킬러 함정 플립카드입니다. 가상 메모리의 실제 저장 위치, 연관 메모리의 검색 원리, 해상도 조절 시 아이콘 크기 변화를 클릭해서 풀어보세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">KILLER TRAP • PART 2</div>
+                <h2 class="slide-title">🎯 킬러 기출 함정 <span class="hl-green">플립카드 ②</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">💡 실전 문제 풀이 팁</div>
+                <div class="card-desc">
+                  • 가상 메모리와 연관 메모리는 문제 지문이 정형화되어 있으므로 핵심 키워드를 반드시 기억하세요.<br>
+                  • 카드를 클릭하여 완벽하게 정답을 각인시키세요.
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">체크 포인트</div>
+                <div class="card-desc">
+                  • <strong>Q1</strong>: 가상 메모리가 실제로 위치하는 물리적 장치<br>
+                  • <strong>Q2</strong>: 연관 메모리의 검색 기준<br>
+                  • <strong>Q3</strong>: 모니터 해상도를 높였을 때 아이콘 크기
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right" style="gap: 12px; width: 100%; max-width: 530px;">
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 가상 메모리의 실제 저장 공간</div>
+                    <div style="font-size: 13.5px;">"가상 메모리는 CPU 내부의 고속 레지스터 공간을 활용하여 주기억장치 용량을 확장한다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (보조기억장치 활용!)</div>
+                    <div style="font-size: 13px;">가상 메모리는 <strong>보조기억장치(HDD, SSD)의 일부</strong>를 주기억장치처럼 사용하는 기술입니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. 연관 메모리의 검색 방식</div>
+                    <div style="font-size: 13.5px;">"연관 메모리는 저장된 주소(Address)가 아닌 내용의 일부를 이용하여 데이터를 병렬 검색한다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (정확한 설명!)</div>
+                    <div style="font-size: 13px;">주소가 아닌 <strong>'내용으로 검색'하는 메모리는 연관 메모리(CAM)</strong>가 유일합니다!</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. 고해상도 설정 시 아이콘 크기</div>
+                    <div style="font-size: 13.5px;">"모니터 해상도를 높게 설정할수록 화면의 글자와 아이콘의 크기는 점점 더 크게 확대된다." (O / X?)</div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (아이콘 크기는 작아짐!)</div>
+                    <div style="font-size: 13px;">해상도가 높아지면 화면이 선명해지고 작업 공간이 넓어지지만, <strong>아이콘과 글자는 작게 표시</strong>됩니다!</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 14 : 36~41단원 핵심 10대 공식 총정리 -->
+        <section class="slide"
+          data-notes="36단원부터 41단원까지 시험에 무조건 출제되는 10대 핵심 키워드 총정리 매트릭스입니다. 누산기 AC의 연산 결과 저장, ROM 비휘발성/EEPROM 전기수정, SRAM 캐시 vs DRAM 재충전 주기억장치, SSD 무소음/불량섹터 없음, 가상 메모리 보조기억장치 활용, 연관 메모리 내용 검색, 픽셀과 해상도까지 완벽히 암기하세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">FINAL SUMMARY MATRIX</div>
+                <h2 class="slide-title">36~41단원 <span class="hl-green">핵심 10대 공식</span> 총정리</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 연산장치 & 주기억장치 공식</div>
+                <div class="card-desc">
+                  • <strong>누산기 (AC)</strong>: <span class="hl-green">연산된 결과를 일시 저장</span><br>
+                  • <strong>SRAM vs DRAM</strong>: SRAM(재충전X, 캐시) vs DRAM(재충전O, 주기억)<br>
+                  • <strong>EEPROM</strong>: 전기를 이용해 내용 여러 번 수정 (펌웨어)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 보조/특수 기억장치 공식</div>
+                <div class="card-desc">
+                  • <strong>SSD</strong>: 반도체 매체, 고속, 저전력, 불량섹터 없음<br>
+                  • <strong>가상 메모리</strong>: 보조기억장치를 주기억장치처럼 사용<br>
+                  • <strong>연관 메모리</strong>: 주소가 아닌 <span class="hl-green">내용의 일부로 검색</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 16px;">
+                <div class="morph-title">
+                  <span>🏆 기출 정답 1순위 키워드 요약표</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">단원</th>
+                      <th style="width: 35%;">핵심 주제</th>
+                      <th>기출 정답 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">36 연산장치</td>
+                      <td>누산기 (AC)</td>
+                      <td>연산 결과 일시적 저장</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">37 RAM 비교</td>
+                      <td>SRAM vs DRAM</td>
+                      <td>SRAM(캐시), DRAM(주기적 재충전 필수)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">38 SSD</td>
+                      <td>반도체 드라이브</td>
+                      <td>무소음, 충격 강함, 물리적 불량섹터 없음</td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">39 가상메모리</td>
+                      <td>용량 확장</td>
+                      <td>보조기억장치를 주기억처럼 활용</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">39 연관메모리</td>
+                      <td>CAM</td>
+                      <td>주소가 아닌 내용으로 검색</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 13px; color: #15803d; background: #f0fdf4; padding: 8px 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 12px;">
+                  💡 위 10가지 공식은 실제 시험에서 매회 3문제 이상 출제되는 핵심 공식입니다!
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 15 : 기출 오답 판별 필승 공식 -->
+        <section class="slide"
+          data-notes="기출 오답 판별 필승 공식입니다. 첫째, 누산기와 프로그램 카운터의 역할을 바꾼 문제를 조심하세요. 둘째, DRAM에 '재충전 불필요'라고 쓰여 있으면 무조건 오답입니다. 셋째, 가상 메모리는 속도 향상이 아니라 '용량 확장'이 목적이라는 점을 기억하세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">EXAM PASS STRATEGY</div>
+                <h2 class="slide-title">기출 오답 판별 <span class="hl-green">필승 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 레지스터 역할 맞바꾸기 함정</div>
+                <div class="card-desc">
+                  • "연산 결과 저장" ➔ <span class="hl-green">누산기 (AC)</span><br>
+                  • "다음 실행 명령 주소" ➔ <span class="hl-green">프로그램 카운터 (PC)</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. DRAM 재충전 함정</div>
+                <div class="card-desc">
+                  • DRAM에 "재충전 필요 없음" 나오면 ➔ <span class="warn-text">오답! (SRAM 설명임)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 가상 메모리 목적 함정</div>
+                <div class="card-desc">
+                  • 가상 메모리는 속도 향상이 아니라 ➔ <span class="hl-green">주기억장치 용량 확장</span> 목적!
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🎯 시험장 직전 핵심 체크포인트</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 유형</div>
+                  <div class="e-cell header">정답 공식</div>
+                  <div class="e-cell" style="font-weight:700;">연산 결과 보관</div>
+                  <div class="e-cell active-green"><strong>누산기 (AC)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">캐시 메모리 소자</div>
+                  <div class="e-cell"><strong>SRAM (정적 램)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">주기적 재충전</div>
+                  <div class="e-cell active-green"><strong>DRAM (동적 램)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">내용으로 검색</div>
+                  <div class="e-cell"><strong>연관 메모리 (CAM)</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 16 : 합격 응원 카드 -->
+        <section class="slide"
+          data-notes="수고 많으셨습니다. 36단원 연산장치부터 41단원 출력 장치까지 모든 핵심 내용을 정리했습니다. 이제 7페이지 내용인 BIOS와 인터럽트, 소프트웨어 저작권으로 넘어가겠습니다. 합격을 응원합니다!">
+          <div style="margin: auto; text-align: center; max-width: 860px;">
+            <div style="font-size: 56px; margin-bottom: 16px;">🎉</div>
+            <div class="title-badge">1과목 컴퓨터 일반 • 6페이지 완전 정복</div>
+            <h2 class="title-h1" style="font-size: 38px;">36~41단원 학습을<br><span>완벽하게 완료하셨습니다!</span></h2>
+            <p class="title-sub" style="font-size: 17px; margin-bottom: 24px;">
+              누산기, SRAM vs DRAM, SSD 특징, 캐시·가상·연관 메모리, 픽셀과 해상도까지 핵심 이론과 기출 함정을 마스터했습니다.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button onclick="goTo(1)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer; font-size:14.5px;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                첫 슬라이드로 돌아가기 ↺
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#0284c7; color:#fff; border:none; padding:10px 22px; border-radius:10px; font-weight:800; cursor:pointer; font-size:14.5px; box-shadow:0 4px 12px rgba(2,132,199,0.3);"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                목차 다시 보기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <div class="speaker-notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(단축키: N 또는 S 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        대본이 여기에 표시됩니다.
+      </div>
+    </div>
+
+    <footer class="key-shortcuts-bar">
+      <span><kbd>◀</kbd> / <kbd>Backspace</kbd> 이전 슬라이드</span>
+      <span><kbd>▶</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> 다음 슬라이드</span>
+      <span><kbd>N</kbd> 또는 <kbd>S</kbd> 발표자 대본창 토글</span>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const curSlideNumEl = document.getElementById('curSlideNum');
+    const totalSlideNumEl = document.getElementById('totalSlideNum');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    totalSlideNumEl.textContent = String(totalSlides).padStart(2, '0');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx === index) {
+          s.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+      curSlideNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+
+      const notes = slides[currentSlide].getAttribute('data-notes') || '해당 슬라이드에 등록된 강의 대본이 없습니다.';
+      notesContent.innerHTML = notes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function goTo(slideNumber) {
+      updateSlide(slideNumber - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N' || e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+
+</html>
