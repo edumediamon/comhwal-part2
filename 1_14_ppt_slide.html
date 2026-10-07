@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 1과목 컴퓨터 일반 최종편 (84~85)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hl-green,
+    u,
+    .u-highlight {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    code,
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px 8px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      user-select: none;
+    }
+
+    .side-nav-arrow:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+    }
+
+    .side-nav-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .side-nav-arrow.prev {
+      left: 14px;
+    }
+
+    .side-nav-arrow.next {
+      right: 14px;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 1320px;
+      max-height: 720px;
+      background: var(--canvas-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-canvas);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 42px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 42px;
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .split-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .anim-left {
+      animation: animLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: animRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes animLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes animRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    .slide-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--accent-blue);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .info-card.warning {
+      border-left-color: var(--accent-rose);
+      background: #fffbfa;
+    }
+
+    .info-card.success {
+      border-left-color: var(--accent-emerald);
+      background: #fbfdfc;
+    }
+
+    .info-card.amber {
+      border-left-color: var(--accent-amber);
+      background: #fffdfa;
+    }
+
+    .info-card.purple {
+      border-left-color: var(--accent-purple);
+      background: #fbfaff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card.warning .card-title {
+      color: var(--accent-rose);
+    }
+
+    .info-card.success .card-title {
+      color: var(--accent-emerald);
+    }
+
+    .info-card.amber .card-title {
+      color: var(--accent-amber);
+    }
+
+    .info-card.purple .card-title {
+      color: var(--accent-purple);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: 0 2px 0 #94a3b8;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+
+    .morph-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      width: 100%;
+      max-width: 530px;
+      position: relative;
+    }
+
+    .morph-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .morph-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .morph-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: #f8fafc;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+    }
+
+    .styled-table td.center {
+      text-align: center;
+    }
+
+    .excel-morph-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .e-cell {
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .e-cell.header {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #475569;
+      justify-content: center;
+    }
+
+    .e-cell.active-green {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+      font-weight: 800;
+    }
+
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 125px;
+      cursor: pointer;
+    }
+
+    .flipper {
+      transition: 0.5s transform cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flip-container.flipped .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .flip-front {
+      background: #ffffff;
+      z-index: 2;
+      border-left: 5px solid #0284c7;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #22c55e;
+    }
+
+    .title-h1 {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .title-h1 span {
+      background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 600;
+      text-align: center;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    .key-shortcuts-bar {
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #64748b;
+      user-select: none;
+    }
+
+    .key-shortcuts-bar kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .speaker-notes-drawer {
+      position: absolute;
+      bottom: 34px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid var(--accent-emerald);
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100%);
+      max-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      padding: 8px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-toggle-notes {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      font-family: inherit;
+    }
+
+    .notes-content {
+      padding: 14px 28px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #1e293b;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <header class="header-bar">
+      <div class="badge-subject">
+        <span>📘</span>
+        <span>컴활 2급 필기 • 1과목 컴퓨터 일반</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#334155;">
+        84. 방화벽 ~ 85. 암호화 기법 및 1과목 완주 피날레
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-toggle-notes" onclick="toggleNotes()" title="단축키 N 또는 S">
+          🎙️ 발표자 대본 열기 (N)
+        </button>
+        <div class="slide-counter"><span id="curSlideNum">01</span> / <span id="totalSlideNum">16</span></div>
+      </div>
+    </header>
+
+    <main class="slide-stage">
+      <button class="side-nav-arrow prev" onclick="prevSlide()" title="이전 슬라이드 (◀ / Backspace)">‹</button>
+      <button class="side-nav-arrow next" onclick="nextSlide()" title="다음 슬라이드 (▶ / Space / Enter)">›</button>
+
+      <div class="slide-canvas" id="slideCanvas">
+
+        <!-- SLIDE 1 : Title -->
+        <section class="slide active"
+          data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 컴퓨터 일반의 최종 핵심 요약 특강입니다. 84단원 네트워크 보안의 제1방어선인 방화벽의 원리와 치명적 한계(내부 침입/바이러스 불가), 그리고 85단원 공개키(비대칭키)와 비밀키(대칭키) 암호화 기법의 5대 출제 비교 공식, 키 개수 계산 공식, 디지털 전자서명까지 완벽하게 정복하고 1과목 01~85 전 범위를 완주하겠습니다.">
+          <div style="margin: auto; text-align: center; max-width: 900px;">
+            <div class="title-badge">컴활 2급 필기 • 1과목 최종 핵심 요약 84~85</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반 최종편</h1>
+            <p class="title-sub">방화벽의 원리와 치명적 한계(내부 침입/바이러스 불가) <br>• 비밀키(DES) vs 공개키(RSA) 5대 비교 • 암호키 계산 공식 • 전자서명</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
+              <button onclick="nextSlide()"
+                style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                최종 강의 시작하기 ▶
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                목차 바로가기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2 : Table of Contents -->
+        <section class="slide"
+          data-notes="이번 최종편의 목차입니다. 84단원 방화벽의 개념, 핵심 보안 기능과 시험에 항상 나오는 치명적 한계를 살펴본 후, 85단원 공개키 암호화와 비밀키 암호화 기법의 원리, 키 개수 공식, 전자서명 메커니즘을 순서대로 분석합니다. 마지막에는 1과목 01~85단원 전 범위를 완주하는 총정리 카드까지 준비되어 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">AGENDA &amp; ROADMAP</div>
+                <h2 class="slide-title">핵심 학습 로드맵 (84~85)</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">84. 방화벽의 개념 &amp; 역추적 기능</div>
+                <div class="card-desc">외부 침입 차단, 내부 네트워크 보호, 접근제어·인증, 침입자 역추적 로그</div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">84. ★방화벽의 치명적 한계 (출제 1위)</div>
+                <div class="card-desc">내부 발생 문제 해결 불가, 바이러스 검사·보호 불가, 내보내기 제한 한계</div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">85. 비밀키(DES) vs 공개키(RSA) 5대 비교</div>
+                <div class="card-desc">동일 키 vs 다른 키, 속도 빠름 vs 느림, 키 개수 공식 [N(N-1)/2 vs 2N]</div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">85. 전자서명 &amp; 1과목 전 범위 완주 피날레</div>
+                <div class="card-desc">송신자 개인키 서명·부인 방지, 01~85단원 전 범위 합격 완주 카드</div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px; width: 100%;">
+                <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
+                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button class="morph-btn" onclick="goTo(3)">84. 방화벽 3대 기능</button>
+                  <button class="morph-btn" onclick="goTo(4)">84. 방화벽 역추적 기능</button>
+                  <button class="morph-btn" onclick="goTo(5)">84. 방화벽 치명적 한계</button>
+                  <button class="morph-btn" onclick="goTo(6)">85. 암호화 기본 개념</button>
+                  <button class="morph-btn" onclick="goTo(7)">85. 비밀키(DES/AES)</button>
+                  <button class="morph-btn" onclick="goTo(8)">85. 비밀키 개수 공식</button>
+                  <button class="morph-btn" onclick="goTo(9)">85. 공개키(RSA) 기법</button>
+                  <button class="morph-btn" onclick="goTo(10)">85. 공개키 장단점</button>
+                  <button class="morph-btn" onclick="goTo(11)">85. 5대 핵심 비교표</button>
+                  <button class="morph-btn" onclick="goTo(12)">85. 디지털 전자서명</button>
+                  <button class="morph-btn" onclick="goTo(13)">★ 핵심 개념 1:1 맞대결</button>
+                  <button class="morph-btn" onclick="goTo(14)">★ 출제 1위 핵심 요약표</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3 : 84 방화벽 기본 개념 -->
+        <section class="slide"
+          data-notes="84단원 방화벽입니다. 방화벽은 외부로부터 허가받지 않은 불법 침입이나 해커의 공격으로부터 내부의 네트워크를 효과적으로 보호하기 위해 설치하는 하드웨어 및 소프트웨어 보안 시스템입니다. 접근 제어, 사용자 인증, 데이터 암호화 기능을 제공하며 외부 연결 차단 및 침입 알림을 설정할 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 84 • FIREWALL (1)</div>
+                <h2 class="slide-title">방화벽의 개념과 <span class="hl-green">내부망 보호 기능</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🛡️ 외부 불법 침입 차단</div>
+                <div class="card-desc">
+                  • <span class="hl-green">외부로부터</span> 허가받지 않은 불법적인 접근이나 해커의 공격 차단<br>
+                  • 신뢰할 수 없는 외부망(인터넷)과 신뢰할 수 있는 <span class="hl-green">내부 네트워크 보호</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">⚙️ 방화벽의 3대 핵심 보안 제어</div>
+                <div class="card-desc">
+                  • <strong>접근 제어(Access Control)</strong>: IP 주소 및 포트 번호 기반 통과/차단<br>
+                  • <strong>사용자 인증 &amp; 암호화</strong>: 인가된 사용자 식별 및 패킷 보호<br>
+                  • <strong>외부 연결 제어</strong>: 외부 연결 차단 및 침입 시도 알림(Alert) 설정
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🛡️ 방화벽 경계 보안 시뮬레이션</span>
+                  <span class="key-badge">100% 출제</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>영역</th>
+                      <th>패킷 출발지</th>
+                      <th>보안 정책</th>
+                      <th>결과</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="center"><strong>외부망</strong></td>
+                      <td>미승인 IP (해커)</td>
+                      <td>외부 비인가 패킷</td>
+                      <td class="center"><span style="color:#e11d48; font-weight:800;">🚫 즉시 차단</span></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>외부망</strong></td>
+                      <td>승인된 원격지</td>
+                      <td>VPN / 포트 인증</td>
+                      <td class="center"><span style="color:#059669; font-weight:800;">✔ 접근 허용</span></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>내부망</strong></td>
+                      <td>사내 업무 PC</td>
+                      <td>외부 웹 검색 요청</td>
+                      <td class="center"><span style="color:#0284c7; font-weight:800;">✔ 아웃바운드 허용</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4 : 84 방화벽 역추적 기능 -->
+        <section class="slide"
+          data-notes="방화벽의 또 하나의 중요한 특징은 '역추적 기능'입니다. 방화벽은 모든 통과 및 차단 패킷의 로그를 기록하기 때문에, 외부에서 침입을 시도한 해커의 접속 기록을 역추적하여 침입 흔적과 IP를 찾아낼 수 있습니다. 시험에서 '방화벽은 역추적 기능이 없다'고 나오면 100% 틀린 보기입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 84 • FIREWALL (2)</div>
+                <h2 class="slide-title">로그 기록과 <span class="hl-green">외부 침입자 역추적</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🔍 역추적(Traceback) 기능 보유</div>
+                <div class="card-desc">
+                  • 침입 시도 발생 시 접속 로그(Log)를 상세히 저장<br>
+                  • 외부 침입자의 IP와 접속 경로를 <span class="hl-green">역추적하여 흔적 탐색</span> 가능
+                </div>
+              </div>
+              <div class="info-card amber">
+                <div class="card-title">📋 패킷 필터링 &amp; 프록시 방식</div>
+                <div class="card-desc">
+                  • <strong>패킷 필터링</strong>: 헤더(IP, Port) 정보만 검사하여 속도가 빠름<br>
+                  • <strong>애플리케이션 게이트웨이</strong>: 데이터 내용까지 검사하여 보안성 우수
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📜 방화벽 실시간 침입 탐지 로그</span>
+                  <span style="font-size:12px; color:#059669; font-weight:700;">● Active Monitoring</span>
+                </div>
+                <div style="background:#0f172a; color:#f8fafc; font-family:'JetBrains Mono',monospace; font-size:12px; padding:12px; border-radius:10px; margin-top:10px; line-height:1.7;">
+                  <span style="color:#38bdf8;">[14:20:01]</span> INBOUND TCP 211.45.12.8:8080 <span style="color:#f87171;">DENIED (Scan)</span><br>
+                  <span style="color:#38bdf8;">[14:20:03]</span> <span style="color:#fbbf24;">TRACEBACK:</span> Origin IP 211.45.12.8 Route Traced!<br>
+                  <span style="color:#38bdf8;">[14:20:05]</span> INBOUND HTTPS 192.168.1.5:443 <span style="color:#4ade80;">ALLOWED (Normal)</span><br>
+                  <span style="color:#38bdf8;">[14:20:08]</span> ALERT: Unauthorized Access Blocked &amp; Logged.
+                </div>
+                <div style="margin-top:10px; font-size:12.5px; color:#334155;">
+                  ✔ <strong>시험 핵심</strong>: 방화벽은 침입 기록을 보관하며 역추적 기능을 지원합니다.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5 : 84 방화벽의 한계 ★시험 단골 출제 -->
+        <section class="slide"
+          data-notes="이 슬라이드가 방화벽에서 가장 중요한 별 다섯 개짜리 시험 단골입니다! 방화벽이 아무리 좋아도 할 수 없는 것이 있습니다. 첫째, 내부 네트워크 내부에서 일어나는 불법 행위나 문제점은 방화벽으로 막을 수 없습니다! 둘째, 방화벽은 바이러스를 검사하거나 바이러스로부터 시스템을 보호하지 못합니다! 바이러스는 백신 소프트웨어가 담당합니다. '방화벽은 내부 침입을 차단하고 바이러스를 치료한다'고 나오면 무조건 오답입니다!">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 84 • FIREWALL LIMITS</div>
+                <h2 class="slide-title">방화벽의 치명적 한계 <span class="hl-green">(★출제 1위)</span></h2>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">⚠️ 방화벽이 절대 할 수 없는 것 3가지</div>
+                <div class="card-desc">
+                  • <span class="warn-text">내부에서 발생하는 문제</span>: 내부자 정보 유출이나 내부망 공격은 차단 불가<br>
+                  • <span class="warn-text">바이러스 검사 및 치료</span>: 악성코드/바이러스 탐지는 백신(Antivirus)의 몫<br>
+                  • <span class="warn-text">내보내기 작업 제한 불가</span>: 내부에서 외부로 보내는 데이터 유출에 취약
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">💡 컴활 기출 정답 공식</div>
+                <div class="card-desc">
+                  • "방화벽은 바이러스를 차단한다" ➔ <span class="warn-text">틀린 보기! (오답)</span><br>
+                  • "방화벽은 내부 네트워크의 불법 행위도 감지한다" ➔ <span class="warn-text">틀린 보기! (오답)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚖️ 방화벽 가능 vs 불가능 판별표</span>
+                  <span class="key-badge">필수 암기</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>기능 항목</th>
+                      <th>가능 여부</th>
+                      <th>담당 시스템</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>외부 불법 침입/해킹 차단</td>
+                      <td class="center"><span style="color:#059669; font-weight:800;">O (가능)</span></td>
+                      <td>방화벽 (Firewall)</td>
+                    </tr>
+                    <tr>
+                      <td>외부 침입자 역추적</td>
+                      <td class="center"><span style="color:#059669; font-weight:800;">O (가능)</span></td>
+                      <td>방화벽 (Log 분석)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>내부 네트워크 문제 차단</strong></td>
+                      <td class="center"><span style="color:#e11d48; font-weight:800;">X (불가)</span></td>
+                      <td>내부 감사 / 망분리</td>
+                    </tr>
+                    <tr>
+                      <td><strong>바이러스 검사 및 치료</strong></td>
+                      <td class="center"><span style="color:#e11d48; font-weight:800;">X (불가)</span></td>
+                      <td><strong>백신 프로그램</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6 : 85 암호화 기본 개념 -->
+        <section class="slide"
+          data-notes="85단원 암호화 기법으로 넘어갑니다. 암호화란 제3자에게 노출되면 안 되는 평문(Plaintext)을 암호화 키를 이용하여 해독할 수 없는 암호문(Ciphertext)으로 변환하는 과정입니다. 반대로 수신자가 암호문을 복호화 키를 이용해 다시 원래의 평문으로 되돌리는 과정을 복호화라고 부릅니다. 이 암호화와 복호화에 사용하는 키가 같은지 다른지에 따라 비밀키와 공개키로 나뉩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 85 • CRYPTOGRAPHY (1)</div>
+                <h2 class="slide-title">암호화 개념과 <span class="hl-green">기본 메커니즘</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🔐 암호화 4대 기본 용어</div>
+                <div class="card-desc">
+                  • <strong>평문(Plaintext)</strong>: 누구나 읽을 수 있는 원래의 원본 데이터<br>
+                  • <strong>암호문(Ciphertext)</strong>: 해독할 수 없도록 변환된 암호화 데이터<br>
+                  • <strong>암호화(Encryption)</strong>: 평문 ➔ <span class="hl-green">암호문</span>으로 변환하는 과정<br>
+                  • <strong>복호화(Decryption)</strong>: 암호문 ➔ <span class="hl-green">평문</span>으로 원래대로 복원하는 과정
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🔑 암호화 방식의 2대 분류 기준</div>
+                <div class="card-desc">
+                  • <strong>비밀키(대칭키)</strong>: 암호화 키 = 복호화 키 (키가 <strong>동일</strong>)<br>
+                  • <strong>공개키(비대칭키)</strong>: 암호화 키 ≠ 복호화 키 (서로 <strong>다른 키</strong>)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔄 암호화 &amp; 복호화 데이터 흐름도</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:14px; align-items:center;">
+                  <div style="background:#f1f5f9; border:1px solid #cbd5e1; padding:10px 18px; border-radius:10px; width:100%; text-align:center; font-weight:700;">
+                    📄 평문: "합격을 축하합니다!"
+                  </div>
+                  <div style="font-size:20px; color:#0284c7;">⬇ [암호화 키 적용] ⬇</div>
+                  <div style="background:#fee2e2; border:1px solid #fca5a5; padding:10px 18px; border-radius:10px; width:100%; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:800; color:#b91c1c;">
+                    🔒 암호문: "7A#9xK$2!mQ9Lz"
+                  </div>
+                  <div style="font-size:20px; color:#059669;">⬇ [복호화 키 적용] ⬇</div>
+                  <div style="background:#dcfce7; border:1px solid #86efac; padding:10px 18px; border-radius:10px; width:100%; text-align:center; font-weight:800; color:#15803d;">
+                    ✔ 복원된 평문: "합격을 축하합니다!"
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 7 : 85 비밀키(대칭키) 암호화 기법 -->
+        <section class="slide"
+          data-notes="먼저 비밀키 암호화 기법, 즉 대칭키 방식입니다. 송신자와 수신자가 '동일한 키'를 공유하여 암호화와 복호화를 수행합니다. 알고리즘이 단순하여 연산 속도가 매우 빠르고 파일 크기가 작다는 막강한 장점이 있습니다. 대표적인 알고리즘으로 DES와 AES가 시험에 출제됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 85 • SECRET KEY (DES)</div>
+                <h2 class="slide-title">비밀키(대칭키) 암호화 <span class="hl-green">동일키 &amp; 초고속</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🔑 동일한 키(Symmetric Key) 사용</div>
+                <div class="card-desc">
+                  • 송신자와 수신자가 <span class="hl-green">동일한 비밀키</span>로 암호화 및 복호화 수행<br>
+                  • <strong>암호키 = 복호키</strong> (키를 둘 다 비밀로 유지해야 함)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">⚡ 비밀키 기법의 대표 특징</div>
+                <div class="card-desc">
+                  • <strong>장점</strong>: 암호화·복호화 <span class="hl-green">속도가 매우 빠름</span>, 알고리즘이 단순함<br>
+                  • <strong>대표 알고리즘</strong>: <span class="hl-green">DES</span> (Data Encryption Standard), <span class="hl-green">AES</span><br>
+                  • <strong>적용 분야</strong>: 대용량 데이터 및 파일 전송 시 주로 활용
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🗝️ 비밀키(대칭키) 작동 방식</span>
+                  <span class="key-badge">100% 출제</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>송신자 (보내는 사람)</th>
+                      <th>수신자 (받는 사람)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="center"><strong>보유 키</strong></td>
+                      <td class="center" colspan="2"><span style="background:#fef3c7; color:#b45309; padding:4px 12px; border-radius:6px; font-weight:800;">동일한 비밀키 [K] 공유</span></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>수행 작업</strong></td>
+                      <td>평문 + [K] ➔ <strong>암호화</strong></td>
+                      <td>암호문 + [K] ➔ <strong>복호화</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>속도/복잡도</strong></td>
+                      <td class="center" colspan="2"><span style="color:#059669; font-weight:800;">속도 매우 빠름 / 알고리즘 단순</span></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>대표 방식</strong></td>
+                      <td class="center" colspan="2"><strong>DES, 3-DES, AES, SEED</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8 : 85 비밀키의 한계 & 키 개수 계산 공식 -->
+        <section class="slide"
+          data-notes="하지만 비밀키 방식에는 아주 치명적인 약점이 두 가지 있습니다. 첫째, 송수신자가 키를 주고받는 과정에서 키를 도청당하면 보안이 완전히 무너지는 '키 분배의 어려움'이 있습니다. 둘째, 사용자가 N명일 때 필요한 총 비밀키의 개수는 N 곱하기 N 마이너스 1 나누기 2 공식으로 기하급수적으로 늘어납니다. 4명이면 6개, 10명이면 45개, 100명이면 무려 4,950개의 키가 필요합니다! 이 공식은 계산 문제로도 출제됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 85 • KEY CALCULATION</div>
+                <h2 class="slide-title">비밀키 한계 &amp; 키 개수 공식 <span class="hl-green">[N(N-1)/2]</span></h2>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">⚠️ 비밀키 방식의 2대 치명적 단점</div>
+                <div class="card-desc">
+                  • <strong>키 분배의 곤란</strong>: 인터넷을 통해 비밀키를 안전하게 전달하기 어려움<br>
+                  • <strong>키 관리 부담</strong>: 사용자가 많아지면 관리해야 할 키의 개수가 폭증함<br>
+                  • <strong>디지털 서명 불가</strong>: 송신자와 수신자가 같은 키를 쓰므로 서명 부인 불가
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">📐 비밀키 총 개수 계산 공식</div>
+                <div class="card-desc">
+                  • 사용자 수가 <code class="key-badge">N</code>명일 때 필요한 총 비밀키 개수:<br>
+                  <div style="text-align:center; margin:8px 0; font-size:18px; font-weight:800; color:#7c3aed;">
+                    총 비밀키 수 = <span style="background:#ede9fe; padding:4px 14px; border-radius:8px;">N(N - 1) / 2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🧮 사용자 수에 따른 비밀키 개수</span>
+                  <span class="key-badge">계산 기출</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>사용자 수 (N)</th>
+                      <th>계산 공식</th>
+                      <th>필요한 비밀키 개수</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="center">2명</td>
+                      <td class="center">2 × 1 ÷ 2</td>
+                      <td class="center"><strong>1개</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="center">4명 (기출)</td>
+                      <td class="center">4 × 3 ÷ 2</td>
+                      <td class="center"><strong style="color:#0284c7;">6개</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="center">10명 (기출)</td>
+                      <td class="center">10 × 9 ÷ 2</td>
+                      <td class="center"><strong style="color:#e11d48;">45개</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="center">100명</td>
+                      <td class="center">100 × 99 ÷ 2</td>
+                      <td class="center"><strong style="color:#7c3aed;">4,950개 (폭증!)</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 9 : 85 공개키(비대칭키) 암호화 기법 -->
+        <section class="slide"
+          data-notes="비밀키의 키 분배 문제를 해결하기 위해 등장한 것이 바로 '공개키 암호화 기법', 즉 비대칭키 방식입니다. 송신자와 수신자가 '서로 다른 키'를 사용합니다. 누구나 볼 수 있는 '공개키'와 본인만 가지고 있는 '비밀키(개인키)' 한 쌍으로 구성됩니다. 데이터를 보낼 때는 수신자의 공개키로 암호화하고, 암호화된 데이터를 풀 때는 수신자 본인만 아는 비밀키로 복호화합니다. 대표 방식이 바로 그 유명한 RSA입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 85 • PUBLIC KEY (RSA)</div>
+                <h2 class="slide-title">공개키(비대칭키) 기법 <span class="hl-green">서로 다른 키 &amp; RSA</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🔑 서로 다른 키(Asymmetric Key) 쌍 사용</div>
+                <div class="card-desc">
+                  • 송신자와 수신자가 <span class="hl-green">서로 다른 키</span>로 암호화하고 복호화함<br>
+                  • <strong>공개키(Public Key)</strong>: 세상에 공개되는 키 ➔ <span class="hl-green">암호화에 사용</span><br>
+                  • <strong>비밀키(Private Key)</strong>: 본인만 보관하는 키 ➔ <span class="hl-green">복호화에 사용</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🏆 공개키 기법의 핵심 특징</div>
+                <div class="card-desc">
+                  • <strong>대표 방식</strong>: <span class="hl-green">RSA</span> (Rivest-Shamir-Adleman)<br>
+                  • <strong>키 분배 용이</strong>: 공개키는 공개되어도 안전하므로 키 분배 문제 해결<br>
+                  • <strong>키 개수 절감</strong>: N명일 때 각자 2개씩 총 <code class="key-badge">2N</code>개만 관리하면 됨
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📬 공개키 암호화 전달 메커니즘</span>
+                  <span class="key-badge">100% 출제</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
+                  <div style="background:#e0f2fe; border:1px solid #bae6fd; padding:10px 14px; border-radius:8px; font-size:13px;">
+                    <strong>1. 송신자 (보내는 사람)</strong><br>
+                    수신자의 <span style="color:#0284c7; font-weight:800;">공개키(Public Key)</span>로 평문을 암호화하여 전송
+                  </div>
+                  <div style="text-align:center; color:#94a3b8; font-size:16px;">⬇ 인터넷 전송 (도청되어도 해독 불가) ⬇</div>
+                  <div style="background:#fef3c7; border:1px solid #fde68a; padding:10px 14px; border-radius:8px; font-size:13px;">
+                    <strong>2. 수신자 (받는 사람)</strong><br>
+                    수신자 자신만 보유한 <span style="color:#b45309; font-weight:800;">비밀키(Private Key)</span>로 암호문을 복호화!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 10 : 85 공개키의 장단점 및 전자서명 -->
+        <section class="slide"
+          data-notes="공개키 방식의 장단점과 디지털 서명입니다. 공개키 방식은 키 분배가 쉽고 키 개수가 적으며 디지털 서명이 가능하다는 엄청난 장점이 있습니다. 반면에 수학적 알고리즘이 매우 복잡하여 암호화 및 복호화 속도가 느리고 파일 크기가 크다는 명확한 단점이 있습니다. 시험에서 '공개키 방식은 비밀키 방식보다 암호화 속도가 빠르다'라고 나오면 무조건 틀린 보기입니다!">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 85 • ASYMMETRIC PROS &amp; CONS</div>
+                <h2 class="slide-title">공개키의 장단점과 <span class="hl-green">디지털 서명</span></h2>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">✔ 공개키 방식의 장점</div>
+                <div class="card-desc">
+                  • <span class="hl-green">키의 분배가 용이</span>하고 관리해야 할 키의 개수가 적음<br>
+                  • 본인의 개인키로 서명하는 <span class="hl-green">디지털 서명(전자서명)</span> 구현 가능<br>
+                  • 송신 사실 부인 방지(Non-repudiation) 및 무결성 보장
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">⚠️ 공개키 방식의 단점 (★시험 빈출)</div>
+                <div class="card-desc">
+                  • 암호화·복호화 <span class="warn-text">속도가 느리며</span>, 알고리즘이 <span class="warn-text">복잡함</span><br>
+                  • 암호화된 파일의 크기가 비밀키 방식에 비해 큼
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📊 공개키 vs 비밀키 장단점 비교</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">평가 항목</div>
+                  <div class="e-cell header">공개키 (RSA)</div>
+                  <div class="e-cell" style="font-weight:700;">처리 속도</div>
+                  <div class="e-cell" style="color:#e11d48; font-weight:800;">느림 (단점)</div>
+                  <div class="e-cell" style="font-weight:700;">알고리즘 복잡도</div>
+                  <div class="e-cell" style="color:#e11d48; font-weight:800;">복잡함 (단점)</div>
+                  <div class="e-cell" style="font-weight:700;">키 분배 및 관리</div>
+                  <div class="e-cell active-green">용이함 (큰 장점)</div>
+                  <div class="e-cell" style="font-weight:700;">디지털 서명</div>
+                  <div class="e-cell active-green">가능 (큰 장점)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11 : 85 공개키 vs 비밀키 5대 비교 공식 표 -->
+        <section class="slide"
+          data-notes="이 슬라이드는 컴활 필기시험장에 들어갈 때 머릿속에 반드시 넣고 가야 할 5대 비교 표입니다. 암호키와 복호키의 동일 여부, 대표 알고리즘, 처리 속도, 관리할 키의 수, 전자서명 가능 여부까지 5개 항목이 완벽하게 대비되어 있습니다. 이 표 하나만 외우면 암호화 관련 문제는 10초 만에 풀 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 85 • SUMMARY MATRIX</div>
+                <h2 class="slide-title">공개키 vs 비밀키 <span class="hl-green">5대 비교 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🎯 핵심 시험 판별 팁</div>
+                <div class="card-desc">
+                  • <strong>속도가 빠르다</strong> ➔ 무조건 <span class="hl-green">비밀키(DES)</span><br>
+                  • <strong>키 분배가 쉽고 서명이 된다</strong> ➔ 무조건 <span class="hl-green">공개키(RSA)</span><br>
+                  • <strong>키 개수가 N(N-1)/2개다</strong> ➔ 무조건 <span class="hl-green">비밀키</span>
+                </div>
+              </div>
+              <div class="info-card amber">
+                <div class="card-title">💡 하이브리드(혼합) 암호 방식</div>
+                <div class="card-desc">
+                  • 실제 인터넷(SSL/TLS, HTTPS)은 두 방식을 혼합하여 사용!<br>
+                  • <strong>비밀키</strong>로 대용량 데이터 초고속 암호화 + <strong>공개키</strong>로 비밀키 안전 전달
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding:16px;">
+                <div class="morph-title">
+                  <span>⚖️ 공개키 vs 비밀키 5대 공식 비교표</span>
+                  <span class="key-badge">100% 출제</span>
+                </div>
+                <table class="styled-table" style="font-size:13px; margin-top:8px;">
+                  <thead>
+                    <tr>
+                      <th>비교 항목</th>
+                      <th>비밀키 (대칭키)</th>
+                      <th>공개키 (비대칭키)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="center"><strong>암호키 / 복호키</strong></td>
+                      <td class="center"><strong>동일함</strong></td>
+                      <td class="center"><span style="color:#0284c7; font-weight:800;">서로 다름</span></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>대표 알고리즘</strong></td>
+                      <td class="center"><span class="key-badge">DES</span>, <span class="key-badge">AES</span></td>
+                      <td class="center"><span class="key-badge" style="background:#e0f2fe; color:#0284c7;">RSA</span></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>암호화 속도</strong></td>
+                      <td class="center"><strong style="color:#059669;">빠름 (단순)</strong></td>
+                      <td class="center"><strong style="color:#e11d48;">느림 (복잡)</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>키 분배 / 관리</strong></td>
+                      <td class="center">어려움 / 키 폭증</td>
+                      <td class="center"><strong style="color:#059669;">용이함 (2N개)</strong></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>디지털 전자서명</strong></td>
+                      <td class="center" style="color:#e11d48;">불가능</td>
+                      <td class="center" style="color:#059669; font-weight:800;">가능 (부인방지)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 12 : 85 디지털 전자서명의 원리 -->
+        <section class="slide"
+          data-notes="공개키의 응용 기술인 디지털 서명, 즉 전자서명의 원리입니다. 일반 데이터 암호화는 '받는 사람의 공개키'로 암호화하지만, 전자서명은 반대로 '보내는 사람(송신자)의 개인키'로 서명을 암호화합니다. 왜냐하면 송신자의 개인키는 세상에 단 한 사람, 송신자 본인만 갖고 있기 때문입니다. 수신자는 누구나 열어볼 수 있는 '송신자의 공개키'로 복호화하여 서명을 검증합니다. 이것이 바로 부인 방지와 데이터 위변조 방지의 원리입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 85 • DIGITAL SIGNATURE</div>
+                <h2 class="slide-title">디지털 전자서명과 <span class="hl-green">부인 방지 원리</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">✍️ 전자서명 생성 및 검증 원리</div>
+                <div class="card-desc">
+                  • <strong>서명 생성</strong>: 송신자의 <span class="hl-green">개인키(비밀키)</span>로 해시값 암호화<br>
+                  • <strong>서명 검증</strong>: 송신자의 <span class="hl-green">공개키(Public Key)</span>로 복호화하여 일치 확인<br>
+                  • 송신자의 개인키는 본인만 가지므로 신원 보증 가능
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🛡️ 전자서명의 3대 보안 기능</div>
+                <div class="card-desc">
+                  • <strong>인증(Authentication)</strong>: 서명자가 진짜 본인인지 신원 증명<br>
+                  • <strong>무결성(Integrity)</strong>: 전송 도중 내용이 변조되지 않았음을 확인<br>
+                  • <strong>부인 방지(Non-repudiation)</strong>: 나중에 송신자가 보낸 사실을 부인할 수 없음
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🖋️ 전자서명 vs 데이터 암호화 키 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>데이터 기밀성 암호화</th>
+                      <th>디지털 전자서명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="center"><strong>목적</strong></td>
+                      <td>데이터 엿보기 방지</td>
+                      <td>신원 증명 &amp; 부인 방지</td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>암호화에 쓰는 키</strong></td>
+                      <td><span style="color:#0284c7; font-weight:800;">수신자의 공개키</span></td>
+                      <td><span style="color:#e11d48; font-weight:800;">송신자의 개인키</span></td>
+                    </tr>
+                    <tr>
+                      <td class="center"><strong>복호화에 쓰는 키</strong></td>
+                      <td>수신자의 비밀키</td>
+                      <td>송신자의 공개키</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 13 : 핵심 개념 1:1 맞대결 그리드 -->
+        <section class="slide"
+          data-notes="84단원과 85단원 핵심 개념 맞대결 그리드입니다. 방화벽은 내부 침입과 바이러스를 차단하지 못합니다. 비밀키는 속도가 빠르고 DES 방식이며 N(N-1)/2개의 키가 필요합니다. 공개키는 키 분배가 쉽고 RSA 방식이며 디지털 서명이 가능합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 84~85 • SUMMARY GRID</div>
+                <h2 class="slide-title">기출 필수 공식 <span class="hl-green">1:1 맞대결</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 방화벽의 외부 차단 vs 내부/바이러스</div>
+                <div class="card-desc">
+                  • 외부 불법 침입 차단 &amp; 역추적 ➔ <span class="hl-green">가능 (정답)</span><br>
+                  • 내부 발생 문제·바이러스 검사 ➔ <span class="warn-text">불가능 (오답 판별)</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 비밀키(DES) vs 공개키(RSA) 속도</div>
+                <div class="card-desc">
+                  • 암호화 속도 빠름 ➔ <span class="hl-green">비밀키 (DES/AES)</span><br>
+                  • 속도 느리고 알고리즘 복잡 ➔ <span class="warn-text">공개키 (RSA)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 키 개수 공식 &amp; 전자서명 가능 여부</div>
+                <div class="card-desc">
+                  • 비밀키 총 개수: <span class="hl-green">N(N-1)/2 개</span><br>
+                  • 디지털 전자서명 구현 ➔ <span class="hl-green">공개키 방식 (송신자 개인키)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🏆 시험 직전 핵심 개념표</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 키워드</div>
+                  <div class="e-cell header">정답 개념</div>
+                  <div class="e-cell" style="font-weight:700;">방화벽 한계</div>
+                  <div class="e-cell active-green"><strong>내부 침입/바이러스 불가</strong></div>
+                  <div class="e-cell" style="font-weight:700;">동일 키 &amp; 초고속</div>
+                  <div class="e-cell active-green"><strong>비밀키 (DES, AES)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">서로 다른 키 &amp; 분배 용이</div>
+                  <div class="e-cell"><strong>공개키 (RSA)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">디지털 서명 생성 키</div>
+                  <div class="e-cell"><strong>송신자의 개인키</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 14 : 출제율 1위 키워드 요약표 & 3D 플립 카드 -->
+        <section class="slide"
+          data-notes="단원 총정리 3D 플립 카드와 기출 요약표입니다. 방화벽의 한계와 공개키/비밀키 대표 알고리즘을 카드를 클릭하여 확인하세요. 우측 표의 5가지 공식은 시험에서 매회 정답으로 출제되는 핵심 포인트들입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">SUMMARY &amp; REVIEW</div>
+                <h2 class="slide-title">단원 총정리 <span class="hl-green">3D 플립 카드</span></h2>
+                <p style="font-size: 15px; color:#64748b; margin-bottom: 8px;">
+                  카드를 클릭하면 정답 키워드와 함정 판별법이 회전합니다.
+                </p>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q1. 방화벽은 바이러스를 차단할 수 있을까?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      바이러스 검사 및 내부 문제 차단 여부? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A1. 정답: 차단 절대 불가 (X)!</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      내부 침입과 <strong>바이러스 검사/보호는 방화벽으로 불가</strong>합니다. (백신이 담당!)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q2. 공개키 대표 방식과 사용자 4명 비밀키 수는?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      대표 알고리즘과 계산 공식은? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A2. 정답: 공개키 ➔ RSA / 비밀키 ➔ 6개!</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      공개키는 <strong>RSA</strong>, 4명일 때 비밀키는 <strong>4×3÷2 = 6개</strong>입니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>🏆 기출 정답 1순위 키워드 요약표</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">단원</th>
+                      <th style="width: 35%;">핵심 주제</th>
+                      <th>기출 정답 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">84 방화벽</td>
+                      <td>치명적 한계</td>
+                      <td>내부 문제 &amp; <span class="hl-green">바이러스 차단 불가</span></td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">85 비밀키</td>
+                      <td>특징 및 방식</td>
+                      <td>동일 키, 속도 빠름, <span class="hl-green">DES / AES</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">85 공개키</td>
+                      <td>특징 및 방식</td>
+                      <td>서로 다른 키, 분배 용이, <span class="hl-green">RSA</span></td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">85 비밀키 계산</td>
+                      <td>N명일 때 총 키수</td>
+                      <td><span class="warn-text">N(N - 1) / 2 개</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">85 전자서명</td>
+                      <td>서명 생성 키</td>
+                      <td><strong>송신자의 개인키</strong> (부인 방지)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 15 : 기출 오답 판별 필승 공식 -->
+        <section class="slide"
+          data-notes="기출 오답 판별 필승 공식입니다. 첫째, 방화벽이 바이러스를 검사/치료한다고 나오면 100% 오답입니다. 둘째, 공개키가 비밀키보다 암호화 속도가 빠르다고 나오면 오답입니다. 셋째, 비밀키로 전자서명을 구현한다고 나오면 오답입니다. 전자서명은 비대칭키인 공개키 기법으로만 가능합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">EXAM PASS STRATEGY</div>
+                <h2 class="slide-title">기출 오답 판별 <span class="hl-green">필승 공식</span></h2>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">1. 방화벽의 바이러스 검사 함정</div>
+                <div class="card-desc">
+                  • "방화벽은 바이러스를 탐지·치료한다" ➔ <span class="warn-text">오답! (백신이 담당)</span><br>
+                  • "방화벽은 내부 침입을 감지한다" ➔ <span class="warn-text">오답! (내부 차단 불가)</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 암호화 속도 뒤바꿈 함정</div>
+                <div class="card-desc">
+                  • "공개키 방식이 비밀키 방식보다 암호화 속도가 빠르다" ➔ <span class="warn-text">오답! (비밀키가 훨씬 빠름)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 전자서명 적용 방식 함정</div>
+                <div class="card-desc">
+                  • "비밀키(대칭키) 방식으로 전자서명을 구현한다" ➔ <span class="warn-text">오답! (공개키로 구현)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🎯 시험장 직전 핵심 체크포인트</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 지문 키워드</div>
+                  <div class="e-cell header">정답 판별 기준</div>
+                  <div class="e-cell" style="font-weight:700;">방화벽 한계</div>
+                  <div class="e-cell active-green"><strong>내부 문제/바이러스 불가</strong></div>
+                  <div class="e-cell" style="font-weight:700;">DES 알고리즘</div>
+                  <div class="e-cell active-green"><strong>비밀키 (대칭키)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">RSA 알고리즘</div>
+                  <div class="e-cell active-green"><strong>공개키 (비대칭키)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">비밀키 N명일 때 키 개수</div>
+                  <div class="e-cell"><strong>N(N-1)/2 개</strong></div>
+                  <div class="e-cell" style="font-weight:700;">디지털 서명 기능</div>
+                  <div class="e-cell"><strong>부인 방지 / 인증 / 무결성</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 16 : 1과목 컴퓨터 일반 전 범위(01~85) 완주 피날레 축하 카드 -->
+        <section class="slide"
+          data-notes="대단히 수고 많으셨습니다! 여러분은 지금 컴퓨터활용능력 2급 필기 제1과목 컴퓨터 일반의 01단원부터 마지막 85단원까지 총 14개 슬라이드 세트를 모두 완주하셨습니다. 컴퓨터 하드웨어, 운영체제 Windows, 소프트웨어, 네트워크, 인터넷 기술, 인공지능 윤리, 그리고 오늘 학습한 보안과 암호화 기법까지 전 범위를 마스터하셨습니다. 여러분의 컴활 2급 필기 합격을 진심으로 응원합니다!">
+          <div style="margin: auto; text-align: center; max-width: 860px;">
+            <div style="font-size: 56px; margin-bottom: 12px;">🏆🎉🎓</div>
+            <div class="title-badge" style="background:#dcfce7; color:#15803d; border-color:#86efac;">
+              1과목 컴퓨터 일반 (01~85단원) 전 범위 완주 완료!
+            </div>
+            <h2 class="title-h1" style="font-size: 38px;">컴퓨터 일반 전 단원 학습을<br><span>성공적으로 완주하셨습니다!</span></h2>
+            <p class="title-sub" style="font-size: 16.5px; margin-bottom: 24px; line-height:1.7;">
+              컴퓨터 기본 구조(01단원)부터 시작하여 Windows 10/11 시스템 제어, 네트워크 통신 프로토콜,<br>
+              최신 ICT/AI 윤리, 악성코드, 그리고 최종 방화벽과 공개키 암호화(85단원)까지 완벽하게 정복했습니다.<br>
+              이제 어떤 기출문제가 나와도 자신 있게 합격 점수를 달성하실 수 있습니다!
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button onclick="goTo(1)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer; font-size:14.5px;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                첫 슬라이드로 돌아가기 ↺
+              </button>
+              <button onclick="goTo(11)"
+                style="background:#0284c7; color:#fff; border:none; padding:10px 22px; border-radius:10px; font-weight:800; cursor:pointer; font-size:14.5px; box-shadow:0 4px 12px rgba(2,132,199,0.3);"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                5대 비교 공식 다시 보기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <div class="speaker-notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(단축키: N 또는 S 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        대본이 여기에 표시됩니다.
+      </div>
+    </div>
+
+    <footer class="key-shortcuts-bar">
+      <span><kbd>◀</kbd> / <kbd>Backspace</kbd> 이전 슬라이드</span>
+      <span><kbd>▶</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> 다음 슬라이드</span>
+      <span><kbd>N</kbd> 또는 <kbd>S</kbd> 발표자 대본창 토글</span>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const curSlideNumEl = document.getElementById('curSlideNum');
+    const totalSlideNumEl = document.getElementById('totalSlideNum');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    totalSlideNumEl.textContent = String(totalSlides).padStart(2, '0');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx === index) {
+          s.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+      curSlideNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+
+      const notes = slides[currentSlide].getAttribute('data-notes') || '해당 슬라이드에 등록된 강의 대본이 없습니다.';
+      notesContent.innerHTML = notes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function goTo(slideNumber) {
+      updateSlide(slideNumber - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N' || e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+
+</html>

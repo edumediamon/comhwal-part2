@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 1과목 컴퓨터 일반 (64~72)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hl-green,
+    u,
+    .u-highlight {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    code,
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px 8px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      user-select: none;
+    }
+
+    .side-nav-arrow:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+    }
+
+    .side-nav-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .side-nav-arrow.prev {
+      left: 14px;
+    }
+
+    .side-nav-arrow.next {
+      right: 14px;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 1320px;
+      max-height: 720px;
+      background: var(--canvas-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-canvas);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 42px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 42px;
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .split-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .anim-left {
+      animation: animLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: animRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes animLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes animRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    .slide-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--accent-blue);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .info-card.warning {
+      border-left-color: var(--accent-rose);
+      background: #fffbfa;
+    }
+
+    .info-card.success {
+      border-left-color: var(--accent-emerald);
+      background: #fbfdfc;
+    }
+
+    .info-card.amber {
+      border-left-color: var(--accent-amber);
+      background: #fffdfa;
+    }
+
+    .info-card.purple {
+      border-left-color: var(--accent-purple);
+      background: #fbfaff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card.warning .card-title {
+      color: var(--accent-rose);
+    }
+
+    .info-card.success .card-title {
+      color: var(--accent-emerald);
+    }
+
+    .info-card.amber .card-title {
+      color: var(--accent-amber);
+    }
+
+    .info-card.purple .card-title {
+      color: var(--accent-purple);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: 0 2px 0 #94a3b8;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+
+    .morph-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      width: 100%;
+      max-width: 530px;
+      position: relative;
+    }
+
+    .morph-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .morph-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .morph-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: #f8fafc;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+    }
+
+    .styled-table td.center {
+      text-align: center;
+    }
+
+    .excel-morph-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .e-cell {
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .e-cell.header {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #475569;
+      justify-content: center;
+    }
+
+    .e-cell.active-green {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+      font-weight: 800;
+    }
+
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 125px;
+      cursor: pointer;
+    }
+
+    .flipper {
+      transition: 0.5s transform cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flip-container.flipped .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .flip-front {
+      background: #ffffff;
+      z-index: 2;
+      border-left: 5px solid #0284c7;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #22c55e;
+    }
+
+    .title-h1 {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .title-h1 span {
+      background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 600;
+      text-align: center;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    .key-shortcuts-bar {
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #64748b;
+      user-select: none;
+    }
+
+    .key-shortcuts-bar kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .speaker-notes-drawer {
+      position: absolute;
+      bottom: 34px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid var(--accent-emerald);
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100%);
+      max-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      padding: 8px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-toggle-notes {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      font-family: inherit;
+    }
+
+    .notes-content {
+      padding: 14px 28px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #1e293b;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <header class="header-bar">
+      <div class="badge-subject">
+        <span>📘</span>
+        <span>컴활 2급 필기 • 1과목 컴퓨터 일반</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#334155;">
+        64. 웹 언어 ~ 72. 모바일 기기 핵심 요약
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-toggle-notes" onclick="toggleNotes()" title="단축키 N 또는 S">
+          🎙️ 발표자 대본 열기 (N)
+        </button>
+        <div class="slide-counter"><span id="curSlideNum">01</span> / <span id="totalSlideNum">16</span></div>
+      </div>
+    </header>
+
+    <main class="slide-stage">
+      <button class="side-nav-arrow prev" onclick="prevSlide()" title="이전 슬라이드 (◀ / Backspace)">‹</button>
+      <button class="side-nav-arrow next" onclick="nextSlide()" title="다음 슬라이드 (▶ / Space / Enter)">›</button>
+
+      <div class="slide-canvas" id="slideCanvas">
+
+        <!-- SLIDE 1 : Title -->
+        <section class="slide active"
+          data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 컴퓨터 일반의 핵심 단원인 64단원 웹 프로그래밍 언어부터 72단원 모바일 네트워크 및 신기술까지 핵심 특강입니다. HTML5의 플러그인 없는 멀티미디어 재생, 통신 전송 방식 3종(단방향, 반이중, 전이중), 통신망 구성 토폴로지 5가지, 라우터와 게이트웨이 등의 접속 장비, 그리고 NFC와 블루투스, 테더링 기술까지 총 16개의 슬라이드로 완벽 정리합니다.">
+          <div style="margin: auto; text-align: center; max-width: 900px;">
+            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 64~72</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
+            <p class="title-sub">웹 언어(HTML5) • 전송 방식(단방향/반이중/전이중) <br>• 망 형태(성형/망형) • 네트워크 장비(라우터) • NFC & 블루투스</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
+              <button onclick="nextSlide()"
+                style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                프레젠테이션 시작하기 ▶
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                목차 바로가기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2 : Table of Contents -->
+        <section class="slide"
+          data-notes="학습 로드맵입니다. 64 웹 프로그래밍 언어(HTML5, DHTML, WML, VRML), 65 통신 전송 방식 3종, 66 클라이언트/서버와 P2P, 67 통신망 구성 토폴로지 5종, 68 통신망 범위, 69 네트워크 접속 장비(라우터, 리피터 등), 72 모바일 통신 용어(NFC, 블루투스, 테더링) 순서로 학습합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">AGENDA & ROADMAP</div>
+                <h2 class="slide-title">핵심 학습 로드맵 (64~72)</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">64. 웹 언어 & 65. 정보 전송 방식</div>
+                <div class="card-desc">HTML5(ActiveX 불필요/W3C 표준), 단방향(라디오), 반이중(무전기), 전이중(전화기)</div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">67. 통신망 구성 형태 & 69. 접속 장비 (★출제 1위)</div>
+                <div class="card-desc">성형(중앙집중/중앙고장마비), 망형(신뢰성최고), 라우터(최적경로), 리피터(신호증폭)</div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">66. 클라이언트/서버 vs 68. P2P & 통신망</div>
+                <div class="card-desc">분산 처리 환경(C/S) vs 동등 계층 처리(P2P), LAN(근거리), WAN(광역), VAN(부가가치)</div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">70. 모바일 장비 & 72. 모바일 신기술</div>
+                <div class="card-desc">AP(무선-유선 연결), NFC(10cm 비접촉 RFID), 블루투스(근거리 PAN), 테더링(핫스팟 공유)</div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px; width: 100%;">
+                <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
+                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button class="morph-btn" onclick="goTo(3)">64. 웹 프로그래밍 언어</button>
+                  <button class="morph-btn" onclick="goTo(4)">65. 정보 전송 방식 3종</button>
+                  <button class="morph-btn" onclick="goTo(5)">66. C/S vs P2P 방식</button>
+                  <button class="morph-btn" onclick="goTo(6)">67. 통신망 구성 5대 형태</button>
+                  <button class="morph-btn" onclick="goTo(7)">67. 성형 vs 망형 집중비교</button>
+                  <button class="morph-btn" onclick="goTo(8)">68. 지리적 통신망 분류</button>
+                  <button class="morph-btn" onclick="goTo(9)">69. 네트워크 접속 장비</button>
+                  <button class="morph-btn" onclick="goTo(10)">69. 라우터/게이트웨이</button>
+                  <button class="morph-btn" onclick="goTo(11)">70. 모바일 네트워크 장비</button>
+                  <button class="morph-btn" onclick="goTo(12)">72. NFC & 블루투스</button>
+                  <button class="morph-btn" onclick="goTo(13)">★ 핵심 개념 1:1 맞대결</button>
+                  <button class="morph-btn" onclick="goTo(14)">★ 출제 1위 핵심 요약표</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3 : 64 웹 프로그래밍 언어 -->
+        <section class="slide"
+          data-notes="64단원 웹 프로그래밍 언어입니다. HTML은 하이퍼텍스트 문서를 작성하는 가장 기본적인 텍스트 언어입니다. 시험에서 가장 중요한 것은 HTML5입니다. W3C에서 제정한 최신 웹 표준으로, 액티브X 같은 별도의 플러그인 설치 없이도 웹 브라우저에서 비디오, 오디오 등의 멀티미디어를 직접 재생할 수 있습니다. DHTML은 동적 효과를 주고, WML은 무선 기기용, VRML은 가상현실 3차원 공간 표현 언어입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 64 • WEB LANGUAGES</div>
+                <h2 class="slide-title">웹 언어와 <span class="hl-green">HTML5 웹 표준</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. HTML (HyperText Markup Language)</div>
+                <div class="card-desc">
+                  • 하이퍼링크와 멀티미디어를 표현하는 기본 웹 문서 제작 언어<br>
+                  • 단순 텍스트 형식으로 호환성이 뛰어나고 누구나 작성 가능
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. HTML5 (★출제 1위)</div>
+                <div class="card-desc">
+                  • W3C에서 제정한 차세대 웹 표준 규격<br>
+                  • <span class="hl-green">액티브X(ActiveX) 등 플러그인 없이</span> 동영상·음악을 브라우저에서 직접 재생 지원
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. DHTML / WML / VRML</div>
+                <div class="card-desc">
+                  • <strong>DHTML</strong>: 사용자와 상호작용하는 동적인 웹 페이지 구현<br>
+                  • <strong>WML</strong>: 스마트폰, PDA 등 무선 인터넷 기기 전용 언어<br>
+                  • <strong>VRML</strong>: 웹상에서 3차원 가상공간을 상호작용하는 언어
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>💡 HTML5 핵심 출제 키워드</span>
+                  <span class="key-badge">기출 빈출</span>
+                </div>
+                <div class="info-card success" style="margin-top:12px;">
+                  <div class="card-title">HTML5의 결정적 특징</div>
+                  <div class="card-desc">
+                    • 표준화된 <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code> 태그 기본 탑재<br>
+                    • 플래시(Flash)나 액티브X 없이 완벽한 멀티미디어 구동<br>
+                    • 모바일과 PC에서 동일하게 동작하는 반응형 웹 표준
+                  </div>
+                </div>
+                <div class="info-card" style="margin-top:12px;">
+                  <div class="card-title">WML vs VRML</div>
+                  <div class="card-desc">
+                    • <strong>WML</strong>: Wireless (무선 모바일용)<br>
+                    • <strong>VRML</strong>: Virtual Reality (3차원 가상현실)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4 : 65 정보 전송 방식 -->
+        <section class="slide"
+          data-notes="65단원 정보 전송 방식 3가지입니다. 매 시험마다 100% 출제되는 초특급 암기 항목입니다. 첫째, 단방향 통신(Simplex)은 오직 한쪽 방향으로만 데이터가 흐르며 라디오와 TV가 대표적입니다. 둘째, 반이중 통신(Half-Duplex)은 양방향 통신이 가능하지만 동시에 보낼 수 없고 교대로 전송하며 무전기가 대표적입니다. 셋째, 전이중 통신(Full-Duplex)은 동시에 양방향 전송이 가능하며 전화기가 대표적입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 65 • TRANSMISSION MODES</div>
+                <h2 class="slide-title">정보 전송 방식 <span class="hl-green">3대 유형 비교</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 단방향 통신 (Simplex)</div>
+                <div class="card-desc">
+                  • 오직 <span class="hl-green">한 방향으로만 전송</span> 가능 (송신측/수신측 고정)<br>
+                  • 대표 예시: <strong>라디오(Radio), TV 방송</strong>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 반이중 통신 (Half-Duplex)</div>
+                <div class="card-desc">
+                  • <span class="hl-green">양방향 통신 가능</span>하나, <span class="warn-text">동시 전송은 불가능 (교대로 전송)</span><br>
+                  • 대표 예시: <strong>무전기 (Walkie-Talkie)</strong>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 전이중 통신 (Full-Duplex)</div>
+                <div class="card-desc">
+                  • <span class="hl-green">동시에 양방향 송수신이 모두 가능</span>한 통신<br>
+                  • 대표 예시: <strong>전화기, 스마트폰 통화</strong>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📻 1초 판별 통신 방식 표</span>
+                  <span class="key-badge">100% 출제</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>전송 방식</th>
+                      <th>양방향 여부</th>
+                      <th>동시 전송</th>
+                      <th>대표 기기</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">단방향 (Simplex)</td>
+                      <td class="center">단방향만</td>
+                      <td class="center">X</td>
+                      <td><span class="hl-green">라디오, TV</span></td>
+                    </tr>
+                    <tr style="background:#fffbfa;">
+                      <td style="font-weight:700; color:#e11d48;">반이중 (Half)</td>
+                      <td class="center">양방향 가능</td>
+                      <td class="center"><span class="warn-text">동시 불가 (교대)</span></td>
+                      <td><span class="hl-green">무전기</span></td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">전이중 (Full)</td>
+                      <td class="center">양방향 가능</td>
+                      <td class="center"><span class="hl-green">동시 가능 (O)</span></td>
+                      <td><span class="hl-green">전화기</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5 : 66 C/S vs P2P -->
+        <section class="slide"
+          data-notes="66단원 시스템 분산 처리 방식입니다. 클라이언트/서버(Client/Server) 방식은 서비스를 요구하는 클라이언트와 정보를 제공하는 전용 서버로 명확히 역할이 분리된 구조로, 기업의 분산 처리 환경에 최적화되어 있습니다. 반면 동배간 처리 방식(Peer to Peer, P2P)은 망에 연결된 모든 컴퓨터가 동등한 지위를 가져 서버와 클라이언트의 구분이 없으며 누구나 서버이자 클라이언트 역할을 수행합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 66 • ARCHITECTURE</div>
+                <h2 class="slide-title">클라이언트/서버 vs <span class="hl-green">P2P (동배간)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🖥️ 클라이언트 / 서버 (Client / Server)</div>
+                <div class="card-desc">
+                  • <strong>클라이언트</strong>: 서비스를 요청하고 결과를 표시<br>
+                  • <strong>서버</strong>: 대용량 데이터베이스와 자원을 보유하고 요청에 응답<br>
+                  • 전형적인 <span class="hl-green">중앙 집중 및 분산 처리 환경</span>에 적합
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🤝 동배간 처리 방식 (Peer to Peer, P2P)</div>
+                <div class="card-desc">
+                  • 네트워크의 <span class="hl-green">모든 컴퓨터가 동등(Peer)한 권한</span> 보유<br>
+                  • <span class="hl-green">서버와 클라이언트의 구분이 없음</span> (동시에 송수신 수행)<br>
+                  • 파일 공유 프로그램(토렌트 등)에 주로 활용
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>⚖️ 핵심 구조 차이 비교</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px; margin-top: 10px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">구분</th>
+                      <th>클라이언트/서버</th>
+                      <th>동배간 (P2P)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">역할 구분</td>
+                      <td><span class="hl-green">요청자 / 제공자 명확</span></td>
+                      <td>구분 없음 (모두 동등)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">자원 집중</td>
+                      <td>중앙 서버에 집중</td>
+                      <td><span class="hl-green">각 노드에 분산</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">전용 서버</td>
+                      <td>반드시 필요함</td>
+                      <td>필요 없음</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6 : 67 통신망 구성 형태 5총사 -->
+        <section class="slide"
+          data-notes="67단원 통신망의 구성 형태(토폴로지) 5가지입니다. 성형(Star)은 모든 노드가 중앙 컴퓨터에 연결됩니다. 버스형(Bus)은 하나의 메인 회선을 모든 장치가 공유합니다. 링형(Ring)은 둥근 원형 루프로 연결되어 순차 전송합니다. 망형(Mesh)은 모든 노드가 서로 그물처럼 얽혀 있습니다. 트리형(Tree)은 계층적인 나뭇가지 모양입니다. 각 형태의 외형과 기본 특성을 기억하세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 67 • NETWORK TOPOLOGY (1)</div>
+                <h2 class="slide-title">통신망 구성 형태 <span class="hl-green">5대 토폴로지</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 성형 (Star, 중앙 집중형)</div>
+                <div class="card-desc">
+                  • 모든 단말기가 <strong>중앙 컴퓨터(호스트)</strong>에 1:1 포인트 투 포인트로 연결
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 버스형 (Bus) & 링형 (Ring)</div>
+                <div class="card-desc">
+                  • <strong>버스형</strong>: 하나의 공통 주 통신 회선에 여러 장치를 연결 (비용 저렴)<br>
+                  • <strong>링형</strong>: 원형 루프를 형성하여 데이터를 한 방향 또는 양방향 순차 전송
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 망형 (Mesh) & 트리형 (Tree)</div>
+                <div class="card-desc">
+                  • <strong>망형</strong>: 모든 노드를 상호 연결하여 우회 경로가 풍부함 (신뢰성 최고)<br>
+                  • <strong>트리형</strong>: 나뭇가지 형태의 계층적 분기 구조 (확장 용이)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🗺️ 5대 토폴로지 한 줄 요약</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>토폴로지</th>
+                      <th>연결 외형</th>
+                      <th>핵심 장점</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">성형 (Star)</td>
+                      <td>중앙 허브 집결</td>
+                      <td>유지보수, 확장 편리</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">버스형 (Bus)</td>
+                      <td>단일 회선 공유</td>
+                      <td>설치 비용 가장 저렴</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">링형 (Ring)</td>
+                      <td>원형 고리 루프</td>
+                      <td>데이터 충돌 적음</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">망형 (Mesh)</td>
+                      <td>그물망 다중 연결</td>
+                      <td><span class="hl-green">신뢰성 및 장애 극복 최고</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">트리형 (Tree)</td>
+                      <td>계층적 분기 구조</td>
+                      <td>네트워크 확장성 우수</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 7 : 67 성형 vs 망형 킬러 집중 분석 -->
+        <section class="slide"
+          data-notes="성형과 망형은 시험에서 가장 많은 정답과 오답 선지로 출제됩니다. 성형(Star)의 가장 결정적인 약점은 '중앙 컴퓨터(허브)가 고장 나면 전체 네트워크 통신이 완전 마비된다'는 점입니다. 반면 망형(Mesh)은 모든 노드가 다중 경로로 그물처럼 연결되어 있어 특정 회선이나 노드에 장애가 생겨도 다른 길로 우회할 수 있어 신뢰성이 가장 높지만, 선로 설치 비용이 가장 많이 든다는 점이 출제 포인트입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 67 • NETWORK TOPOLOGY (2)</div>
+                <h2 class="slide-title">성형 vs 망형 <span class="hl-green">기출 킬러 포인트</span></h2>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">⭐ 성형 (Star)의 치명적 결함</div>
+                <div class="card-desc">
+                  • 중앙 장치 점검과 보수는 쉽지만,<br>
+                  • <span class="warn-text">중앙 컴퓨터(허브) 고장 시 전체 통신망이 전면 마비됨!</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🕸️ 망형 (Mesh)의 압도적 신뢰성</div>
+                <div class="card-desc">
+                  • 장치 간에 복수의 우회 경로가 존재하므로 <span class="hl-green">장애에 가장 강하고 신뢰성이 가장 높음</span><br>
+                  • 단점: 회선 수가 많아 배선 구조가 복잡하고 <strong>설치 비용이 가장 비쌈</strong>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🚨 기출 정답 공식 매칭</span>
+                  <span class="key-badge">필수 암기</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 문구</div>
+                  <div class="e-cell header">정답 토폴로지</div>
+                  <div class="e-cell" style="font-weight:700;">중앙 장치 고장 시 전체 마비</div>
+                  <div class="e-cell active-green"><strong>성형 (Star)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">가장 신뢰성이 높고 장애에 강함</div>
+                  <div class="e-cell active-green"><strong>망형 (Mesh)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">단일 회선 고장 시 전체 영향</div>
+                  <div class="e-cell"><strong>버스형 (Bus)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">상위 노드 고장 시 하위 마비</div>
+                  <div class="e-cell"><strong>트리형 (Tree)</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8 : 68 지리적 통신망 분류 -->
+        <section class="slide"
+          data-notes="68단원 정보 통신망의 지리적 규모별 분류입니다. PAN은 10m 이내 개인 통신망, LAN은 한 건물이나 학교 구내의 근거리 통신망, MAN은 대도시권 통신망, WAN은 국가나 대륙을 잇는 광역 통신망입니다. 그리고 VAN(부가가치 통신망)은 통신 사업자로부터 회선을 빌려 독자적인 정보나 기능을 덧붙여 제공하는 통신망으로 시험에 자주 나옵니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 68 • NETWORK SCOPE</div>
+                <h2 class="slide-title">지리적 범위별 <span class="hl-green">통신망 5단계</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. LAN (Local Area Network, 근거리 통신망)</div>
+                <div class="card-desc">
+                  • 한 건물, 사무실, 학교 캠퍼스 등 <span class="hl-green">가까운 거리(구내)</span>를 연결한 고속 네트워크<br>
+                  • 자원 공유 및 파일 전송에 최적화
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. MAN & WAN (도시권 및 광역망)</div>
+                <div class="card-desc">
+                  • <strong>MAN</strong>: 한 도시(Metropolitan) 단위의 통신망<br>
+                  • <strong>WAN</strong>: 국가, 대륙 등 <span class="hl-green">매우 넓은 지역을 연결하는 광역 통신망</span>
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. VAN (Value Added Network, 부가가치 통신망)</div>
+                <div class="card-desc">
+                  • 회선 임대 후 정보 가공·저장 등 <span class="hl-green">새로운 부가가치를 부여</span>하여 재판매하는 망
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📏 통신망 규모 순서도</span>
+                </div>
+                <div style="padding: 16px; background:#f8fafc; border-radius:12px; margin-top:12px; text-align:center;">
+                  <div style="font-size:15px; font-weight:800; color:#0284c7;">
+                    PAN (개인 10m) ➔ LAN (구내/건물) ➔ MAN (도시) ➔ WAN (국가/대륙) ➔ GAN (전 지구)
+                  </div>
+                </div>
+                <table class="styled-table" style="margin-top:12px;">
+                  <thead>
+                    <tr>
+                      <th>약어</th>
+                      <th>명칭</th>
+                      <th>적용 범위</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">LAN</td>
+                      <td>근거리 통신망</td>
+                      <td>사무실, 연구소, 학교 구내</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">WAN</td>
+                      <td>광역 통신망</td>
+                      <td>국가 간, 대륙 간 (인터넷)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">VAN</td>
+                      <td>부가가치 통신망</td>
+                      <td>통신망 임대 + 가공 정보 제공</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 9 : 69 네트워크 접속 장비 5총사 -->
+        <section class="slide"
+          data-notes="69단원 네트워크 접속 장비 5총사입니다. 허브는 여러 대의 PC를 모아서 연결하는 기본 장비입니다. 리피터는 전송 거리가 멀어져 약해진 신호를 증폭하고 재생합니다. 브리지는 서로 다른 LAN 구역을 연결하는 장비입니다. 라우터는 서로 다른 네트워크를 연결하면서 목적지까지 가장 빠른 최적의 경로를 찾아주는 장비로 출제율 1위입니다. 게이트웨이는 서로 다른 프로토콜의 네트워크를 연결하는 관문입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 69 • NETWORK DEVICES (1)</div>
+                <h2 class="slide-title">네트워크 <span class="hl-green">접속 장비 5총사</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 허브 (Hub)</div>
+                <div class="card-desc">
+                  • 여러 컴퓨터를 한 네트워크에 묶어 통합 관리하는 집선 장비
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 리피터 (Repeater)</div>
+                <div class="card-desc">
+                  • 전송 거리가 멀어져 <span class="hl-green">약해진 신호를 증폭하고 정형화하여 재생</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">3. 브리지 (Bridge)</div>
+                <div class="card-desc">
+                  • 동종 프로토콜의 분리된 <span class="hl-green">근거리 통신망(LAN) 구간들을 상호 연결</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔌 장비별 핵심 기능 키워드</span>
+                  <span class="key-badge">빈출</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>장비명</th>
+                      <th>핵심 기능 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">허브 (Hub)</td>
+                      <td>단말기들을 한곳으로 집결/연결</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">리피터 (Repeater)</td>
+                      <td><span class="hl-green">신호 증폭 / 신호 재생 / 거리 연장</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">브리지 (Bridge)</td>
+                      <td>동종 LAN 구간 상호 연결 / MAC 주소</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">라우터 (Router)</td>
+                      <td><span class="hl-green">최적의 경로 설정 (Routing)</span></td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">게이트웨이</td>
+                      <td><span class="warn-text">이종 프로토콜 네트워크 입구</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 10 : 69 라우터 vs 게이트웨이 -->
+        <section class="slide"
+          data-notes="라우터와 게이트웨이의 결정적 차이입니다. 라우터는 네트워크 계층 장비로, 데이터 패킷이 목적지까지 갈 수 있는 가장 빠르고 안전한 '최적의 경로'를 찾아 전달합니다. 반면 게이트웨이는 통신 규약(프로토콜)이 완전히 서로 다른 네트워크 간을 연결할 때 프로토콜 변환을 담당하는 관문 장치입니다. 지문에 '최적 경로'가 나오면 라우터, '다른 프로토콜 네트워크 입구'가 나오면 게이트웨이를 고르면 됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 69 • NETWORK DEVICES (2)</div>
+                <h2 class="slide-title">라우터 vs 게이트웨이 <span class="hl-green">맞대결</span></h2>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🧭 라우터 (Router, ★출제 1위)</div>
+                <div class="card-desc">
+                  • 데이터 패킷이 목적지까지 안전하고 빠르게 갈 수 있는 <span class="hl-green">최적의 경로를 설정(Routing)</span><br>
+                  • 네트워크 계층(IP 계층)에서 동작하며 트래픽 분산 제어
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">🚪 게이트웨이 (Gateway)</div>
+                <div class="card-desc">
+                  • 통신 구조나 <span class="hl-green">프로토콜이 서로 다른 네트워크를 연결하는 출입구</span><br>
+                  • 서로 다른 언어를 번역해 주는 관문 역할을 수행
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🚨 시험장 직전 구별 공식</span>
+                  <span class="key-badge">1초 판별</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 지문 키워드</div>
+                  <div class="e-cell header">정답 장비</div>
+                  <div class="e-cell" style="font-weight:700;">최적의 경로(Routing) 탐색</div>
+                  <div class="e-cell active-green"><strong>라우터 (Router)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">서로 다른 프로토콜 네트워크 입구</div>
+                  <div class="e-cell active-green"><strong>게이트웨이 (Gateway)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">감쇠된 신호 증폭 및 재생</div>
+                  <div class="e-cell"><strong>리피터 (Repeater)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">두 LAN 구역 결합 (MAC 주소)</div>
+                  <div class="e-cell"><strong>브리지 (Bridge)</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11 : 70 모바일 네트워크 장비 -->
+        <section class="slide"
+          data-notes="70단원 모바일 네트워크 접속 장비입니다. AP(Access Point)는 유선 네트워크와 무선 단말기를 연결해 주는 무선 접속 기지국입니다. 유무선 공유기는 하나의 인터넷 공인 IP를 여러 장치가 공유하여 사용할 수 있게 해주는 장치입니다. 무선 LAN 카드는 PC나 노트북을 Wi-Fi에 연결시켜 주는 무선 통신 카드입니다. 이동통신 모뎀은 LTE나 5G 신호를 디지털 데이터로 변환합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 70 • MOBILE EQUIPMENT</div>
+                <h2 class="slide-title">모바일 네트워크 <span class="hl-green">주요 접속 장비</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. AP (Access Point)</div>
+                <div class="card-desc">
+                  • 유선 네트워크 케이블과 스마트폰·노트북 등 <span class="hl-green">무선 단말기를 연결해 주는 기지국 역할</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 무선 공유기 (Wireless Router)</div>
+                <div class="card-desc">
+                  • 1개의 인터넷 회선을 여러 무선/유선 기기가 공유하여 사용할 수 있게 IP를 분배
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">3. 무선 LAN 카드 & 모뎀</div>
+                <div class="card-desc">
+                  • <strong>무선 LAN 카드</strong>: 단말기에서 Wi-Fi 신호를 수신하는 네트워크 인터페이스<br>
+                  • <strong>이동통신 모뎀</strong>: 이동통신망(LTE, 5G) 신호를 통해 인터넷에 접속
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📱 모바일 장비 한눈에 보기</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>장비</th>
+                      <th>핵심 역할</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">AP</td>
+                      <td>무선 단말기 ➔ 유선망 중계 연결</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">무선 공유기</td>
+                      <td>IP 공유 및 NAT 기능 제공</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">무선 LAN 카드</td>
+                      <td>단말기의 Wi-Fi 접속 어댑터</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">모뎀 (Modem)</td>
+                      <td>신호 변복조 (LTE/5G 통신)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 12 : 72 NFC & 블루투스 & 테더링 -->
+        <section class="slide"
+          data-notes="72단원 모바일 통신 신기술 용어입니다. NFC(근거리 무선통신)는 10cm 이내의 초근거리에서 비접촉식으로 데이터를 주고받는 RFID 기반 기술로 교통카드와 간편결제에 쓰입니다. 블루투스는 2.4GHz 대역에서 기기 간을 무선으로 연결하는 초근거리 통신 기술입니다. 테더링은 스마트폰의 모바일 데이터를 Wi-Fi나 블루투스, USB를 통해 다른 노트북이나 태블릿과 공유하는 기능입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 72 • WIRELESS TECH</div>
+                <h2 class="slide-title">NFC, 블루투스, <span class="hl-green">테더링 기술</span></h2>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">💳 NFC (Near Field Communication, ★빈출)</div>
+                <div class="card-desc">
+                  • 13.56MHz 주파수를 사용하는 <span class="hl-green">10cm 이내의 비접촉식 근거리 무선통신</span><br>
+                  • 교통카드, 모바일 결제(삼성페이/애플페이), 도어록 등에 활용
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="card-title">📶 블루투스 (Bluetooth)</div>
+                <div class="card-desc">
+                  • 2.4GHz ISM 대역을 이용해 모바일 기기 간 <span class="hl-green">선 없이 정보를 교환하는 근거리 무선 기술</span><br>
+                  • 무선 이어폰, 스마트워치, 무선 키보드 연결
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">🔗 테더링 (Tethering)</div>
+                <div class="card-desc">
+                  • 스마트폰의 <span class="hl-green">모바일 데이터를 다른 컴퓨터나 태블릿과 공유</span>하여 인터넷 사용 지원
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📊 모바일 무선 규격 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>기술명</th>
+                      <th>유효 거리</th>
+                      <th>대표 활용 분야</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">NFC</td>
+                      <td class="center"><span class="hl-green">10cm 이내</span></td>
+                      <td>교통카드, 모바일 간편결제</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">블루투스</td>
+                      <td class="center">약 10m 이내</td>
+                      <td>무선 이어폰, 기기 연결</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">Wi-Fi</td>
+                      <td class="center">수십 미터 이내</td>
+                      <td>초고속 무선 인터넷</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">와이브로</td>
+                      <td class="center">이동 중 광대역</td>
+                      <td>이동 무선인터넷 (WiMAX)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 13 : 핵심 개념 맞대결 그리드 -->
+        <section class="slide"
+          data-notes="64단원부터 72단원까지 핵심 개념 1:1 맞대결 그리드입니다. HTML5는 플러그인이 필요 없으며, 반이중 통신은 교대로 전송합니다. 성형은 중앙 고장 시 전체가 마비되며, 라우터는 최적의 경로를 찾습니다. NFC는 10cm 비접촉 통신입니다. 이 5가지 공식만 정확히 알고 있어도 이 파트 문제는 모두 맞힐 수 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 64~72 • SUMMARY GRID</div>
+                <h2 class="slide-title">기출 필수 공식 <span class="hl-green">1:1 맞대결</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 전송 방식 3총사</div>
+                <div class="card-desc">
+                  • 단방향=라디오 / 반이중(교대)=무전기 / 전이중(동시)=전화기
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 토폴로지 장애 특성</div>
+                <div class="card-desc">
+                  • 중앙 고장 시 전체 중단 ➔ <span class="warn-text">성형 (Star)</span><br>
+                  • 복수 경로로 신뢰성 최고 ➔ <span class="hl-green">망형 (Mesh)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 장비 핵심 매칭</div>
+                <div class="card-desc">
+                  • 최적 경로 ➔ <span class="hl-green">라우터</span> / 신호 증폭 ➔ <span class="hl-green">리피터</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🏆 시험 직전 핵심 개념표</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 키워드</div>
+                  <div class="e-cell header">정답 개념</div>
+                  <div class="e-cell" style="font-weight:700;">ActiveX 없는 멀티미디어</div>
+                  <div class="e-cell active-green"><strong>HTML5</strong></div>
+                  <div class="e-cell" style="font-weight:700;">교대 양방향 통신</div>
+                  <div class="e-cell active-green"><strong>반이중 통신 (무전기)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">최적의 경로 선택 장비</div>
+                  <div class="e-cell"><strong>라우터 (Router)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">10cm 비접촉 무선통신</div>
+                  <div class="e-cell"><strong>NFC</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 14 : 출제율 1위 키워드 요약표 -->
+        <section class="slide"
+          data-notes="단원 총정리 3D 플립 카드와 기출 요약표입니다. HTML5의 플러그인 유무와 반이중 통신의 예시를 클릭하여 확인하세요. 우측 표의 5가지 공식은 시험에서 매회 정답으로 출제되는 핵심 공식들입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">SUMMARY & REVIEW</div>
+                <h2 class="slide-title">단원 총정리 <span class="hl-green">3D 플립 카드</span></h2>
+                <p style="font-size: 15px; color:#64748b; margin-bottom: 8px;">
+                  카드를 클릭하면 정답 키워드와 함정 판별법이 회전합니다.
+                </p>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q1. HTML5는 액티브X 플러그인이 필요할까?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      별도 프로그램 설치가 필요한가? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A1. 정답: 필요 없음! (ActiveX 불필요)</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      브라우저 자체에서 <strong>멀티미디어를 직접 재생</strong>할 수 있는 차세대 웹 표준입니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q2. 무전기는 무슨 통신 방식일까?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      양방향이지만 동시 송수신이 불가능한 방식은? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A2. 정답: 반이중 통신 (Half-Duplex)</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      양방향 통신이 가능하나 <strong>교대로 전송</strong>해야 합니다. (동시 통신은 전이중 전화기)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>🏆 기출 정답 1순위 키워드 요약표</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">단원</th>
+                      <th style="width: 35%;">핵심 주제</th>
+                      <th>기출 정답 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">64 웹 언어</td>
+                      <td>HTML5</td>
+                      <td>액티브X 없이 멀티미디어 재생</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">65 전송방식</td>
+                      <td>반이중 vs 전이중</td>
+                      <td>반이중(무전기), 전이중(전화기)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">67 망 형태</td>
+                      <td>성형 (Star)</td>
+                      <td>중앙 장치 고장 시 전체 통신 중단</td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">69 접속장비</td>
+                      <td>라우터 (Router)</td>
+                      <td>최적의 경로 설정 (Routing)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">72 모바일</td>
+                      <td>NFC 기술</td>
+                      <td>10cm 이내 비접촉식 무선통신</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 15 : 기출 오답 판별 필승 공식 -->
+        <section class="slide"
+          data-notes="기출 오답 판별 필승 공식입니다. 첫째, 반이중 통신에 '동시 양방향 전송 가능'이 나오면 오답입니다. 둘째, 성형 통신망에서 '중앙 장치가 고장 나도 다른 노드는 정상 작동'이라고 나오면 오답입니다. 셋째, 라우터 설명에 '신호 증폭'이 나오면 리피터 설명이므로 오답입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">EXAM PASS STRATEGY</div>
+                <h2 class="slide-title">기출 오답 판별 <span class="hl-green">필승 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 통신 전송 방식 함정</div>
+                <div class="card-desc">
+                  • 무전기가 전이중이라거나 동시 전송 가능 ➔ <span class="warn-text">오답! (반이중 교대 전송이 정답)</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 성형 중앙 장치 장애 함정</div>
+                <div class="card-desc">
+                  • 지문에 "중앙 허브가 고장 나도 통신에 영향 없음" ➔ <span class="warn-text">오답! (전면 마비됨)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 라우터 vs 리피터 역할 함정</div>
+                <div class="card-desc">
+                  • 라우터가 신호 증폭을 한다 ➔ <span class="warn-text">오답! (신호 증폭은 리피터)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🎯 시험장 직전 핵심 체크포인트</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 유형</div>
+                  <div class="e-cell header">정답 공식</div>
+                  <div class="e-cell" style="font-weight:700;">W3C 웹 표준 규격</div>
+                  <div class="e-cell active-green"><strong>HTML5</strong></div>
+                  <div class="e-cell" style="font-weight:700;">동등한 계층 처리</div>
+                  <div class="e-cell active-green"><strong>동배간 처리 (P2P)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">감쇠된 신호 증폭/재생</div>
+                  <div class="e-cell"><strong>리피터 (Repeater)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">모바일 핫스팟 데이터 공유</div>
+                  <div class="e-cell"><strong>테더링 (Tethering)</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 16 : 합격 응원 카드 -->
+        <section class="slide"
+          data-notes="수고 많으셨습니다. 64단원 웹 프로그래밍 언어부터 72단원 모바일 기기 관련 용어까지 핵심 내용을 모두 마스터하셨습니다. 이제 다음 12페이지인 멀티미디어와 인공지능, ICT 신기술로 넘어가겠습니다. 합격을 진심으로 응원합니다!">
+          <div style="margin: auto; text-align: center; max-width: 860px;">
+            <div style="font-size: 56px; margin-bottom: 16px;">🎉</div>
+            <div class="title-badge">1과목 컴퓨터 일반 • 11페이지 완전 정복</div>
+            <h2 class="title-h1" style="font-size: 38px;">64~72단원 학습을<br><span>완벽하게 완료하셨습니다!</span></h2>
+            <p class="title-sub" style="font-size: 17px; margin-bottom: 24px;">
+              HTML5 웹 표준, 전송 방식 3종(반이중·전이중), 통신망 5대 토폴로지, 라우터와 네트워크 장비, NFC와 블루투스까지 핵심 이론과 기출 함정을 마스터했습니다.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button onclick="goTo(1)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer; font-size:14.5px;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                첫 슬라이드로 돌아가기 ↺
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#0284c7; color:#fff; border:none; padding:10px 22px; border-radius:10px; font-weight:800; cursor:pointer; font-size:14.5px; box-shadow:0 4px 12px rgba(2,132,199,0.3);"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                목차 다시 보기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <div class="speaker-notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(단축키: N 또는 S 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        대본이 여기에 표시됩니다.
+      </div>
+    </div>
+
+    <footer class="key-shortcuts-bar">
+      <span><kbd>◀</kbd> / <kbd>Backspace</kbd> 이전 슬라이드</span>
+      <span><kbd>▶</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> 다음 슬라이드</span>
+      <span><kbd>N</kbd> 또는 <kbd>S</kbd> 발표자 대본창 토글</span>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const curSlideNumEl = document.getElementById('curSlideNum');
+    const totalSlideNumEl = document.getElementById('totalSlideNum');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    totalSlideNumEl.textContent = String(totalSlides).padStart(2, '0');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx === index) {
+          s.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+      curSlideNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+
+      const notes = slides[currentSlide].getAttribute('data-notes') || '해당 슬라이드에 등록된 강의 대본이 없습니다.';
+      notesContent.innerHTML = notes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function goTo(slideNumber) {
+      updateSlide(slideNumber - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N' || e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+
+</html>

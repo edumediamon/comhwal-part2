@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 1과목 컴퓨터 일반 (60~63)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hl-green,
+    u,
+    .u-highlight {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    code,
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px 8px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      user-select: none;
+    }
+
+    .side-nav-arrow:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+    }
+
+    .side-nav-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .side-nav-arrow.prev {
+      left: 14px;
+    }
+
+    .side-nav-arrow.next {
+      right: 14px;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 1320px;
+      max-height: 720px;
+      background: var(--canvas-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-canvas);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 42px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 42px;
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .split-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .anim-left {
+      animation: animLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: animRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes animLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes animRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    .slide-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--accent-blue);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .info-card.warning {
+      border-left-color: var(--accent-rose);
+      background: #fffbfa;
+    }
+
+    .info-card.success {
+      border-left-color: var(--accent-emerald);
+      background: #fbfdfc;
+    }
+
+    .info-card.amber {
+      border-left-color: var(--accent-amber);
+      background: #fffdfa;
+    }
+
+    .info-card.purple {
+      border-left-color: var(--accent-purple);
+      background: #fbfaff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card.warning .card-title {
+      color: var(--accent-rose);
+    }
+
+    .info-card.success .card-title {
+      color: var(--accent-emerald);
+    }
+
+    .info-card.amber .card-title {
+      color: var(--accent-amber);
+    }
+
+    .info-card.purple .card-title {
+      color: var(--accent-purple);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: 0 2px 0 #94a3b8;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+
+    .morph-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      width: 100%;
+      max-width: 530px;
+      position: relative;
+    }
+
+    .morph-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .morph-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .morph-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: #f8fafc;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+    }
+
+    .styled-table td.center {
+      text-align: center;
+    }
+
+    .excel-morph-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .e-cell {
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .e-cell.header {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #475569;
+      justify-content: center;
+    }
+
+    .e-cell.active-green {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+      font-weight: 800;
+    }
+
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 125px;
+      cursor: pointer;
+    }
+
+    .flipper {
+      transition: 0.5s transform cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flip-container.flipped .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .flip-front {
+      background: #ffffff;
+      z-index: 2;
+      border-left: 5px solid #0284c7;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #22c55e;
+    }
+
+    .title-h1 {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .title-h1 span {
+      background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 600;
+      text-align: center;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    .key-shortcuts-bar {
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #64748b;
+      user-select: none;
+    }
+
+    .key-shortcuts-bar kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .speaker-notes-drawer {
+      position: absolute;
+      bottom: 34px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid var(--accent-emerald);
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100%);
+      max-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      padding: 8px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-toggle-notes {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      font-family: inherit;
+    }
+
+    .notes-content {
+      padding: 14px 28px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #1e293b;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <header class="header-bar">
+      <div class="badge-subject">
+        <span>📘</span>
+        <span>컴활 2급 필기 • 1과목 컴퓨터 일반</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#334155;">
+        60. 검색 엔진 ~ 63. 인터넷 관련 용어 핵심 요약
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-toggle-notes" onclick="toggleNotes()" title="단축키 N 또는 S">
+          🎙️ 발표자 대본 열기 (N)
+        </button>
+        <div class="slide-counter"><span id="curSlideNum">01</span> / <span id="totalSlideNum">16</span></div>
+      </div>
+    </header>
+
+    <main class="slide-stage">
+      <button class="side-nav-arrow prev" onclick="prevSlide()" title="이전 슬라이드 (◀ / Backspace)">‹</button>
+      <button class="side-nav-arrow next" onclick="nextSlide()" title="다음 슬라이드 (▶ / Space / Enter)">›</button>
+
+      <div class="slide-canvas" id="slideCanvas">
+
+        <!-- SLIDE 1 : Title -->
+        <section class="slide active"
+          data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 컴퓨터 일반의 핵심 단원인 60단원 검색 엔진부터 63단원 인터넷 서비스 및 네트워크 용어까지 핵심 특강입니다. 메타 검색 엔진의 특징, 전자우편의 4대 프로토콜(SMTP 송신, POP3 수신, MIME 멀티미디어, IMAP), FTP 서버의 파일 실행 원칙(반드시 다운로드 후 실행), 그리고 인트라넷과 엑스트라넷의 구분까지 출제율 100% 필수 이론을 16개 슬라이드로 정리합니다.">
+          <div style="margin: auto; text-align: center; max-width: 900px;">
+            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 60~63</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
+            <p class="title-sub">검색 엔진(메타/하이브리드) • 전자우편 프로토콜(SMTP/POP3/MIME) <br>• 인터넷 서비스(FTP/Telnet/Usenet) • 인트라넷 & 엑스트라넷</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
+              <button onclick="nextSlide()"
+                style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                프레젠테이션 시작하기 ▶
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                목차 바로가기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2 : Table of Contents -->
+        <section class="slide"
+          data-notes="학습 로드맵입니다. 60 검색 엔진 유형(메타/하이브리드), 61 전자우편 ASCII 규격 및 핵심 프로토콜(SMTP, POP3, MIME, IMAP), 61 옵트인과 스팸 메일, 62 인터넷 서비스(텔넷, 유즈넷, IRC, FTP 실행 원칙, Anonymous FTP), 63 사내 인트라넷과 외부 확장 엑스트라넷, VoIP와 WLL 순서로 진행됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">AGENDA & ROADMAP</div>
+                <h2 class="slide-title">핵심 학습 로드맵 (60~63)</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">60. 검색 엔진 & 61. 전자우편 프로토콜</div>
+                <div class="card-desc">메타 검색엔진(자체DB 없음), SMTP(송신), POP3(수신), MIME(멀티미디어), 7비트 ASCII</div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">62. 인터넷 대표 서비스 & FTP (★출제 1순위)</div>
+                <div class="card-desc">Telnet(원격제어), Usenet(뉴스게시판), FTP(계정 필요/다운로드 후 실행 필수/익명FTP)</div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">63. 인트라넷 vs 엑스트라넷 vs 그룹웨어</div>
+                <div class="card-desc">사내 전용 폐쇄망(인트라넷), 외부 협력사 확장 사설망(엑스트라넷), 협업 소프트웨어(그룹웨어)</div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">63. 통신 신기술 (VoIP & WLL & 넷미팅)</div>
+                <div class="card-desc">인터넷 전화(VoIP), 무선 가입자 회선(WLL), 웹 호스팅(서버 공간 임대)</div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px; width: 100%;">
+                <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
+                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button class="morph-btn" onclick="goTo(3)">60. 검색 엔진 4대 분류</button>
+                  <button class="morph-btn" onclick="goTo(4)">61. 전자우편 규격 & 원리</button>
+                  <button class="morph-btn" onclick="goTo(5)">61. 이메일 4대 프로토콜</button>
+                  <button class="morph-btn" onclick="goTo(6)">61. 옵트인 vs 스팸 메일</button>
+                  <button class="morph-btn" onclick="goTo(7)">62. 텔넷/유즈넷/IRC</button>
+                  <button class="morph-btn" onclick="goTo(8)">62. FTP 파일 전송 원칙</button>
+                  <button class="morph-btn" onclick="goTo(9)">62. Anonymous 익명 FTP</button>
+                  <button class="morph-btn" onclick="goTo(10)">63. 인트라넷 vs 엑스트라넷</button>
+                  <button class="morph-btn" onclick="goTo(11)">63. 그룹웨어 & 호스팅</button>
+                  <button class="morph-btn" onclick="goTo(12)">63. VoIP 인터넷 전화</button>
+                  <button class="morph-btn" onclick="goTo(13)">★ 핵심 용어 맞대결 비교</button>
+                  <button class="morph-btn" onclick="goTo(14)">★ 출제 1위 핵심 요약표</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3 : 60 검색 엔진 -->
+        <section class="slide"
+          data-notes="60단원 검색 엔진의 분류입니다. 키워드 검색 엔진은 로봇이 웹을 수집하여 단어별로 검색하고, 디렉터리 검색 엔진은 사람이 주제별 카테고리로 분류한 검색 방식입니다. 시험에 가장 많이 출제되는 것은 메타 검색 엔진입니다. 자체적인 검색 엔진이나 데이터베이스를 보유하지 않고 사용자가 입력한 검색어를 야후, 구글 등 다른 여러 검색 엔진에 동시에 보내 검색 결과를 통합해 보여줍니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 60 • SEARCH ENGINE</div>
+                <h2 class="slide-title">검색 엔진의 <span class="hl-green">종류와 메타 검색</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 키워드 vs 디렉터리 검색 엔진</div>
+                <div class="card-desc">
+                  • <strong>키워드 검색</strong>: 검색 로봇(크롤러)이 문서를 수집하여 키워드로 검색<br>
+                  • <strong>디렉터리 검색</strong>: 주제별·분야별 카테고리 계층 구조로 분류된 검색
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 메타 검색 엔진 (Meta Search Engine, ★빈출)</div>
+                <div class="card-desc">
+                  • <span class="hl-green">자체 데이터베이스(색인)를 보유하지 않음</span><br>
+                  • 다른 여러 검색 엔진에 검색어를 동시 전송하여 결과를 취합/제공
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 하이브리드 검색 엔진</div>
+                <div class="card-desc">
+                  • 키워드 검색 방식과 디렉터리 검색 방식을 결합하여 상호 보완한 검색 엔진
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔍 메타 검색 엔진의 동작 다이어그램</span>
+                  <span class="key-badge">기출 핵심</span>
+                </div>
+                <div style="padding: 16px; background:#f8fafc; border-radius:12px; margin-top:12px; text-align:center;">
+                  <div style="font-weight:700; color:#0284c7;">사용자 검색어 입력 ("컴활 2급")</div>
+                  <div style="font-size:20px; margin:6px 0; color:#64748b;">⬇ 전송</div>
+                  <div style="padding:10px; background:#dcfce7; border:1px solid #86efac; border-radius:8px; font-weight:800; color:#15803d;">
+                    메타 검색 엔진 (자체 색인 X)
+                  </div>
+                  <div style="font-size:20px; margin:6px 0; color:#64748b;">⬇ 동시 참조 분기</div>
+                  <div style="display:flex; justify-content:space-around; font-size:13px; font-weight:700; color:#475569;">
+                    <span>엔진 A (Google)</span>
+                    <span>엔진 B (Naver)</span>
+                    <span>엔진 C (Bing)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4 : 61 전자우편 특징 -->
+        <section class="slide"
+          data-notes="61단원 전자우편(E-mail)의 기본 규격입니다. 인터넷을 통해 디지털 메시지를 교환하는 서비스로, 한 번에 여러 사람에게 동시 발송이 가능합니다. 초기의 인터넷 표준 전자우편은 영문 7비트 ASCII 문자를 기반으로 제작되었습니다. 따라서 한글, 한자나 멀티미디어 파일을 전송하기 위해서는 확장 규격인 MIME 프로토콜의 인코딩 지원이 필수적입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 61 • ELECTRONIC MAIL (1)</div>
+                <h2 class="slide-title">전자우편 기본 구조와 <span class="hl-green">7비트 ASCII</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 전자우편의 기본 특성</div>
+                <div class="card-desc">
+                  • 송신자와 수신자가 동시에 접속해 있지 않아도 비동기 통신 가능<br>
+                  • 참조(Cc), 숨은 참조(Bcc)로 <span class="hl-green">동시에 다수에게 발송 가능</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 7비트 ASCII 표준 (★시험 단골)</div>
+                <div class="card-desc">
+                  • 전통적 전자우편 본문 규격은 <span class="hl-green">7비트의 ASCII 문자</span>를 기본 사용<br>
+                  • 8비트 한글이나 바이너리 파일 전송 시 인코딩 변환 필요
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 계정 주소 형식</div>
+                <div class="card-desc">
+                  • <code>사용자ID@호스트컴퓨터도메인</code> (예: <code>user@korea.com</code>)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📧 수신인 지정 방식 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>지정 방식</th>
+                      <th>표시 여부</th>
+                      <th>용도</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">받는 사람 (To)</td>
+                      <td class="center">모두에게 공개</td>
+                      <td>직접적인 주 수신자</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">참조 (Cc)</td>
+                      <td class="center">모두에게 공개</td>
+                      <td>업무 공유 대상자</td>
+                    </tr>
+                    <tr style="background:#fff1f2;">
+                      <td style="font-weight:700; color:#e11d48;">숨은 참조 (Bcc)</td>
+                      <td class="center"><span class="warn-text">다른 수신인에게 비공개</span></td>
+                      <td>개인정보 보호 다량 발송</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5 : 61 전자우편 프로토콜 -->
+        <section class="slide"
+          data-notes="전자우편 프로토콜 4가지는 기출 시험에서 가장 높은 빈도로 출제되는 특급 암기 파트입니다. 메일을 보낼 때(송신)는 SMTP, 메일 서버에서 내 PC로 가져올 때(수신)는 POP3, 이미지나 음악 등 멀티미디어 첨부 파일을 보낼 때는 MIME, 서버에서 메일을 직접 관리하며 동기화할 때는 IMAP을 사용합니다. SMTP는 송신, POP3는 수신이라는 점을 반드시 기억하세요.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 61 • EMAIL PROTOCOLS</div>
+                <h2 class="slide-title">전자우편 <span class="hl-green">4대 프로토콜 매칭</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">📤 SMTP (Simple Mail Transfer Protocol)</div>
+                <div class="card-desc">
+                  • 사용자 컴퓨터에서 메일 서버로, 또는 서버 간에 <span class="hl-green">메일을 보낼 때(송신)</span> 사용하는 프로토콜
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">📥 POP3 (Post Office Protocol 3)</div>
+                <div class="card-desc">
+                  • 메일 서버에 도착한 메일을 사용자의 컴퓨터로 <span class="hl-green">가져올 때(수신)</span> 사용하는 프로토콜
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">🎨 MIME (Multipurpose Internet Mail Extensions)</div>
+                <div class="card-desc">
+                  • 텍스트 외에 사진, 동영상, 음성 등 <span class="hl-green">멀티미디어 파일을 전송</span>할 수 있게 확장해 주는 프로토콜
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>⚡ 1초 판별 프로토콜 매칭표</span>
+                  <span class="key-badge">100% 출제</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px; margin-top: 10px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">프로토콜</th>
+                      <th style="width: 32%;">역할 키워드</th>
+                      <th>출제 핵심</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">SMTP</td>
+                      <td><span class="hl-green">송신 (보내기)</span></td>
+                      <td>서버로 발송 및 서버 간 전송</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">POP3</td>
+                      <td><span class="hl-green">수신 (받기)</span></td>
+                      <td>서버에서 클라이언트로 다운로드</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; text-align:center; color:#15803d;">MIME</td>
+                      <td><span class="hl-green">멀티미디어 전송</span></td>
+                      <td>웹 브라우저 및 첨부파일 지원</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">IMAP</td>
+                      <td>서버 동기화 수신</td>
+                      <td>여러 기기에서 메일 관리</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6 : 61 옵트인 vs 스팸 메일 -->
+        <section class="slide"
+          data-notes="메일의 성격에 따른 분류입니다. 옵트인(Opt-In) 메일은 사용자가 사전에 수신을 명시적으로 허가한 합법적 광고 메일입니다. 반면 스팸 메일은 수신자의 동의 없이 무차별적으로 전송되는 광고성 메일로 정크 메일(Junk Mail)이라고도 부릅니다. 폭탄 메일(Mail Bomb)은 특정 서버를 마비시키기 위해 대용량 메일을 무더기로 집중 발송하는 사이버 공격 행위입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 61 • MAIL CLASSIFICATION</div>
+                <h2 class="slide-title">옵트인 메일 vs <span class="hl-green">스팸 메일</span></h2>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">✅ 옵트인 메일 (Opt-In Mail)</div>
+                <div class="card-desc">
+                  • 수신자가 사전에 <span class="hl-green">수신 동의(허가)를 명시적으로 표시</span>한 광고 메일<br>
+                  • 뉴스레터, 정기 구독 안내문 등 합법적 마케팅 메일
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">🚫 스팸 메일 (Spam / Junk Mail)</div>
+                <div class="card-desc">
+                  • 수신자의 동의 없이 불특정 다수에게 일방적으로 발송되는 광고성 메일<br>
+                  • 흔히 <strong>정크 메일</strong>로도 불림
+                </div>
+              </div>
+              <div class="info-card amber">
+                <div class="card-title">💣 폭탄 메일 (Mail Bomb)</div>
+                <div class="card-desc">
+                  • 시스템 마비를 목적으로 대량의 메일을 특정 메일 계정에 집중 전송하는 서비스 거부 공격
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>⚖️ 광고 메일 비교</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>옵트인(Opt-In)</th>
+                      <th>스팸(Spam)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">사전 동의</td>
+                      <td class="center"><span class="hl-green">동의 있음 (O)</span></td>
+                      <td class="center"><span class="warn-text">동의 없음 (X)</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">발송 합법성</td>
+                      <td class="center">합법적 메일</td>
+                      <td class="center">불법 스팸 규제 대상</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">별칭</td>
+                      <td class="center">허가 메일</td>
+                      <td class="center">정크 메일(Junk)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 7 : 62 인터넷 서비스 (텔넷/유즈넷/IRC) -->
+        <section class="slide"
+          data-notes="62단원 인터넷 대표 서비스입니다. 텔넷(Telnet)은 네트워크를 통해 원격 컴퓨터 시스템에 접속하여 마치 자신의 컴퓨터 앞에 앉아 있는 것처럼 사용할 수 있게 해주는 원격 접속 프로토콜입니다. 유즈넷(Usenet)은 전 세계 사용자들이 공통의 관심사나 주제에 대해 의견과 자료를 주고받는 유즈넷 뉴스 전자게시판 시스템입니다. IRC는 실시간 텍스트 채팅 서비스입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 62 • INTERNET SERVICES</div>
+                <h2 class="slide-title">원격 접속(Telnet)과 <span class="hl-green">유즈넷(Usenet)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🖥️ 텔넷 (Telnet, 원격 접속)</div>
+                <div class="card-desc">
+                  • 물리적으로 멀리 떨어진 <span class="hl-green">원격지 컴퓨터 시스템에 접속</span>하여 사용하는 원격 제어 프로토콜<br>
+                  • 텍스트 기반 가상 터미널 환경 제공
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">📰 유즈넷 (Usenet, 전자게시판)</div>
+                <div class="card-desc">
+                  • 공통 관심사를 가진 사용자들이 <span class="hl-green">의견을 게시하고 정보를 공유</span>하는 세계적 뉴스그룹 전자게시판
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">💬 IRC (Internet Relay Chat)</div>
+                <div class="card-desc">
+                  • 인터넷상에서 여러 사용자가 실시간으로 문자를 주고받으며 대화하는 채팅 서비스
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🎯 서비스별 핵심 기능 매칭</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>서비스</th>
+                      <th>기능 요약</th>
+                      <th>기출 핵심 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">Telnet</td>
+                      <td>원격 컴퓨터 접속</td>
+                      <td><span class="hl-green">원격지 시스템 제어</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">Usenet</td>
+                      <td>공통 주제 토론/게시판</td>
+                      <td><span class="hl-green">뉴스그룹/전자게시판</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">IRC</td>
+                      <td>실시간 문자 통신</td>
+                      <td>대화(채팅) 시스템</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">FTP</td>
+                      <td>파일 송수신 프로토콜</td>
+                      <td>업로드/다운로드</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8 : 62 FTP 파일 전송 프로토콜 -->
+        <section class="slide"
+          data-notes="FTP(File Transfer Protocol)는 파일 전송을 위한 표준 프로토콜로 출제율이 매우 높습니다. FTP 서버에 접속하기 위해서는 기본적으로 사용자 계정(ID/PW)이 등록되어 있어야 합니다. 가장 중요한 기출 킬러 포인트는 FTP 서버에 저장되어 있는 실행 파일(.exe 등)은 원격 서버에서 바로 실행할 수 없으며, 반드시 내 컴퓨터로 다운로드한 후에 실행해야 한다는 점입니다. 텍스트 파일은 ASCII 모드, 실행 파일이나 그림은 Binary 모드로 전송합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 62 • FILE TRANSFER PROTOCOL</div>
+                <h2 class="slide-title">FTP 파일 전송과 <span class="hl-green">실행 원칙</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. FTP 기본 개념</div>
+                <div class="card-desc">
+                  • TCP/IP 네트워크상에서 컴퓨터 간에 <span class="hl-green">파일을 송·수신(업로드/다운로드)</span>하기 위한 표준 프로토콜<br>
+                  • 원칙적으로 <strong>FTP 서버 계정</strong>이 등록되어 있어야 접속 가능
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 원격 실행 불가 원칙 (★출제 1위)</div>
+                <div class="card-desc">
+                  • FTP 서버에 있는 파일은 <span class="warn-text">서버 상에서 직접 실행 불가!</span><br>
+                  • 반드시 <span class="hl-green">로컬 PC로 다운로드한 후 실행</span>해야 함
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 2가지 전송 모드</div>
+                <div class="card-desc">
+                  • <strong>ASCII 모드</strong>: 텍스트 문서 파일 전송<br>
+                  • <strong>Binary 모드</strong>: 그림, 동영상, 압축파일, 실행파일(.exe) 전송
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🚨 기출 오답 함정 주의보</span>
+                  <span class="key-badge">함정 판별</span>
+                </div>
+                <div class="info-card warning" style="margin-top:12px;">
+                  <div class="card-title">단골 오답 지문</div>
+                  <div class="card-desc">
+                    "FTP 서버에 저장된 실행 파일(.exe)은 다운로드하지 않고 서버에서 즉시 실행할 수 있다." ➔ <span class="warn-text">오답!</span><br>
+                    (반드시 다운로드 후 로컬에서 실행해야 함)
+                  </div>
+                </div>
+                <div class="info-card" style="margin-top:12px;">
+                  <div class="card-title">전송 모드 매칭</div>
+                  <div class="card-desc">
+                    • 텍스트 문서 ➔ <strong>ASCII</strong><br>
+                    • 실행파일/그림/음악 ➔ <strong>Binary (2진)</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 9 : 62 Anonymous 익명 FTP -->
+        <section class="slide"
+          data-notes="Anonymous FTP, 즉 익명 FTP입니다. 일반적인 FTP와 달리 개인 계정이 없는 일반 사용자에게도 공개된 자료를 다운로드할 수 있도록 허용하는 특별한 서비스입니다. 사용자 계정 ID로 anonymous를 입력하고 비밀번호로는 통상 자신의 이메일 주소를 입력하여 접속합니다. 주로 공개 소프트웨어나 드라이버 배포 사이트에서 널리 활용됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 62 • ANONYMOUS FTP</div>
+                <h2 class="slide-title">익명(Anonymous) <span class="hl-green">FTP 서비스</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🔓 계정 없는 사용자 접근 허용</div>
+                <div class="card-desc">
+                  • 사용자 공식 계정이 없어도 FTP 서버의 <span class="hl-green">공개된 파일에 자유롭게 접근</span>할 수 있는 서비스<br>
+                  • 공개 소프트웨어, 기술 문서, 드라이버 배포에 주로 사용
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🔑 접속 계정 정보 규격</div>
+                <div class="card-desc">
+                  • <strong>아이디(User ID)</strong>: <code>anonymous</code> 입력<br>
+                  • <strong>비밀번호(Password)</strong>: 관례상 자신의 <span class="hl-green">이메일 주소</span> 입력
+                </div>
+              </div>
+              <div class="info-card amber">
+                <div class="card-title">🛡️ 권한 제한</div>
+                <div class="card-desc">
+                  • 대부분 읽기/다운로드 권한만 부여되며 임의의 업로드나 삭제는 제한됨
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📊 일반 FTP vs 익명 FTP</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>일반 FTP</th>
+                      <th>Anonymous FTP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">사용자 계정</td>
+                      <td>사전 등록된 전용 계정</td>
+                      <td class="center"><span class="hl-green">계정 없이 접근 허용</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">로그인 ID</td>
+                      <td>개인 사용자 ID</td>
+                      <td class="center"><code>anonymous</code></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">비밀번호</td>
+                      <td>개인 비밀번호</td>
+                      <td class="center">자신의 E-mail 주소</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 10 : 63 인트라넷 vs 엑스트라넷 -->
+        <section class="slide"
+          data-notes="63단원 인트라넷과 엑스트라넷의 구분입니다. 인트라넷(Intranet)은 기업 내부 구성원만을 대상으로 하여 전자결재, 사내 이메일 등을 처리하는 폐쇄형 네트워크입니다. 반면 엑스트라넷(Extranet)은 이 사내 인트라넷을 협력업체, 납품업체, 고객 등 승인된 외부 이해관계자에게까지 제한적으로 확장하여 원활한 비즈니스를 수행할 수 있게 만든 사설 네트워크입니다. '외부 협력업체 확장'이라는 문구가 나오면 무조건 엑스트라넷입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 63 • ENTERPRISE NETWORK</div>
+                <h2 class="slide-title">인트라넷 vs <span class="hl-green">엑스트라넷</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🏢 인트라넷 (Intranet)</div>
+                <div class="card-desc">
+                  • 인터넷 기술(TCP/IP, 웹 브라우저)을 이용하여 구축한 <span class="hl-green">기업 내부 전용 사설망</span><br>
+                  • 외부인의 접근이 철저히 차단된 사내 직원 전용 전자결재, 정보 공유망
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🤝 엑스트라넷 (Extranet, ★출제 1순위)</div>
+                <div class="card-desc">
+                  • 인트라넷을 <span class="hl-green">협력업체, 납품업체, 고객</span> 등 승인된 외부 사용자에게까지 <span class="hl-green">제한적으로 확장한 네트워크</span><br>
+                  • 기업 간 B2B 정보 교환 및 공급망 관리에 활용
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🌐 네트워크 도메인 범위 다이어그램</span>
+                  <span class="key-badge">핵심 비교</span>
+                </div>
+                <div style="padding: 16px; background:#f8fafc; border-radius:12px; margin-top:12px; text-align:center;">
+                  <div style="padding: 12px; background: #e0f2fe; border: 2px dashed #0284c7; border-radius: 10px;">
+                    <span style="font-weight: 800; color: #0284c7;">인터넷 (전 세계 개방망)</span>
+                    <div style="margin: 10px 0; padding: 10px; background: #fef3c7; border: 2px dashed #d97706; border-radius: 8px;">
+                      <span style="font-weight: 800; color: #d97706;">엑스트라넷 (협력업체/고객 확장)</span>
+                      <div style="margin-top: 10px; padding: 10px; background: #dcfce7; border: 2px solid #22c55e; border-radius: 6px;">
+                        <span style="font-weight: 800; color: #15803d;">인트라넷 (기업 내부 임직원 전용)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11 : 63 그룹웨어 & 웹 호스팅 -->
+        <section class="slide"
+          data-notes="그룹웨어(Groupware)와 웹 호스팅입니다. 그룹웨어는 기업 내에서 업무를 공동으로 수행하기 위한 소프트웨어로, 전자결재, 사내 메신저, 일정 공유, 게시판 등을 통합 제공합니다. 앞서 배운 인트라넷이 네트워크 하드웨어/망 인프라라면, 그룹웨어는 그 위에서 실행되는 '응용 소프트웨어'라는 점이 차이점입니다. 웹 호스팅은 웹 사이트를 구축하려는 사람에게 웹 서버의 일정 하드디스크 공간과 회선을 임대해 주는 서비스입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 63 • COLLABORATION & HOSTING</div>
+                <h2 class="slide-title">그룹웨어와 <span class="hl-green">웹 호스팅 서비스</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">👥 그룹웨어 (Groupware, 협업 소프트웨어)</div>
+                <div class="card-desc">
+                  • 여러 구성원이 함께 일할 수 있도록 돕는 <span class="hl-green">사내 협업 소프트웨어</span><br>
+                  • 전자결재, 문서 공유, 일정 관리, 메신저 등 의사결정의 신속성 지원
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🌐 웹 호스팅 (Web Hosting)</div>
+                <div class="card-desc">
+                  • 자체 서버를 구축하기 어려운 개인이나 기업에게 대형 서버의 <span class="hl-green">일정 저장 공간을 임대(빌려주는)</span> 서비스<br>
+                  • 24시간 안정적인 고속 회선과 웹 사이트 운영 환경 제공
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>⚖️ 인트라넷 vs 그룹웨어 구분</span>
+                  <span class="key-badge">출제 포인트</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px; margin-top: 10px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">구분</th>
+                      <th>인트라넷</th>
+                      <th>그룹웨어</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">본질적 성격</td>
+                      <td><span class="hl-green">네트워크 (망/인프라)</span></td>
+                      <td>소프트웨어 (프로그램)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">핵심 키워드</td>
+                      <td>사내 전용 폐쇄망</td>
+                      <td><span class="hl-green">전자결재, 협업 프로그램</span></td>
+                    </tr>
+                    <tr style="background:#f8fafc;">
+                      <td style="font-weight:700; text-align:center;">관계</td>
+                      <td colspan="2" style="font-size:12.5px; text-align:center;">인트라넷 환경 위에서 그룹웨어 소프트웨어가 구동됨</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 12 : 63 VoIP & WLL -->
+        <section class="slide"
+          data-notes="VoIP와 WLL 등 통신 신기술 용어입니다. VoIP는 기존 전화망 대신 초고속 인터넷 IP 네트워크를 통해 음성 통화를 주고받는 기술로, 흔히 인터넷 전화라고 부릅니다. 일반 전화선보다 통화료가 저렴한 장점이 있습니다. WLL(Wireless Local Loop)은 무선 가입자 회선으로, 전화국과 가입자 단말기 사이의 선로를 유선 케이블 대신 무선 전파로 연결하는 기술입니다. 넷미팅은 인터넷 화상 및 음성 회의 시스템입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 63 • TELECOM TECHNOLOGY</div>
+                <h2 class="slide-title">인터넷 전화(VoIP)와 <span class="hl-green">무선 회선(WLL)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">📞 VoIP (Voice over Internet Protocol)</div>
+                <div class="card-desc">
+                  • 일반 전화망 대신 <span class="hl-green">인터넷 IP 네트워크를 통해 음성 통화</span>를 제공하는 기술 (인터넷 전화)<br>
+                  • 장거리 및 국제 전화 비용을 획기적으로 절감
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">📡 WLL (Wireless Local Loop, 무선 가입자 회선)</div>
+                <div class="card-desc">
+                  • 전화국 교환국과 가정/사무실 사이를 유선 케이블 대신 <span class="hl-green">무선 신호로 연결</span>하는 기술<br>
+                  • 유선 선로 가설이 어려운 도서·산간 지역에 신속 구축 가능
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">📹 넷미팅 (NetMeeting)</div>
+                <div class="card-desc">
+                  • 인터넷상에서 음성, 영상, 채팅, 화이트보드를 공유하는 화상 회의 통신 솔루션
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🎯 1초 정의 매칭</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>용어</th>
+                      <th>핵심 한 줄 정의</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">VoIP</td>
+                      <td>인터넷망을 이용한 <span class="hl-green">음성 통화(인터넷 전화)</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">WLL</td>
+                      <td>전화국과 가입자 간을 잇는 <span class="hl-green">무선 가입자 회선</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">넷미팅</td>
+                      <td>인터넷을 이용한 화상/음성 다자간 회의</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">웹 호스팅</td>
+                      <td>웹 사이트 운영용 서버 공간 임대 서비스</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 13 : 핵심 용어 맞대결 그리드 -->
+        <section class="slide"
+          data-notes="60단원부터 63단원까지 핵심 용어들의 1:1 맞대결 그리드입니다. 인트라넷은 사내 폐쇄망, 엑스트라넷은 협력업체 확장망입니다. SMTP는 메일 송신, POP3는 메일 수신입니다. FTP 파일은 다운로드 후 실행해야 하며, 메타 검색엔진은 자체 DB가 없습니다. 이 차이점들을 정확하게 구별할 수 있어야 고득점이 가능합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 60~63 • COMPARISON</div>
+                <h2 class="slide-title">기출 킬러 개념 <span class="hl-green">1:1 맞대결</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 인트라넷 vs 엑스트라넷</div>
+                <div class="card-desc">
+                  • 사내 직원 전용 폐쇄망 ➔ <span class="hl-green">인트라넷</span><br>
+                  • 외부 협력사·고객까지 확장 ➔ <span class="hl-green">엑스트라넷</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. SMTP vs POP3</div>
+                <div class="card-desc">
+                  • 메일을 보낼 때(송신) ➔ <span class="hl-green">SMTP</span><br>
+                  • 메일을 가져올 때(수신) ➔ <span class="hl-green">POP3</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. FTP 파일 실행 위치</div>
+                <div class="card-desc">
+                  • 서버 상에서 직접 실행 불가! ➔ <span class="hl-green">로컬 PC로 다운로드 후 실행</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🏆 시험 직전 핵심 개념표</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 키워드</div>
+                  <div class="e-cell header">정답 개념</div>
+                  <div class="e-cell" style="font-weight:700;">자체 DB 없는 검색엔진</div>
+                  <div class="e-cell active-green"><strong>메타 검색 엔진</strong></div>
+                  <div class="e-cell" style="font-weight:700;">사전 허가 광고 메일</div>
+                  <div class="e-cell active-green"><strong>옵트인 메일</strong></div>
+                  <div class="e-cell" style="font-weight:700;">멀티미디어 이메일 전송</div>
+                  <div class="e-cell"><strong>MIME</strong></div>
+                  <div class="e-cell" style="font-weight:700;">협업 소프트웨어</div>
+                  <div class="e-cell"><strong>그룹웨어 (Groupware)</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 14 : 출제율 1위 키워드 요약표 -->
+        <section class="slide"
+          data-notes="단원 총정리 3D 플립 카드와 기출 요약표입니다. 메타 검색엔진의 자체 DB 유무, FTP 서버의 실행 파일 동작 방식, SMTP와 POP3의 송수신 역할을 클릭하여 확인하세요. 우측 표의 5가지 공식은 매 회차 시험에서 반드시 정답으로 출제되는 1순위 핵심입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">SUMMARY & REVIEW</div>
+                <h2 class="slide-title">단원 총정리 <span class="hl-green">3D 플립 카드</span></h2>
+                <p style="font-size: 15px; color:#64748b; margin-bottom: 8px;">
+                  카드를 클릭하면 정답 키워드와 함정 판별법이 회전합니다.
+                </p>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q1. 메타 검색 엔진은 자체 DB를 가질까?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      자체적인 검색 색인 기능 유무는? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A1. 정답: 자체 색인 없음!</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      자체 데이터베이스 없이 <strong>다른 여러 검색 엔진을 참조</strong>하여 결과를 제공합니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q2. FTP 서버의 실행 파일은 즉시 실행될까?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      다운로드 없이 서버에서 바로 실행 가능할까? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A2. 정답: 즉시 실행 불가!</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      반드시 <strong>자신의 컴퓨터로 다운로드한 후 실행</strong>해야 합니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>🏆 기출 정답 1순위 키워드 요약표</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">단원</th>
+                      <th style="width: 35%;">핵심 주제</th>
+                      <th>기출 정답 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">60 검색엔진</td>
+                      <td>메타 검색</td>
+                      <td>자체 기능 없이 타 엔진 참조</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">61 전자우편</td>
+                      <td>SMTP vs POP3</td>
+                      <td>SMTP(보내기 송신), POP3(가져오기 수신)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">62 인터넷서비스</td>
+                      <td>FTP 파일 실행</td>
+                      <td>반드시 다운로드 후 실행 가능</td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">63 기업네트워크</td>
+                      <td>엑스트라넷</td>
+                      <td>협력업체/고객 대상 확장 사설망</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">63 통신기술</td>
+                      <td>VoIP</td>
+                      <td>인터넷망을 이용한 인터넷 전화</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 15 : 기출 오답 판별 필승 공식 -->
+        <section class="slide"
+          data-notes="기출 오답 판별 필승 공식입니다. 첫째, FTP 서버의 실행 파일이 서버에서 바로 실행된다고 나오면 오답입니다. 둘째, 전자우편 송신에 POP3가 나오면 오답이며 SMTP가 정답입니다. 셋째, 엑스트라넷 설명에 '기업 내부 직원 전용'이 나오면 인트라넷 설명이므로 오답입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">EXAM PASS STRATEGY</div>
+                <h2 class="slide-title">기출 오답 판별 <span class="hl-green">필승 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. FTP 원격 실행 함정</div>
+                <div class="card-desc">
+                  • 지문에 "FTP 서버에서 직접 프로그램 실행" ➔ <span class="warn-text">오답! (다운로드 후 실행이 정답)</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 메일 송수신 프로토콜 뒤바꿈 함정</div>
+                <div class="card-desc">
+                  • 메일 송신에 POP3, 수신에 SMTP 매칭 ➔ <span class="warn-text">오답! (송신=SMTP, 수신=POP3)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. 인트라넷 범위 함정</div>
+                <div class="card-desc">
+                  • 협력업체까지 접근 허용하는 망 ➔ <span class="hl-green">엑스트라넷</span> (인트라넷은 사내 전용)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🎯 시험장 직전 핵심 체크포인트</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 유형</div>
+                  <div class="e-cell header">정답 공식</div>
+                  <div class="e-cell" style="font-weight:700;">전자우편 기본 문자</div>
+                  <div class="e-cell active-green"><strong>7비트 ASCII</strong></div>
+                  <div class="e-cell" style="font-weight:700;">원격 접속 프로토콜</div>
+                  <div class="e-cell active-green"><strong>Telnet (텔넷)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">멀티미디어 메일</div>
+                  <div class="e-cell"><strong>MIME</strong></div>
+                  <div class="e-cell" style="font-weight:700;">인터넷 음성 통화</div>
+                  <div class="e-cell"><strong>VoIP (인터넷 전화)</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 16 : 합격 응원 카드 -->
+        <section class="slide"
+          data-notes="수고 많으셨습니다. 60단원 검색 엔진부터 63단원 인터넷 관련 용어까지 핵심 내용을 완벽하게 마스터하셨습니다. 이제 다음 11페이지인 웹 프로그래밍 언어와 정보 통신망 구성, 네트워크 장비로 넘어가겠습니다. 합격을 진심으로 응원합니다!">
+          <div style="margin: auto; text-align: center; max-width: 860px;">
+            <div style="font-size: 56px; margin-bottom: 16px;">🎉</div>
+            <div class="title-badge">1과목 컴퓨터 일반 • 10페이지 완전 정복</div>
+            <h2 class="title-h1" style="font-size: 38px;">60~63단원 학습을<br><span>완벽하게 완료하셨습니다!</span></h2>
+            <p class="title-sub" style="font-size: 17px; margin-bottom: 24px;">
+              검색 엔진(메타/하이브리드), 전자우편 프로토콜(SMTP/POP3/MIME), 텔넷과 FTP 실행 원칙, 인트라넷과 엑스트라넷, VoIP까지 핵심 이론과 기출 함정을 마스터했습니다.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button onclick="goTo(1)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer; font-size:14.5px;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                첫 슬라이드로 돌아가기 ↺
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#0284c7; color:#fff; border:none; padding:10px 22px; border-radius:10px; font-weight:800; cursor:pointer; font-size:14.5px; box-shadow:0 4px 12px rgba(2,132,199,0.3);"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                목차 다시 보기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <div class="speaker-notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(단축키: N 또는 S 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        대본이 여기에 표시됩니다.
+      </div>
+    </div>
+
+    <footer class="key-shortcuts-bar">
+      <span><kbd>◀</kbd> / <kbd>Backspace</kbd> 이전 슬라이드</span>
+      <span><kbd>▶</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> 다음 슬라이드</span>
+      <span><kbd>N</kbd> 또는 <kbd>S</kbd> 발표자 대본창 토글</span>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const curSlideNumEl = document.getElementById('curSlideNum');
+    const totalSlideNumEl = document.getElementById('totalSlideNum');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    totalSlideNumEl.textContent = String(totalSlides).padStart(2, '0');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx === index) {
+          s.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+      curSlideNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+
+      const notes = slides[currentSlide].getAttribute('data-notes') || '해당 슬라이드에 등록된 강의 대본이 없습니다.';
+      notesContent.innerHTML = notes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function goTo(slideNumber) {
+      updateSlide(slideNumber - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N' || e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+
+</html>

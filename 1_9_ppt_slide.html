@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컴퓨터활용능력 2급 핵심 요약 - 1과목 컴퓨터 일반 (54~59)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --canvas-bg: #ffffff;
+      --accent-blue: #0284c7;
+      --accent-blue-light: #e0f2fe;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #d1fae5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fef3c7;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #ffe4e6;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #ede9fe;
+      --card-bg: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --shadow-canvas: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.05);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hl-green,
+    u,
+    .u-highlight {
+      text-decoration: none;
+      background-color: #dcfce7 !important;
+      color: #15803d !important;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+      border-bottom: 2.5px solid #22c55e;
+      box-shadow: 0 1px 2px rgba(34, 197, 94, 0.12);
+      display: inline-block;
+    }
+
+    code,
+    .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+    }
+
+    .presentation-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .header-bar {
+      height: 54px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      z-index: 20;
+    }
+
+    .badge-subject {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      background: var(--accent-blue-light);
+      border: 1px solid #bae6fd;
+      color: var(--accent-blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .slide-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px 8px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 30;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      user-select: none;
+    }
+
+    .side-nav-arrow:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: translateY(-50%) scale(1.08);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+    }
+
+    .side-nav-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+
+    .side-nav-arrow.prev {
+      left: 14px;
+    }
+
+    .side-nav-arrow.next {
+      right: 14px;
+    }
+
+    .slide-canvas {
+      width: 100%;
+      height: 100%;
+      max-width: 1320px;
+      max-height: 720px;
+      background: var(--canvas-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow-canvas);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 42px;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 32px 42px;
+      display: none;
+      flex-direction: column;
+      background: #ffffff;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      pointer-events: auto;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.995);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .split-container {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      height: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .anim-left {
+      animation: animLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .anim-right {
+      animation: animRight 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes animLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes animRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-tag {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 24px;
+      background: var(--accent-blue);
+      border-radius: 4px;
+    }
+
+    .slide-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-card);
+      border-left: 5px solid var(--accent-blue);
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .info-card.warning {
+      border-left-color: var(--accent-rose);
+      background: #fffbfa;
+    }
+
+    .info-card.success {
+      border-left-color: var(--accent-emerald);
+      background: #fbfdfc;
+    }
+
+    .info-card.amber {
+      border-left-color: var(--accent-amber);
+      background: #fffdfa;
+    }
+
+    .info-card.purple {
+      border-left-color: var(--accent-purple);
+      background: #fbfaff;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card.warning .card-title {
+      color: var(--accent-rose);
+    }
+
+    .info-card.success .card-title {
+      color: var(--accent-emerald);
+    }
+
+    .info-card.amber .card-title {
+      color: var(--accent-amber);
+    }
+
+    .info-card.purple .card-title {
+      color: var(--accent-purple);
+    }
+
+    .card-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .card-desc strong {
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    .card-desc .warn-text {
+      color: #e11d48;
+      font-weight: 800;
+      background: #fff1f2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .key-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #0f172a;
+      font-weight: 800;
+      box-shadow: 0 2px 0 #94a3b8;
+      vertical-align: baseline;
+      margin: 0 2px;
+    }
+
+    .morph-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      width: 100%;
+      max-width: 530px;
+      position: relative;
+    }
+
+    .morph-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed #e2e8f0;
+      padding-bottom: 10px;
+    }
+
+    .morph-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .morph-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue);
+      transform: scale(1.02);
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13.5px;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      border: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .styled-table th {
+      background: #f8fafc;
+      font-weight: 800;
+      color: #334155;
+      text-align: center;
+    }
+
+    .styled-table td.center {
+      text-align: center;
+    }
+
+    .excel-morph-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .e-cell {
+      padding: 8px 10px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+
+    .e-cell.header {
+      background: #f1f5f9;
+      font-weight: 800;
+      color: #475569;
+      justify-content: center;
+    }
+
+    .e-cell.active-green {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+      font-weight: 800;
+    }
+
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 125px;
+      cursor: pointer;
+    }
+
+    .flipper {
+      transition: 0.5s transform cubic-bezier(0.16, 1, 0.3, 1);
+      transform-style: preserve-3d;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .flip-container.flipped .flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1.5px solid #e2e8f0;
+      box-shadow: var(--shadow-card);
+    }
+
+    .flip-front {
+      background: #ffffff;
+      z-index: 2;
+      border-left: 5px solid #0284c7;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-left: 5px solid #22c55e;
+    }
+
+    .title-h1 {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .title-h1 span {
+      background: linear-gradient(135deg, #0284c7 0%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-sub {
+      font-size: 20px;
+      color: #475569;
+      font-weight: 600;
+      text-align: center;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto;
+    }
+
+    .title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      border: 1px solid #bae6fd;
+    }
+
+    .key-shortcuts-bar {
+      height: 34px;
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #64748b;
+      user-select: none;
+    }
+
+    .key-shortcuts-bar kbd {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .speaker-notes-drawer {
+      position: absolute;
+      bottom: 34px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 2px solid var(--accent-emerald);
+      box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.08);
+      z-index: 40;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(100%);
+      max-height: 190px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .speaker-notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      padding: 8px 24px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .notes-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-toggle-notes {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #334155;
+      font-family: inherit;
+    }
+
+    .notes-content {
+      padding: 14px 28px;
+      overflow-y: auto;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #1e293b;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="presentation-container">
+    <header class="header-bar">
+      <div class="badge-subject">
+        <span>📘</span>
+        <span>컴활 2급 필기 • 1과목 컴퓨터 일반</span>
+      </div>
+      <div style="font-size:14px; font-weight:700; color:#334155;">
+        54. PC 응급처치 ~ 59. 웹 브라우저 핵심 요약
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="btn-toggle-notes" onclick="toggleNotes()" title="단축키 N 또는 S">
+          🎙️ 발표자 대본 열기 (N)
+        </button>
+        <div class="slide-counter"><span id="curSlideNum">01</span> / <span id="totalSlideNum">16</span></div>
+      </div>
+    </header>
+
+    <main class="slide-stage">
+      <button class="side-nav-arrow prev" onclick="prevSlide()" title="이전 슬라이드 (◀ / Backspace)">‹</button>
+      <button class="side-nav-arrow next" onclick="nextSlide()" title="다음 슬라이드 (▶ / Space / Enter)">›</button>
+
+      <div class="slide-canvas" id="slideCanvas">
+
+        <!-- SLIDE 1 : Title -->
+        <section class="slide active"
+          data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 컴퓨터 일반의 핵심 단원인 54단원 PC 응급처치부터 59단원 웹 브라우저까지 핵심 특강입니다. 디스크 조각 모음과 디스크 정리의 차이점, IPv6 주소 체계의 128비트 규격과 3대 전송 방식, URL 표준 형식, OSI 7계층의 장비 매칭, 웹 브라우저의 캐싱과 쿠키 특징까지 시험에 반드시 출제되는 핵심 이론들을 총 16개의 슬라이드로 완벽 정리합니다.">
+          <div style="margin: auto; text-align: center; max-width: 900px;">
+            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 54~59</div>
+            <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
+            <p class="title-sub">PC 응급처치 • 디스크 관리(정리 vs 조각모음) <br>• IPv6 주소 • DNS & URL • OSI 7계층 • 웹 브라우저</p>
+            <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
+              <button onclick="nextSlide()"
+                style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                프레젠테이션 시작하기 ▶
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                목차 바로가기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 2 : Table of Contents -->
+        <section class="slide"
+          data-notes="학습 로드맵입니다. 54 PC 고장 유형별 응급처치, 55 디스크 관리 4대 기능 비교, 56 차세대 IPv6 주소 구조, 57 DNS와 URL 표준 표기법, 58 OSI 7계층과 네트워크 장비, 59 웹 브라우저 기능(캐싱, 쿠키) 순서로 학습합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">AGENDA & ROADMAP</div>
+                <h2 class="slide-title">핵심 학습 로드맵 (54~59)</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">54. PC 응급처치 & 증상별 대처</div>
+                <div class="card-desc">비프음 발생(그래픽카드 점검), 스풀 에러, CMOS 배터리 방전 시 조치</div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">55. 디스크 관리 4총사 (★출제 1순위)</div>
+                <div class="card-desc">디스크 검사(오류/섹터수정), 포맷(초기화/파일시스템), 정리(공간확보), 조각모음(속도향상)</div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">56. IPv6 주소 체계 & 57. 도메인·URL</div>
+                <div class="card-desc">128비트, 16비트씩 8그룹, 콜론(:) 구분, 유니/멀티/애니캐스트, 프로토콜://호스트:포트</div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">58. OSI 7계층 & 59. 웹 브라우저</div>
+                <div class="card-desc">물리-데이터링크-네트워크-전송 계층별 장비 매칭, 캐싱(임시보관 속도↑), 쿠키(로그인기억)</div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px; width: 100%;">
+                <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
+                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                  <button class="morph-btn" onclick="goTo(3)">54. PC 오류별 응급처치</button>
+                  <button class="morph-btn" onclick="goTo(4)">54. 디스크/메모리 부족</button>
+                  <button class="morph-btn" onclick="goTo(5)">55. 디스크 검사 & 포맷</button>
+                  <button class="morph-btn" onclick="goTo(6)">55. 디스크 정리 & 대상</button>
+                  <button class="morph-btn" onclick="goTo(7)">55. 조각 모음 및 최적화</button>
+                  <button class="morph-btn" onclick="goTo(8)">55. 시스템 백업 & 복원</button>
+                  <button class="morph-btn" onclick="goTo(9)">56. 차세대 IPv6 주소</button>
+                  <button class="morph-btn" onclick="goTo(10)">57. 도메인 네임 & DNS</button>
+                  <button class="morph-btn" onclick="goTo(11)">57. URL 표준 표기 형식</button>
+                  <button class="morph-btn" onclick="goTo(12)">58. OSI 7계층 & 장비</button>
+                  <button class="morph-btn" onclick="goTo(13)">59. 브라우저 캐싱 & 쿠키</button>
+                  <button class="morph-btn" onclick="goTo(14)">★ 출제 1위 핵심 요약표</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 3 : 54 PC 응급처치 -->
+        <section class="slide"
+          data-notes="54단원 PC 응급처치 핵심입니다. 부팅 시 삑-삑삑삑 같은 경고음이 반복되면 그래픽 카드가 제대로 접촉되지 않은 에러이므로 재장착해야 합니다. 스풀 에러 발생 시에는 Print Spooler 서비스를 재시작하거나 하드디스크의 스풀 임시 저장 공간을 확보해야 합니다. CMOS 설정이 자꾸 초기화되면 메인보드의 수은 배터리를 교체해야 합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 54 • HARDWARE TROUBLESHOOTING</div>
+                <h2 class="slide-title">PC 고장 증상별 <span class="hl-green">응급처치 요령</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 비프음(경고음) 발생 오류</div>
+                <div class="card-desc">
+                  • ‘삑-삑삑삑’ 연속 경고음 ➔ <span class="hl-green">그래픽 카드 접촉 불량</span> (분리 후 재장착)<br>
+                  • 길게 1번 짧게 1번 ➔ 메인보드 및 시스템 기본 점검
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 프린터 스풀(Spool) 에러</div>
+                <div class="card-desc">
+                  • 인쇄 작업이 멈추거나 먹통 발생 시 ➔ <span class="hl-green">Print Spooler 서비스 재시작</span><br>
+                  • 스풀 임시 파일이 저장되는 <strong>하드디스크 여유 공간</strong> 확보 필수
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. CMOS 설정 초기화 및 디스크 인식 불능</div>
+                <div class="card-desc">
+                  • 날짜/시간이 자꾸 초기화됨 ➔ <span class="hl-green">CMOS 배터리 교체</span><br>
+                  • 하드디스크 인식 불능 ➔ 전원 케이블, SATA 케이블 연결 및 CMOS 확인
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🛠️ 시험 단골 오류 증상 & 해결책</span>
+                  <span class="key-badge">기출 빈출</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 32%;">고장 증상</th>
+                      <th>핵심 원인 및 해결 조치</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">삑-삑삑삑 비프음</td>
+                      <td><span class="hl-green">그래픽 카드</span> 결착 불량 ➔ 재장착</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">인쇄 스풀 에러</td>
+                      <td>Print Spooler 재시작 및 디스크 여유 공간 확보</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">시간 초기화 / CMOS</td>
+                      <td><span class="hl-green">CMOS 배터리 교체</span> 및 Setup 재설정</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">하드디스크 미인식</td>
+                      <td>케이블 연결 점검, CMOS 점검, FDISK 재설정</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 4 : 54 디스크/메모리 용량 부족 -->
+        <section class="slide"
+          data-notes="디스크 용량 부족과 메모리(RAM) 용량 부족 시의 조치 구분을 시험에서 자주 묻습니다. 디스크 용량이 부족할 때는 디스크 정리를 통해 불필요한 파일을 삭제하거나 휴지통 비우기, 불필요한 앱 제거를 수행합니다. 반면 메모리(RAM)가 부족할 때는 현재 실행 중인 프로그램을 종료하거나 재부팅하고, 시작 프로그램을 줄이거나 가상 메모리 크기를 늘려야 합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 54 • RESOURCE MANAGEMENT</div>
+                <h2 class="slide-title">디스크 부족 vs <span class="hl-green">메모리 부족</span> 조치</h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">📁 디스크(저장공간) 용량 부족 시</div>
+                <div class="card-desc">
+                  • <strong>디스크 정리</strong> 수행하여 불필요한 임시 파일 영구 삭제<br>
+                  • <strong>휴지통 비우기</strong> 수행으로 용량 반환<br>
+                  • 사용하지 않는 <strong>앱(프로그램) 제거</strong> 수행
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">🧠 주기억장치(RAM) 메모리 부족 시</div>
+                <div class="card-desc">
+                  • 불필요하게 켜진 <strong>프로그램 종료</strong> 및 시스템 <strong>재부팅</strong><br>
+                  • 부팅 시 자동 실행되는 <strong>시작 프로그램 해제/삭제</strong><br>
+                  • <span class="hl-green">가상 메모리(페이징 파일) 크기 확장</span> 또는 RAM 증설
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>⚖️ 자원 부족별 대응 비교표</span>
+                  <span class="key-badge">혼동 주의</span>
+                </div>
+                <table class="styled-table" style="font-size: 13.5px; margin-top: 10px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 32%;">구분</th>
+                      <th>해결 조치</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">디스크 부족</td>
+                      <td><span class="hl-green">디스크 정리, 파일 삭제, 앱 제거</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">메모리 부족</td>
+                      <td>프로그램 종료, 시작프로그램 정리</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">가상 메모리</td>
+                      <td><span class="hl-green">메모리(RAM) 부족 시 크기 확대</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">조각 모음</td>
+                      <td><span class="warn-text">용량 확보 불가능! (속도 개선만)</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 5 : 55 디스크 검사 & 포맷 -->
+        <section class="slide"
+          data-notes="55단원 디스크 검사와 포맷입니다. 디스크 검사는 파일과 폴더의 논리적 오류와 디스크 표면의 물리적 불량 섹터를 검색하고 복구하는 기능입니다. 중요한 함정은 디스크 검사로는 바이러스 검사나 예방을 절대 할 수 없다는 점입니다. 디스크 포맷은 디스크를 초기화하고 NTFS, FAT32 같은 파일 시스템을 구축하여 데이터를 기록할 수 있게 준비하는 작업입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 55 • DISK MANAGEMENT (1)</div>
+                <h2 class="slide-title">디스크 검사 vs <span class="hl-green">디스크 포맷</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🔍 디스크 검사 (오류 검사)</div>
+                <div class="card-desc">
+                  • 디스크 표면의 <span class="hl-green">논리적·물리적 오류 및 불량 섹터</span>를 찾아 복구<br>
+                  • 손상된 클러스터를 찾아 데이터를 다른 곳으로 이동<br>
+                  • <span class="warn-text">주의: 바이러스 검사 및 예방은 절대 불가능!</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">💾 디스크 포맷 (Format)</div>
+                <div class="card-desc">
+                  • 트랙과 섹터를 만들어 <span class="hl-green">디스크를 초기화</span><br>
+                  • <strong>파일 시스템(NTFS, FAT32)</strong>을 지정하여 파일 기록 환경 구축<br>
+                  • 파티션 분할 후 반드시 포맷을 거쳐야 사용 가능
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🚨 기출 킬러 함정 포인트</span>
+                  <span class="key-badge">오답 방지</span>
+                </div>
+                <div class="info-card warning" style="margin-top:12px;">
+                  <div class="card-title">오답 선지 1위</div>
+                  <div class="card-desc">
+                    "디스크 검사를 실행하면 최신 바이러스에 감염된 파일을 탐지하여 치료할 수 있다." ➔ <span class="warn-text">완전 오답!</span><br>
+                    (바이러스 치료는 백신 프로그램 전용 기능임)
+                  </div>
+                </div>
+                <div class="info-card" style="margin-top:12px;">
+                  <div class="card-title">포맷 시 파일 시스템</div>
+                  <div class="card-desc">
+                    • <strong>NTFS</strong>: 대용량 지원, 보안 및 권한 설정, 파일 암호화 지원<br>
+                    • <strong>FAT32</strong>: 호환성 우수하나 단일 파일 4GB 제한
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 6 : 55 디스크 정리 -->
+        <section class="slide"
+          data-notes="디스크 정리 기능은 디스크의 저장 공간을 확보하기 위해 불필요한 파일들을 삭제하는 기능입니다. 디스크 정리의 대상으로는 임시 인터넷 파일, 휴지통 파일, 다운로드한 프로그램 파일, 시스템 오류 덤프 파일 등이 있습니다. 시험에서 가장 많이 나오는 함정은 '사용하지 않는 폰트(글꼴)'나 '사용하지 않는 앱(프로그램)'은 디스크 정리 대상이 아니라는 점입니다. 이들은 제어판에서 직접 삭제해야 합니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 55 • DISK MANAGEMENT (2)</div>
+                <h2 class="slide-title">디스크 정리의 <span class="hl-green">대상과 제외 항목</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🧹 디스크 정리의 핵심 목적</div>
+                <div class="card-desc">
+                  • 디스크의 불필요한 파일을 제거하여 <span class="hl-green">저장 공간(여유 공간)을 확보</span><br>
+                  • 시스템 동작에 필수적이지 않은 캐시/임시 파일을 안전하게 소거
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">✅ 디스크 정리 포함 대상</div>
+                <div class="card-desc">
+                  • <strong>임시 인터넷 파일</strong>, <strong>휴지통 파일</strong><br>
+                  • 다운로드한 프로그램 파일, 오프라인 웹 페이지<br>
+                  • 시스템 오류 메모리 덤프 파일, 설치 로그 파일
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">❌ 디스크 정리 대상이 아닌 것 (★시험 출제)</div>
+                <div class="card-desc">
+                  • <span class="warn-text">사용하지 않는 글꼴(Font)</span><br>
+                  • <span class="warn-text">사용하지 않는 응용 프로그램(앱)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🎯 정리 대상 여부 판별 퀴즈</span>
+                  <span class="key-badge">클릭 확인</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>항목</th>
+                      <th>정리 대상 여부</th>
+                      <th>비고</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>임시 인터넷 파일</td>
+                      <td class="center"><span class="hl-green">O (대상)</span></td>
+                      <td>인터넷 캐시 파일</td>
+                    </tr>
+                    <tr>
+                      <td>휴지통 파일</td>
+                      <td class="center"><span class="hl-green">O (대상)</span></td>
+                      <td>휴지통 비우기 연계</td>
+                    </tr>
+                    <tr style="background:#fff1f2;">
+                      <td style="font-weight:700; color:#e11d48;">사용 안 하는 글꼴</td>
+                      <td class="center"><span class="warn-text">X (제외)</span></td>
+                      <td>글꼴 폴더에서 직접 삭제</td>
+                    </tr>
+                    <tr style="background:#fff1f2;">
+                      <td style="font-weight:700; color:#e11d48;">사용 안 하는 앱</td>
+                      <td class="center"><span class="warn-text">X (제외)</span></td>
+                      <td>프로그램 추가/제거에서 삭제</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 7 : 55 드라이브 조각 모음 및 최적화 -->
+        <section class="slide"
+          data-notes="디스크 조각 모음 및 최적화는 시험에 무조건 출제되는 특급 주제입니다. 분산되어 저장된 파일(단편화)들을 연속된 공간으로 재배열하여 파일 접근 속도와 시스템 성능을 향상시키는 기능입니다. 가장 중요한 2가지 원칙이 있습니다. 첫째, 조각 모음을 해도 총 디스크 용량은 절대 늘어나지 않는다는 점, 둘째, CD-ROM이나 네트워크 드라이브처럼 쓰기가 불가능한 읽기 전용 매체는 수행할 수 없다는 점입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 55 • DISK OPTIMIZATION</div>
+                <h2 class="slide-title">드라이브 조각 모음 <span class="hl-green">(속도 향상)</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">⚡ 단편화 해결과 속도 개선</div>
+                <div class="card-desc">
+                  • 디스크 곳곳에 쪼개진(단편화된) 파일들을 <span class="hl-green">연속된 공간으로 재배열</span><br>
+                  • 헤더의 불필요한 이동을 줄여 <span class="hl-green">파일 접근 속도 향상</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">⚠️ 저장 용량 변화 없음 (★필수 암기)</div>
+                <div class="card-desc">
+                  • 파일을 삭제하는 것이 아니라 위치만 옮기므로 ➔ <span class="warn-text">디스크 총 용량 변화 없음!</span>
+                </div>
+              </div>
+              <div class="info-card amber">
+                <div class="card-title">🚫 수행 불가능한 드라이브</div>
+                <div class="card-desc">
+                  • <span class="hl-green">CD-ROM 드라이브</span> (읽기 전용 매체)<br>
+                  • <span class="hl-green">네트워크 드라이브</span> (원격 공유 드라이브)
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>📊 디스크 정리 vs 조각 모음 완전 정복</span>
+                  <span class="key-badge">핵심 비교</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px; margin-top: 10px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">구분</th>
+                      <th>디스크 정리</th>
+                      <th>디스크 조각 모음</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">주요 목적</td>
+                      <td><span class="hl-green">저장 공간 확보</span></td>
+                      <td>파일 접근 속도 향상</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">파일 처리</td>
+                      <td>불필요 파일 영구 삭제</td>
+                      <td><span class="hl-green">연속 공간으로 재배열</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">용량 변화</td>
+                      <td><span class="hl-green">여유 용량 증가 (O)</span></td>
+                      <td><span class="warn-text">용량 변화 없음 (X)</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">수행 대상</td>
+                      <td>임시파일, 휴지통 등</td>
+                      <td>HDD (CD-ROM/망 불가)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 8 : 55 백업 및 복원 -->
+        <section class="slide"
+          data-notes="백업과 복원입니다. 백업은 데이터 손실에 대비해 다른 저장 장치에 복사본을 만들어 두는 작업입니다. 복원은 문제가 발생했을 때 특정 복원 지점을 이용해 시스템 파일, 프로그램, 레지스트리 등을 과거의 정상 상태로 되돌리는 기능입니다. 시험에 나오는 가장 중요한 포인트는 시스템 복원을 하더라도 사용자가 작성한 개인 파일(문서, 사진 등)은 복구되거나 삭제되지 않는다는 점입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 55 • BACKUP & RESTORE</div>
+                <h2 class="slide-title">시스템 백업과 <span class="hl-green">복원 지점</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">📦 백업 (Backup)</div>
+                <div class="card-desc">
+                  • 불의의 하드웨어 손상, 바이러스 등에 대비하여 파일이나 시스템 복사본 생성<br>
+                  • 원본과 다른 드라이브나 외부 저장장치에 보관 권장
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🔄 복원 (Restore) & 복원 지점</div>
+                <div class="card-desc">
+                  • 시스템 변경 전으로 <span class="hl-green">복원 지점(Restore Point)</span>을 생성해 되돌림<br>
+                  • 시스템에 의해 자동 설정되거나 사용자가 수동 설정 가능
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">⚠️ 개인 파일 영향 없음 (기출 킬러)</div>
+                <div class="card-desc">
+                  • 시스템 복원은 <span class="warn-text">사용자의 개인 파일(문서, 사진 등)은 복구하거나 삭제하지 못함!</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🛡️ 복원 시 복구되는 항목 vs 안 되는 항목</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>구분</th>
+                      <th>영향 여부</th>
+                      <th>상세 대상</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">복원 대상 (O)</td>
+                      <td class="center"><span class="hl-green">이전 상태로 복원</span></td>
+                      <td>시스템 파일, 레지스트리, 드라이버, 설치 프로그램</td>
+                    </tr>
+                    <tr style="background:#fff1f2;">
+                      <td style="font-weight:700; color:#e11d48;">복원 제외 (X)</td>
+                      <td class="center"><span class="warn-text">영향 없음</span></td>
+                      <td>개인 문서(HWP, XLSX), 사진, 이메일, 다운로드 파일</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 9 : 56 IP 주소 & IPv6 -->
+        <section class="slide"
+          data-notes="56단원 차세대 IP 주소 체계인 IPv6입니다. 기존 IPv4(32비트)의 주소 고갈을 해결하기 위해 총 128비트로 구성되어 있습니다. 16비트씩 8개 그룹으로 나누며, 각 그룹은 콜론(:)으로 구분합니다. 4자리의 16진수로 표기하며, 연속된 0은 이중 콜론(::)으로 생략할 수 있습니다. 전송 방식은 유니캐스트, 멀티캐스트, 애니캐스트 3가지로 구성되어 있으며 브로드캐스트는 포함되지 않습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 56 • NEXT-GEN NETWORK</div>
+                <h2 class="slide-title">차세대 IP 주소 <span class="hl-green">IPv6 핵심 스펙</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 비트 수와 표기 형식</div>
+                <div class="card-desc">
+                  • <span class="hl-green">총 128비트</span> 길이 (기존 IPv4는 32비트)<br>
+                  • 16비트씩 8개 그룹으로 나뉘며 <span class="hl-green">콜론(:)</span>으로 구분<br>
+                  • 각 그룹은 4자리 <strong>16진수</strong>로 표현, 연속된 0은 생략 가능 (<code>::</code>)
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">2. 우수한 특징과 호환성</div>
+                <div class="card-desc">
+                  • IPv4와 호환성이 뛰어나며 전송 속도, 보안성(IPSec), 확장성 우수
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">3. IPv6의 3대 전송 방식</div>
+                <div class="card-desc">
+                  • <span class="hl-green">유니캐스트</span>(1:1), <span class="hl-green">멀티캐스트</span>(1:N), <span class="hl-green">애니캐스트</span>(1:가장 가까운 노드)<br>
+                  • <span class="warn-text">브로드캐스트(Broadcast) 없음!</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🌐 IPv4 vs IPv6 비교표</span>
+                  <span class="key-badge">100% 출제</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>비교 항목</th>
+                      <th>IPv4</th>
+                      <th>IPv6</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">주소 길이</td>
+                      <td>32비트</td>
+                      <td class="center"><span class="hl-green">128비트</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">구성 체계</td>
+                      <td>8비트 × 4개 부분</td>
+                      <td class="center"><span class="hl-green">16비트 × 8개 부분</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">구분 기호</td>
+                      <td>마침표 ( . )</td>
+                      <td class="center"><span class="hl-green">콜론 ( : )</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">진법 표기</td>
+                      <td>10진수</td>
+                      <td class="center">16진수</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">전송 방식</td>
+                      <td>유니/멀티/브로드</td>
+                      <td class="center"><span class="hl-green">유니/멀티/애니</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 10 : 57 도메인 네임 & DNS -->
+        <section class="slide"
+          data-notes="57단원 도메인 네임과 DNS입니다. 컴퓨터는 숫자 IP 주소를 사용하지만 사람이 외우기 어렵기 때문에 알기 쉬운 영문자로 만든 주소가 도메인 네임입니다. 전 세계 도메인 관리는 ICANN(구 InterNIC)이 담당하고 한국 국내 도메인은 KISA(한국인터넷진흥원)가 관리합니다. 그리고 사람이 입력한 문자 도메인을 컴퓨터가 인식할 수 있는 숫자 IP 주소로 상호 변환해 주는 시스템이 바로 DNS(Domain Name System)입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 57 • DOMAIN NAME & DNS</div>
+                <h2 class="slide-title">도메인 네임과 <span class="hl-green">DNS 서버</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">🔤 도메인 네임 (Domain Name)</div>
+                <div class="card-desc">
+                  • 숫자로 된 IP 주소를 사람이 기억하기 쉽도록 문자로 바꾼 인터넷 주소<br>
+                  • 전 세계 도메인 총괄 관리 ➔ <span class="hl-green">ICANN</span><br>
+                  • 대한민국 국가 도메인(.kr) 관리 ➔ <span class="hl-green">KISA (한국인터넷진흥원)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🔄 DNS (Domain Name System)</div>
+                <div class="card-desc">
+                  • 문자로 된 도메인을 컴퓨터가 통신할 수 있는 <span class="hl-green">숫자 IP 주소로 상호 변환</span><br>
+                  • 인터넷 주소창에 도메인 입력 시 DNS 서버를 거쳐 IP를 조회함
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🗺️ DNS의 변환 흐름도</span>
+                </div>
+                <div style="padding: 16px; text-align: center; background: #f8fafc; border-radius: 12px; margin-top: 12px;">
+                  <div style="font-size: 16px; font-weight: 700; color: #0284c7;">
+                    사용자 입력: <code>www.test.co.kr</code> (문자 도메인)
+                  </div>
+                  <div style="font-size: 24px; margin: 8px 0; color: #64748b;">⬇ (DNS 조회 변환)</div>
+                  <div style="font-size: 16px; font-weight: 700; color: #059669;">
+                    실제 통신: <code>211.234.120.10</code> (숫자 IP 주소)
+                  </div>
+                </div>
+                <div class="info-card amber" style="margin-top:14px;">
+                  <div class="card-title">관리 기관 암기 팁</div>
+                  <div class="card-desc">
+                    • 국제 도메인 총괄: <strong>ICANN</strong><br>
+                    • 국내 .kr 도메인: <strong>KISA</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 11 : 57 URL 표준 표기 형식 -->
+        <section class="slide"
+          data-notes="인터넷 표준 주소 체계인 URL의 표준 표기 형식입니다. 프로토콜, 호스트 서버 주소, 포트 번호, 파일 경로, 파일명의 순서로 구성됩니다. 포트 번호는 기본 포트를 사용할 때 생략할 수 있습니다. 대표적인 프로토콜로는 웹 문서를 주고받는 http와 https, 파일 전송의 ftp, 원격 접속의 telnet, 전자우편의 mailto 등이 있습니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 57 • URL STRUCTURE</div>
+                <h2 class="slide-title">URL 표준 형식과 <span class="hl-green">프로토콜 종류</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">📌 URL 표준 표기 형식</div>
+                <div class="card-desc">
+                  • <code>프로토콜://호스트 주소[:포트 번호][/경로][/파일명]</code><br>
+                  • 예시: <code>https://www.example.com:443/docs/index.html</code>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🌐 주요 프로토콜 종류</div>
+                <div class="card-desc">
+                  • <strong>http://</strong> : 일반 웹 문서 전송 (포트 80)<br>
+                  • <strong>https://</strong> : 보안 암호화 웹 전송 (포트 443)<br>
+                  • <strong>ftp://</strong> : 대용량 파일 송수신 (포트 21)<br>
+                  • <strong>telnet://</strong> : 원격지 컴퓨터 텍스트 접속 (포트 23)<br>
+                  • <strong>mailto:</strong> : 전자우편 링크
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>🔍 URL 구성 요소 분해</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>구성 요소</th>
+                      <th>예시</th>
+                      <th>설명</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">프로토콜</td>
+                      <td><code>https://</code></td>
+                      <td>통신 규약</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">호스트 주소</td>
+                      <td><code>www.test.com</code></td>
+                      <td>접속할 서버 도메인/IP</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">포트 번호</td>
+                      <td><code>:443</code></td>
+                      <td>서비스 포트 (생략 가능)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">경로/파일명</td>
+                      <td><code>/info/list.html</code></td>
+                      <td>실제 자원 경로</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 12 : 58 OSI 7계층 -->
+        <section class="slide"
+          data-notes="58단원 OSI 7계층입니다. ISO에서 서로 다른 컴퓨터 시스템 간 통신을 표준화하기 위해 만든 참조 모델입니다. 하위 계층부터 물리, 데이터링크, 네트워크, 전송, 세션, 표현, 응용 계층으로 이루어집니다. 시험에서는 각 계층에 해당하는 네트워크 장비 연결이 무조건 출제됩니다. 물리 계층은 허브와 리피터, 데이터링크 계층은 브리지와 스위치, 네트워크 계층은 라우터, 전송 계층 이상은 게이트웨이가 대응됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 58 • OSI 7 LAYERS</div>
+                <h2 class="slide-title">OSI 7계층과 <span class="hl-green">대표 네트워크 장비</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">📶 계층 순서 암기 공식 (물-데-네-전-세-표-응)</div>
+                <div class="card-desc">
+                  • 1계층 <strong>물리</strong> ➔ 2계층 <strong>데이터 링크</strong> ➔ 3계층 <strong>네트워크</strong><br>
+                  • ➔ 4계층 <strong>전송</strong> ➔ 5계층 <strong>세션</strong> ➔ 6계층 <strong>표현</strong> ➔ 7계층 <strong>응용</strong>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">🔌 계층별 대표 네트워크 장비 (★출제 1위)</div>
+                <div class="card-desc">
+                  • <strong>물리 계층</strong>: <span class="hl-green">리피터(신호 증폭), 허브</span><br>
+                  • <strong>데이터 링크 계층</strong>: <span class="hl-green">브리지, 스위치(MAC 주소 기반)</span><br>
+                  • <strong>네트워크 계층</strong>: <span class="hl-green">라우터 (최적 경로 설정)</span><br>
+                  • <strong>전송/전 계층</strong>: <span class="hl-green">게이트웨이 (서로 다른 프로토콜 연결)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>🎯 장비 매칭 1초 판별표</span>
+                  <span class="key-badge">필수 암기</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px; margin-top: 10px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">계층</th>
+                      <th style="width: 33%;">매칭 장비</th>
+                      <th>주요 기능</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">물리 계층</td>
+                      <td><span class="hl-green">리피터, 허브</span></td>
+                      <td>신호 증폭 및 다중 접속</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700; text-align:center;">데이터링크</td>
+                      <td><span class="hl-green">브리지, 스위치</span></td>
+                      <td>LAN 구간 연결/MAC 기반</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; text-align:center; color:#15803d;">네트워크</td>
+                      <td><span class="hl-green">라우터 (Router)</span></td>
+                      <td><strong>최적의 경로(Routing) 선택</strong></td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; text-align:center; color:#dc2626;">전송/응용</td>
+                      <td><span class="hl-green">게이트웨이</span></td>
+                      <td><strong>이종 프로토콜 변환 입구</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div
+                  style="font-size: 12.5px; color: #15803d; background: #f0fdf4; padding: 8px 12px; border-radius: 8px; border: 1px solid #86efac; margin-top: 10px;">
+                  💡 <strong>기출 1초 공식:</strong> '최적 경로' ➔ 라우터, '다른 프로토콜 입구' ➔ 게이트웨이
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 13 : 59 웹 브라우저 캐싱 & 쿠키 -->
+        <section class="slide"
+          data-notes="59단원 웹 브라우저의 핵심 용어입니다. 캐싱은 사용자가 방문한 웹 사이트의 임시 정보(이미지, 스타일 등)를 PC에 저장해 두었다가 재방문 시 웹 페이지를 빠르게 보여주는 기능입니다. 쿠키는 웹 사이트가 사용자의 컴퓨터에 저장하는 작은 텍스트 파일로, 로그인 아이디, 장바구니 정보 등을 기억해 자동 접속을 가능하게 합니다. 미러 사이트는 트래픽 분산을 목적으로 원본 사이트를 그대로 복제한 사이트입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">TOPIC 59 • WEB BROWSER FEATURES</div>
+                <h2 class="slide-title">웹 브라우저 <span class="hl-green">캐싱과 쿠키</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">⚡ 캐싱 (Caching)</div>
+                <div class="card-desc">
+                  • 자주 방문하는 웹 페이지의 리소스를 로컬 디스크에 임시 보관<br>
+                  • 재접속 시 서버를 거치지 않고 로컬에서 로딩하여 <span class="hl-green">웹 페이지 표시 속도 대폭 향상</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">🍪 쿠키 (Cookie)</div>
+                <div class="card-desc">
+                  • 웹 서버가 사용자의 하드디스크에 저장하는 작은 기록 파일<br>
+                  • 사용자 아이디, 장바구니, 접속 이력 등을 기억하여 <span class="hl-green">자동 로그인 및 맞춤 설정 지원</span>
+                </div>
+              </div>
+              <div class="info-card purple">
+                <div class="card-title">🪞 미러 사이트 & 포털 사이트</div>
+                <div class="card-desc">
+                  • <strong>미러 사이트</strong>: 접속 폭주를 막고 부하를 분산하기 위해 원본 사이트를 그대로 복제<br>
+                  • <strong>포털 사이트</strong>: 검색, 메일, 뉴스, 쇼핑 등을 하나로 묶어 제공하는 관문 사이트
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card">
+                <div class="morph-title">
+                  <span>📊 캐싱 vs 쿠키 핵심 비교</span>
+                  <span class="key-badge">빈출</span>
+                </div>
+                <table class="styled-table">
+                  <thead>
+                    <tr>
+                      <th>비교 항목</th>
+                      <th>캐싱 (Caching)</th>
+                      <th>쿠키 (Cookie)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">저장 내용</td>
+                      <td>웹 페이지 그래픽/데이터</td>
+                      <td>사용자 설정, 로그인 정보</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">주요 목적</td>
+                      <td class="center"><span class="hl-green">로딩 속도 향상</span></td>
+                      <td class="center"><span class="hl-green">사용자 맞춤 편의/인증</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">개인정보</td>
+                      <td>단순 페이지 리소스</td>
+                      <td>개인 식별 데이터 포함</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 14 : 출제율 1위 키워드 요약표 -->
+        <section class="slide"
+          data-notes="54단원부터 59단원까지의 기출 1순위 키워드 요약표입니다. 조각 모음은 속도 향상이며 용량 변화가 없습니다. 디스크 검사는 바이러스 검사가 불가합니다. IPv6는 128비트에 애니캐스트가 포함되며, 라우터는 3계층 최적 경로 장비입니다. 이 표에 있는 공식들은 기출 시험에서 정답으로 직결됩니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">SUMMARY & REVIEW</div>
+                <h2 class="slide-title">단원 총정리 <span class="hl-green">3D 플립 카드</span></h2>
+                <p style="font-size: 15px; color:#64748b; margin-bottom: 8px;">
+                  카드를 클릭하면 정답 키워드와 함정 판별법이 회전합니다.
+                </p>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q1. 디스크 조각 모음 시 용량 변화는?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      단편화가 해소되면 디스크의 저장 용량이 늘어날까? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A1. 정답: 변화 없음!</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      위치만 재배열하므로 저장 용량은 그대로! <strong>파일 접근 속도만 향상</strong>됩니다.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flip-container" onclick="this.classList.toggle('flipped')">
+                <div class="flipper">
+                  <div class="flip-front">
+                    <div style="font-size:13px; font-weight:800; color:#0284c7;">Q2. IPv6의 총 비트 수와 구분 기호는?</div>
+                    <div style="font-size:15px; font-weight:700; color:#1e293b; margin-top:6px;">
+                      IPv6의 비트 수와 각 부분을 나누는 기호는? (클릭하여 확인 ↺)
+                    </div>
+                  </div>
+                  <div class="flip-back">
+                    <div style="font-size:13px; font-weight:800; color:#15803d;">A2. 정답: 총 128비트 & 콜론(:)</div>
+                    <div style="font-size:14px; font-weight:600; color:#166534; margin-top:4px;">
+                      16비트씩 8개 부분, 16진수 표기, 유니/멀티/애니캐스트 지원!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 20px;">
+                <div class="morph-title">
+                  <span>🏆 기출 정답 1순위 키워드 요약표</span>
+                </div>
+                <table class="styled-table" style="font-size: 13px;">
+                  <thead>
+                    <tr>
+                      <th style="width: 25%;">단원</th>
+                      <th style="width: 35%;">핵심 주제</th>
+                      <th>기출 정답 키워드</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">55 디스크 검사</td>
+                      <td>오류 검사 범위</td>
+                      <td>논리/물리 오류 수정, <span class="warn-text">바이러스 검사 불가</span></td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                      <td style="font-weight:700; color:#15803d;">55 조각 모음</td>
+                      <td>속도 vs 용량</td>
+                      <td>연속 재배열 속도 향상, <span class="hl-green">용량 변화 없음</span></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">56 IP 주소</td>
+                      <td>IPv6 스펙</td>
+                      <td>128비트, 16비트 8그룹, 콜론(:), 애니캐스트</td>
+                    </tr>
+                    <tr style="background:#fef2f2;">
+                      <td style="font-weight:700; color:#dc2626;">58 OSI 7계층</td>
+                      <td>라우터 & 게이트웨이</td>
+                      <td>라우터(최적 경로), 게이트웨이(이종망 입구)</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">59 웹 브라우저</td>
+                      <td>캐싱 vs 쿠키</td>
+                      <td>캐싱(속도 향상), 쿠키(사용자 정보/로그인)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 15 : 기출 오답 판별 필승 공식 -->
+        <section class="slide"
+          data-notes="기출 오답 판별 필승 공식입니다. 첫째, 디스크 조각 모음에 '디스크 용량 증가'가 나오면 무조건 오답입니다. 둘째, 디스크 정리에 '글꼴 삭제'나 '앱 삭제'가 나오면 오답입니다. 셋째, IPv6 설명에 '브로드캐스트'나 '점(.)으로 구분'이 나오면 오답입니다.">
+          <div class="split-container">
+            <div class="left-col anim-left">
+              <div>
+                <div class="slide-tag">EXAM PASS STRATEGY</div>
+                <h2 class="slide-title">기출 오답 판별 <span class="hl-green">필승 공식</span></h2>
+              </div>
+              <div class="info-card">
+                <div class="card-title">1. 조각 모음 용량 함정</div>
+                <div class="card-desc">
+                  • 지문에 "디스크 조각 모음으로 여유 공간 확보" ➔ <span class="warn-text">오답! (용량 변화 없음)</span>
+                </div>
+              </div>
+              <div class="info-card warning">
+                <div class="card-title">2. 디스크 정리 대상 함정</div>
+                <div class="card-desc">
+                  • 디스크 정리 항목에 "사용하지 않는 글꼴 삭제" ➔ <span class="warn-text">오답! (정리 대상 아님)</span>
+                </div>
+              </div>
+              <div class="info-card success">
+                <div class="card-title">3. IPv6 주소 체계 함정</div>
+                <div class="card-desc">
+                  • IPv6 구분 기호가 마침표(.)이거나 브로드캐스트 언급 ➔ <span class="warn-text">오답! (콜론과 애니캐스트가 정답)</span>
+                </div>
+              </div>
+            </div>
+            <div class="right-col anim-right">
+              <div class="morph-card" style="padding: 24px;">
+                <div class="morph-title">
+                  <span>🎯 시험장 직전 핵심 체크포인트</span>
+                </div>
+                <div class="excel-morph-grid">
+                  <div class="e-cell header">문제 유형</div>
+                  <div class="e-cell header">정답 공식</div>
+                  <div class="e-cell" style="font-weight:700;">디스크 검사 바이러스</div>
+                  <div class="e-cell active-green"><strong>검사/예방 불가</strong></div>
+                  <div class="e-cell" style="font-weight:700;">조각 모음 불가 드라이브</div>
+                  <div class="e-cell active-green"><strong>CD-ROM, 네트워크 드라이브</strong></div>
+                  <div class="e-cell" style="font-weight:700;">IPv6 주소 길이</div>
+                  <div class="e-cell"><strong>128비트 (16비트 × 8)</strong></div>
+                  <div class="e-cell" style="font-weight:700;">최적의 경로 탐색</div>
+                  <div class="e-cell"><strong>라우터 (Router)</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 16 : 합격 응원 카드 -->
+        <section class="slide"
+          data-notes="수고 많으셨습니다. 54단원 PC 응급처치부터 59단원 웹 브라우저까지 핵심 내용을 모두 마스터하셨습니다. 이제 다음 10페이지인 검색 엔진과 이메일, 통신 서비스로 넘어가겠습니다. 합격을 진심으로 응원합니다!">
+          <div style="margin: auto; text-align: center; max-width: 860px;">
+            <div style="font-size: 56px; margin-bottom: 16px;">🎉</div>
+            <div class="title-badge">1과목 컴퓨터 일반 • 9페이지 완전 정복</div>
+            <h2 class="title-h1" style="font-size: 38px;">54~59단원 학습을<br><span>완벽하게 완료하셨습니다!</span></h2>
+            <p class="title-sub" style="font-size: 17px; margin-bottom: 24px;">
+              PC 응급처치, 디스크 관리(검사·정리·조각모음), IPv6 주소 스펙, OSI 7계층 장비 매칭, 웹 브라우저 캐싱과 쿠키까지 핵심 이론과 기출 함정을 마스터했습니다.
+            </p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button onclick="goTo(1)"
+                style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:10px 22px; border-radius:10px; font-weight:700; cursor:pointer; font-size:14.5px;"
+                onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">
+                첫 슬라이드로 돌아가기 ↺
+              </button>
+              <button onclick="goTo(2)"
+                style="background:#0284c7; color:#fff; border:none; padding:10px 22px; border-radius:10px; font-weight:800; cursor:pointer; font-size:14.5px; box-shadow:0 4px 12px rgba(2,132,199,0.3);"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                목차 다시 보기 📑
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <div class="speaker-notes-drawer" id="notesDrawer">
+      <div class="notes-header">
+        <div class="notes-title">
+          <span>🎙️ 발표자 강의 대본 (Speaker Script)</span>
+          <span style="font-size:12px; color:#64748b; font-weight:normal;">(단축키: N 또는 S 키로 대본창 접기/펼치기)</span>
+        </div>
+        <button class="btn-toggle-notes" onclick="toggleNotes()">대본창 접기/펼치기</button>
+      </div>
+      <div class="notes-content" id="notesContent">
+        대본이 여기에 표시됩니다.
+      </div>
+    </div>
+
+    <footer class="key-shortcuts-bar">
+      <span><kbd>◀</kbd> / <kbd>Backspace</kbd> 이전 슬라이드</span>
+      <span><kbd>▶</kbd> / <kbd>Space</kbd> / <kbd>Enter</kbd> 다음 슬라이드</span>
+      <span><kbd>N</kbd> 또는 <kbd>S</kbd> 발표자 대본창 토글</span>
+    </footer>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const curSlideNumEl = document.getElementById('curSlideNum');
+    const totalSlideNumEl = document.getElementById('totalSlideNum');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    totalSlideNumEl.textContent = String(totalSlides).padStart(2, '0');
+
+    function updateSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+
+      slides.forEach((s, idx) => {
+        s.classList.remove('active');
+        if (idx === index) {
+          s.classList.add('active');
+        }
+      });
+
+      currentSlide = index;
+      curSlideNumEl.textContent = String(currentSlide + 1).padStart(2, '0');
+
+      const notes = slides[currentSlide].getAttribute('data-notes') || '해당 슬라이드에 등록된 강의 대본이 없습니다.';
+      notesContent.innerHTML = notes;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        updateSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        updateSlide(currentSlide - 1);
+      }
+    }
+
+    function goTo(slideNumber) {
+      updateSlide(slideNumber - 1);
+    }
+
+    function toggleNotes() {
+      notesDrawer.classList.toggle('open');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N' || e.key === 's' || e.key === 'S') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        updateSlide(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        updateSlide(totalSlides - 1);
+      }
+    });
+
+    updateSlide(0);
+  </script>
+</body>
+
+</html>
