@@ -575,7 +575,7 @@
       border-radius: 9999px;
       background: #e0f2fe;
       color: #0284c7;
-      font-size: 15px;
+      font-size: 25px;
       font-weight: 800;
       margin-bottom: 20px;
       border: 1px solid #bae6fd;
@@ -663,6 +663,130 @@
       color: #1e293b;
       font-weight: 500;
     }
+
+    /* ========================================================
+       SLIDE 07: 디스크 파티션 분할 논리 구조도 직관적 스타일
+       ======================================================== */
+    .disk-diag-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .disk-hardware-box {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.04);
+    }
+
+    .disk-hw-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .disk-hw-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .disk-bar-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+    .disk-bar-segment {
+      padding: 7px 12px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .disk-bar-c {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(2, 132, 199, 0.3);
+    }
+
+    .disk-bar-d {
+      background: #7c3aed;
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.3);
+    }
+
+    .disk-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .disk-part-card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .disk-part-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .disk-part-card.card-c {
+      border-top: 4px solid #0284c7;
+    }
+
+    .disk-part-card.card-d {
+      border-top: 4px solid #7c3aed;
+    }
+
+    .disk-part-card-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .disk-part-item {
+      font-size: 12px;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1.4;
+    }
+
+    .disk-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -695,14 +819,14 @@
         <section class="slide active"
           data-notes="안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 6페이지 특강을 시작하겠습니다. 이번 36단원 연산장치부터 41단원 출력 장치까지는 하드웨어 컴퓨터 부품의 핵심 시험 영역입니다. 누산기(AC)의 연산 결과 임시 저장, 비휘발성 ROM과 휘발성 RAM의 SRAM·DRAM 비교, HDD와 SSD의 차이점, 캐시·가상·플래시·연관 메모리 등 특수 기억장치, 그리고 레이저 프린터와 해상도 단위까지 총 16개 슬라이드로 완벽 정리합니다.">
           <div style="margin: auto; text-align: center; max-width: 900px;">
-            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 36~41</div>
+            <div class="title-badge">2027 최신개정 핵심요약</div>
             <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
             <p class="title-sub">연산장치(누산기) • ROM/RAM • HDD/SSD(파티션) • 특수 기억장치(가상/캐시/연관) • 입출력 장치 완전 정복</p>
             <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
               <button onclick="nextSlide()"
                 style="background:#0284c7; color:#fff; border:none; padding:12px 28px; border-radius:10px; font-weight:800; cursor:pointer; font-size:16px; box-shadow:0 4px 14px rgba(2,132,199,0.35); transition:all 0.2s;"
                 onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                프레젠테이션 시작하기 ▶
+                강의 시작하기 ▶
               </button>
               <button onclick="goTo(2)"
                 style="background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; padding:12px 20px; border-radius:10px; font-weight:700; cursor:pointer; font-size:15px; transition:all 0.2s;"
@@ -826,7 +950,8 @@
                 </table>
                 <div
                   style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
-                  💡 <strong>기출 지문 정답</strong>: "연산 장치에서 덧셈 연산 후 그 결과를 일시적으로 저장하는 레지스터는 <strong>누산기(Accumulator)</strong>이다."
+                  💡 <strong>기출 지문 정답</strong>: "연산 장치에서 덧셈 연산 후 그 결과를 일시적으로 저장하는 레지스터는
+                  <strong>누산기(Accumulator)</strong>이다."
                 </div>
               </div>
             </div>
@@ -847,7 +972,8 @@
                 <div class="card-desc">
                   • 전원이 차단되어도 데이터가 지워지지 않는 <span class="hl-green">비휘발성 메모리</span><br>
                   • 읽기 전용, <strong>BIOS(기본 입출력 시스템), 펌웨어(Firmware)</strong> 저장<br>
-                  • <strong>EPROM</strong>: <span class="hl-green">자외선</span>으로 내용 수정 / <strong>EEPROM</strong>: <span class="hl-green">전기</span>로 내용 수정
+                  • <strong>EPROM</strong>: <span class="hl-green">자외선</span>으로 내용 수정 / <strong>EEPROM</strong>: <span
+                    class="hl-green">전기</span>로 내용 수정
                 </div>
               </div>
               <div class="info-card warning">
@@ -863,7 +989,8 @@
                 <div class="morph-title">
                   <span>💡 펌웨어(Firmware)의 정의와 특징</span>
                 </div>
-                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px; margin-top:12px; font-size:14px; line-height:1.7;">
+                <div
+                  style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:14px; margin-top:12px; font-size:14px; line-height:1.7;">
                   • <strong>성격</strong>: <span class="hl-green">하드웨어와 소프트웨어의 중간</span>적 특성<br>
                   • <strong>저장 위치</strong>: 주로 <span class="hl-green">EEPROM (플래시 ROM)</span>에 저장<br>
                   • <strong>장점</strong>: <span class="hl-green">하드웨어 교체 없이 소프트웨어 업데이트만으로 기기 성능과 기능을 향상</span>시킬 수 있음
@@ -1052,18 +1179,78 @@
               </div>
             </div>
             <div class="right-col anim-right">
-              <div class="morph-card">
+              <div class="morph-card" style="padding: 20px;">
                 <div class="morph-title">
                   <span>💽 파티션 분할 논리 구조도</span>
+                  <span style="font-size:11px; font-weight:800; color:#0284c7; background:#e0f2fe; padding:2px 8px; border-radius:6px;">물리 1개 ➔ 논리 2개 분할</span>
                 </div>
-                <div style="font-family:'JetBrains Mono', monospace; font-size:13.5px; line-height:1.75; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:16px; margin-top:12px;">
-                  [물리 디스크 1개: 1TB NVMe/SATA]<br>
-                  &nbsp;&nbsp;├─ <strong>파티션 1 (C: 드라이브)</strong><br>
-                  &nbsp;&nbsp;│&nbsp;&nbsp;• OS: Windows 11 / 파일시스템: NTFS<br>
-                  &nbsp;&nbsp;└─ <strong>파티션 2 (D: 드라이브)</strong><br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• OS: Linux Ubuntu / 파일시스템: ext4<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;• 데이터 전용 분리 보관
+
+                <div class="disk-diag-wrap">
+                  <!-- 상단: 1개의 물리 디스크 하드웨어 & 분할 바 -->
+                  <div class="disk-hardware-box">
+                    <div class="disk-hw-header">
+                      <div class="disk-hw-title">
+                        <span>🖴</span>
+                        <span>[물리 디스크 1개: 1TB NVMe/SATA]</span>
+                      </div>
+                      <span class="disk-pill" style="background:#e2e8f0; color:#475569;">전체 용량 1TB</span>
+                    </div>
+
+                    <!-- 디스크 분할 시각화 바 -->
+                    <div class="disk-bar-container">
+                      <div class="disk-bar-segment disk-bar-c">
+                        <span>파티션 1 (C:)</span>
+                        <span>500 GB (NTFS)</span>
+                      </div>
+                      <div class="disk-bar-segment disk-bar-d">
+                        <span>파티션 2 (D:)</span>
+                        <span>500 GB (ext4)</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 하단: 파티션별 상세 카드 2종 그리드 -->
+                  <div class="disk-cards-grid">
+                    <!-- 파티션 1 (C: 드라이브) -->
+                    <div class="disk-part-card card-c">
+                      <div class="disk-part-card-title">
+                        <span style="color:#0284c7;">파티션 1 (C: 드라이브)</span>
+                        <span class="disk-pill" style="background:#e0f2fe; color:#0369a1;">시스템</span>
+                      </div>
+                      <div class="disk-part-item">
+                        <span>🪟</span>
+                        <span><strong>OS</strong>: Windows 11</span>
+                      </div>
+                      <div class="disk-part-item">
+                        <span>📁</span>
+                        <span><strong>파일시스템</strong>: NTFS</span>
+                      </div>
+                      <div class="disk-part-item" style="color:#64748b; font-size:11.5px;">
+                        <span>• 기본 부팅 운영체제</span>
+                      </div>
+                    </div>
+
+                    <!-- 파티션 2 (D: 드라이브) -->
+                    <div class="disk-part-card card-d">
+                      <div class="disk-part-card-title">
+                        <span style="color:#7c3aed;">파티션 2 (D: 드라이브)</span>
+                        <span class="disk-pill" style="background:#ede9fe; color:#6d28d9;">멀티OS</span>
+                      </div>
+                      <div class="disk-part-item">
+                        <span>🐧</span>
+                        <span><strong>OS</strong>: Linux Ubuntu</span>
+                      </div>
+                      <div class="disk-part-item">
+                        <span>📁</span>
+                        <span><strong>파일시스템</strong>: ext4</span>
+                      </div>
+                      <div class="disk-part-item" style="color:#15803d; font-size:11.5px; font-weight:700;">
+                        <span>• 데이터 전용 분리 보관</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
                 <div
                   style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
                   💡 <strong>기출 지문 정답</strong>: "하나의 물리적 하드디스크를 여러 개의 논리적 파티션으로 나누어 각각 다른 운영체제를 설치할 수 있다."
@@ -1136,7 +1323,8 @@
                 </table>
                 <div
                   style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
-                  💡 <strong>기출 지문 정답</strong>: "보조기억장치의 일부를 주기억장치처럼 활용하여 주기억장치 용량보다 큰 프로그램을 실행하는 것은 <strong>가상 메모리</strong>이다."
+                  💡 <strong>기출 지문 정답</strong>: "보조기억장치의 일부를 주기억장치처럼 활용하여 주기억장치 용량보다 큰 프로그램을 실행하는 것은 <strong>가상
+                    메모리</strong>이다."
                 </div>
               </div>
             </div>
@@ -1183,7 +1371,8 @@
                 </div>
                 <div
                   style="font-size: 13.5px; color: #15803d; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #86efac; margin-top: 14px;">
-                  💡 <strong>기출 지문 정답</strong>: "기억 장치에 저장된 정보의 주소가 아닌 내용의 일부를 이용하여 접근하는 메모리는 <strong>연관 메모리(Associative Memory)</strong>이다."
+                  💡 <strong>기출 지문 정답</strong>: "기억 장치에 저장된 정보의 주소가 아닌 내용의 일부를 이용하여 접근하는 메모리는 <strong>연관 메모리(Associative
+                    Memory)</strong>이다."
                 </div>
               </div>
             </div>
@@ -1269,7 +1458,8 @@
                 <div class="card-title">1. 모니터 해상도 핵심 원리 ★</div>
                 <div class="card-desc">
                   • <strong>픽셀 (Pixel, 화소)</strong>: <span class="hl-green">화면을 구성하는 최소 단위</span><br>
-                  • <strong>해상도 (Resolution)</strong>: 픽셀 수가 많을수록 <span class="hl-green">화면이 선명해지고</span>, 상대적으로 아이콘과 텍스트의 표시 크기는 <span class="warn-text">작아짐</span>!
+                  • <strong>해상도 (Resolution)</strong>: 픽셀 수가 많을수록 <span class="hl-green">화면이 선명해지고</span>, 상대적으로 아이콘과
+                  텍스트의 표시 크기는 <span class="warn-text">작아짐</span>!
                 </div>
               </div>
               <div class="info-card success">
@@ -1277,7 +1467,8 @@
                 <div class="card-desc">
                   • <strong>레이저 프린터</strong>: 복사기 원리로 토너를 종이에 전사하는 비충격식<br>
                   • <strong>해상도 단위</strong>: <span class="hl-green">DPI (Dots Per Inch)</span> — 1인치당 인쇄 점 수<br>
-                  • <strong>속도 단위</strong>: <strong>PPM</strong> (분당 페이지 수), <span class="hl-green"><strong>IPM</strong> (ISO 표준 분당 이미지 수)</span><br>
+                  • <strong>속도 단위</strong>: <strong>PPM</strong> (분당 페이지 수), <span class="hl-green"><strong>IPM</strong>
+                    (ISO 표준 분당 이미지 수)</span><br>
                   • <strong>LPM (Lines Per Minute)</strong>: 분당 출력 줄 수 (라인 프린터)
                 </div>
               </div>
@@ -1361,36 +1552,46 @@
               <div class="flip-container" onclick="this.classList.toggle('flipped')">
                 <div class="flipper">
                   <div class="flip-front">
-                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 누산기(AC)가 기억하는 대상</div>
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 누산기(AC)가
+                      기억하는 대상</div>
                     <div style="font-size: 13.5px;">"누산기(Accumulator)는 다음에 실행될 명령어의 주소 번지를 기억하는 레지스터이다." (O / X?)</div>
                   </div>
                   <div class="flip-back">
-                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (누산기는 연산 결과 저장!)</div>
-                    <div style="font-size: 13px;">다음 명령 주소는 <strong>프로그램 카운터(PC)</strong>이며, 누산기는 <strong>'연산 결과'를 일시 저장</strong>합니다!</div>
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (누산기는 연산
+                      결과 저장!)</div>
+                    <div style="font-size: 13px;">다음 명령 주소는 <strong>프로그램 카운터(PC)</strong>이며, 누산기는 <strong>'연산 결과'를 일시
+                        저장</strong>합니다!</div>
                   </div>
                 </div>
               </div>
               <div class="flip-container" onclick="this.classList.toggle('flipped')">
                 <div class="flipper">
                   <div class="flip-front">
-                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. SRAM의 재충전 회로 필요성</div>
-                    <div style="font-size: 13.5px;">"캐시 메모리로 사용되는 SRAM은 전하 방전을 막기 위해 주기적으로 재충전(Refresh) 회로가 필요하다." (O / X?)</div>
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. SRAM의 재충전
+                      회로 필요성</div>
+                    <div style="font-size: 13.5px;">"캐시 메모리로 사용되는 SRAM은 전하 방전을 막기 위해 주기적으로 재충전(Refresh) 회로가 필요하다." (O /
+                      X?)</div>
                   </div>
                   <div class="flip-back">
-                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (재충전은 DRAM!)</div>
-                    <div style="font-size: 13px;">SRAM은 플립플롭 구조라 <strong>재충전이 필요 없으며</strong>, 재충전이 필요한 것은 <strong>DRAM</strong>입니다!</div>
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (재충전은
+                      DRAM!)</div>
+                    <div style="font-size: 13px;">SRAM은 플립플롭 구조라 <strong>재충전이 필요 없으며</strong>, 재충전이 필요한 것은
+                      <strong>DRAM</strong>입니다!</div>
                   </div>
                 </div>
               </div>
               <div class="flip-container" onclick="this.classList.toggle('flipped')">
                 <div class="flipper">
                   <div class="flip-front">
-                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. SSD의 물리적 불량 섹터</div>
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. SSD의 물리적
+                      불량 섹터</div>
                     <div style="font-size: 13.5px;">"SSD는 반도체 메모리 칩을 사용하므로 HDD와 달리 물리적인 불량 섹터가 발생하지 않는다." (O / X?)</div>
                   </div>
                   <div class="flip-back">
-                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (정확한 설명!)</div>
-                    <div style="font-size: 13px;">SSD는 모터와 헤드가 없는 반도체 저장 매체이므로 <strong>기계적 충격에 의한 불량 섹터가 없습니다</strong>!</div>
+                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (정확한
+                      설명!)</div>
+                    <div style="font-size: 13px;">SSD는 모터와 헤드가 없는 반도체 저장 매체이므로 <strong>기계적 충격에 의한 불량 섹터가 없습니다</strong>!
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1427,23 +1628,29 @@
               <div class="flip-container" onclick="this.classList.toggle('flipped')">
                 <div class="flipper">
                   <div class="flip-front">
-                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 가상 메모리의 실제 저장 공간</div>
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q1. 가상 메모리의 실제
+                      저장 공간</div>
                     <div style="font-size: 13.5px;">"가상 메모리는 CPU 내부의 고속 레지스터 공간을 활용하여 주기억장치 용량을 확장한다." (O / X?)</div>
                   </div>
                   <div class="flip-back">
-                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (보조기억장치 활용!)</div>
-                    <div style="font-size: 13px;">가상 메모리는 <strong>보조기억장치(HDD, SSD)의 일부</strong>를 주기억장치처럼 사용하는 기술입니다!</div>
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (보조기억장치
+                      활용!)</div>
+                    <div style="font-size: 13px;">가상 메모리는 <strong>보조기억장치(HDD, SSD)의 일부</strong>를 주기억장치처럼 사용하는 기술입니다!
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="flip-container" onclick="this.classList.toggle('flipped')">
                 <div class="flipper">
                   <div class="flip-front">
-                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. 연관 메모리의 검색 방식</div>
-                    <div style="font-size: 13.5px;">"연관 메모리는 저장된 주소(Address)가 아닌 내용의 일부를 이용하여 데이터를 병렬 검색한다." (O / X?)</div>
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q2. 연관 메모리의 검색
+                      방식</div>
+                    <div style="font-size: 13.5px;">"연관 메모리는 저장된 주소(Address)가 아닌 내용의 일부를 이용하여 데이터를 병렬 검색한다." (O / X?)
+                    </div>
                   </div>
                   <div class="flip-back">
-                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (정확한 설명!)</div>
+                    <div style="font-weight: 800; color: #059669; margin-bottom: 2px; font-size: 14.5px;">정답: O (정확한
+                      설명!)</div>
                     <div style="font-size: 13px;">주소가 아닌 <strong>'내용으로 검색'하는 메모리는 연관 메모리(CAM)</strong>가 유일합니다!</div>
                   </div>
                 </div>
@@ -1451,12 +1658,15 @@
               <div class="flip-container" onclick="this.classList.toggle('flipped')">
                 <div class="flipper">
                   <div class="flip-front">
-                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. 고해상도 설정 시 아이콘 크기</div>
+                    <div style="font-weight: 800; color: #0284c7; margin-bottom: 4px; font-size: 14.5px;">Q3. 고해상도 설정 시
+                      아이콘 크기</div>
                     <div style="font-size: 13.5px;">"모니터 해상도를 높게 설정할수록 화면의 글자와 아이콘의 크기는 점점 더 크게 확대된다." (O / X?)</div>
                   </div>
                   <div class="flip-back">
-                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (아이콘 크기는 작아짐!)</div>
-                    <div style="font-size: 13px;">해상도가 높아지면 화면이 선명해지고 작업 공간이 넓어지지만, <strong>아이콘과 글자는 작게 표시</strong>됩니다!</div>
+                    <div style="font-weight: 800; color: #dc2626; margin-bottom: 2px; font-size: 14.5px;">정답: X (아이콘 크기는
+                      작아짐!)</div>
+                    <div style="font-size: 13px;">해상도가 높아지면 화면이 선명해지고 작업 공간이 넓어지지만, <strong>아이콘과 글자는 작게 표시</strong>됩니다!
+                    </div>
                   </div>
                 </div>
               </div>
