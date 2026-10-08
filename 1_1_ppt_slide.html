@@ -607,7 +607,7 @@
       border-radius: 9999px;
       background: #e0f2fe;
       color: #0284c7;
-      font-size: 15px;
+      font-size: 25px;
       font-weight: 800;
       margin-bottom: 20px;
       border: 1px solid #bae6fd;
@@ -737,7 +737,7 @@
         <section class="slide active"
           data-notes="수험생 여러분 안녕하십니까. 컴퓨터활용능력 2급 필기 1과목 컴퓨터 일반의 핵심 중의 핵심인 01번 한글 Windows의 특징부터 05번 파일 탐색기까지 총정리 특강을 시작하겠습니다. Windows 운영체제의 4대 핵심 구조와 NTFS 파일 시스템, 시험 출제율 1위인 필수 단축키, 바로 가기 아이콘의 원본 삭제 법칙, 작업 표시줄 점프 목록, 그리고 파일 탐색기의 계층적 탐색 키까지 총 15개 슬라이드로 완벽 정리합니다.">
           <div style="margin: auto; text-align: center; max-width: 900px;">
-            <div class="title-badge">컴활 2급 필기 • 1과목 핵심 요약 01~05</div>
+            <div class="title-badge">2027 최신개정 핵심요약</div>
             <h1 class="title-h1"><span>컴퓨터활용능력 2급 필기</span><br>1과목 컴퓨터 일반</h1>
             <p class="title-sub">한글 Windows의 특징(GUI·선점형·PnP·NTFS)부터 필수 바로 가기 키, 바로 가기 아이콘, 작업 표시줄, 파일 탐색기까지 완벽 총정리</p>
             <div style="margin-top: 28px; display: flex; gap: 12px; justify-content: center; align-items: center;">
@@ -786,7 +786,7 @@
             <div class="right-col anim-right">
               <div class="morph-card" style="padding: 20px; width: 100%;">
                 <div style="font-size: 15px; font-weight: 800; color: #0284c7; margin-bottom: 14px;">
-                  ⚡ 원하는 토픽으로 즉시 이동 (Click Jump)
+                  ⚡ 목차 바로가기
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
                   <button class="morph-btn" onclick="goTo(3)">01. Windows 4대 특징</button>
@@ -1200,25 +1200,111 @@
               </div>
             </div>
             <div class="right-col anim-right">
-              <div class="morph-card" style="padding: 20px;">
+              <div class="morph-card" style="padding: 16px 18px;">
                 <div class="morph-title">
-                  <span>⚡ 원본 vs 바로 가기 아이콘 상관관계</span>
+                  <span>⚡ 원본 vs 바로가기 비교</span>
+                  <div style="display:flex; gap:5px;">
+                    <button class="morph-btn"
+                      style="padding:4px 8px; font-size:12px; background:#fef2f2; border-color:#fca5a5; color:#b91c1c;"
+                      onclick="simDeleteOrigin()" title="원본 파일 삭제 시뮬레이션">🗑️ 원본 삭제</button>
+                    <button class="morph-btn"
+                      style="padding:4px 8px; font-size:12px; background:#fefce8; border-color:#fde047; color:#854d0e;"
+                      onclick="simDeleteLnk()" title="바로가기 삭제 시뮬레이션">✂️ 바로가기 삭제</button>
+                    <button class="morph-btn" style="padding:4px 8px; font-size:12px; background:#f1f5f9;"
+                      onclick="simReset()" title="초기화">↺ 초기화</button>
+                  </div>
                 </div>
-                <div
-                  style="font-family:'JetBrains Mono', monospace; font-size:14.5px; font-weight:700; text-align:center; padding:18px; background:#f8fafc; border-radius:10px; border:1px solid #e2e8f0; margin-top:14px; line-height:1.8;">
-                  [원본 파일: Excel.exe (50MB)]<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│ (단순 링크 연결)<br>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>
-                  [바로 가기: Excel.lnk (1KB, ↗)]
+
+                <!-- 인터랙티브 다이어그램 영역 -->
+                <div id="simDiagramContainer"
+                  style="margin-top: 10px; display: flex; flex-direction: column; gap: 7px;">
+
+                  <!-- 1. 원본 파일 카드 -->
+                  <div id="originCard"
+                    style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #ffffff; border: 2px solid #22c55e; border-radius: 10px; box-shadow: 0 2px 6px rgba(34,197,94,0.12); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <div id="originIcon"
+                        style="width: 36px; height: 36px; background: #107c41; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 900; font-size: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: all 0.3s ease;">
+                        X
+                      </div>
+                      <div>
+                        <div id="originName"
+                          style="font-size: 14px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 6px;">
+                          Excel.exe <span
+                            style="font-size: 11px; background: #dcfce7; color: #15803d; padding: 1px 6px; border-radius: 4px; font-weight: 700;">원본
+                            파일</span>
+                        </div>
+                        <div id="originSize" style="font-size: 12px; color: #64748b; font-weight: 600;">
+                          실제 파일 용량: <strong style="color: #0369a1;">50MB</strong> (프로그램 본체)
+                        </div>
+                      </div>
+                    </div>
+                    <div id="originBadge"
+                      style="font-size: 11.5px; font-weight: 800; padding: 3px 8px; border-radius: 9999px; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">
+                      ✔ 정상 보존
+                    </div>
+                  </div>
+
+                  <!-- 2. 중앙 연결 링크 빔 -->
+                  <div id="linkBeam"
+                    style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 4px 10px; background: #f0f9ff; border: 1.5px dashed #0284c7; border-radius: 8px; transition: all 0.3s ease;">
+                    <div id="linkArrowUp" style="color: #0284c7; font-size: 13px; font-weight: 900;">▲</div>
+                    <div id="linkText"
+                      style="font-size: 12px; font-weight: 700; color: #0369a1; display: flex; align-items: center; gap: 6px;">
+                      <span>🔗</span>
+                      <span>단순 경로 링크 (C:\Program Files\Excel.exe)</span>
+                    </div>
+                    <div id="linkArrowDown" style="color: #0284c7; font-size: 13px; font-weight: 900;">▼</div>
+                  </div>
+
+                  <!-- 3. 바로 가기 아이콘 카드 -->
+                  <div id="lnkCard" onclick="clickLnkIcon()"
+                    style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #ffffff; border: 2px solid #0284c7; border-radius: 10px; box-shadow: 0 2px 6px rgba(2,132,199,0.12); cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);"
+                    title="클릭하여 바로 가기 아이콘 실행 시뮬레이션">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                      <!-- 바로가기 아이콘 (왼쪽 아래에 윈도우 스타일 화살표 ↗ 부착) -->
+                      <div style="position: relative; width: 36px; height: 36px;">
+                        <div id="lnkIcon"
+                          style="width: 36px; height: 36px; background: #107c41; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 900; font-size: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.15); transition: all 0.3s ease;">
+                          X
+                        </div>
+                        <div id="lnkArrowBadge"
+                          style="position: absolute; bottom: -3px; left: -3px; width: 16px; height: 16px; background: #ffffff; border: 1.5px solid #0284c7; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: #0284c7; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
+                          ↗
+                        </div>
+                      </div>
+                      <div>
+                        <div id="lnkName"
+                          style="font-size: 14px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 6px;">
+                          Excel.lnk <span
+                            style="font-size: 11px; background: #e0f2fe; color: #0284c7; padding: 1px 6px; border-radius: 4px; font-weight: 700;">바로
+                            가기 (.LNK)</span>
+                        </div>
+                        <div id="lnkSize" style="font-size: 12px; color: #64748b; font-weight: 600;">
+                          초소형 용량: <strong style="color: #059669;">1KB</strong> (단순 주소만 저장, 클릭 시 실행 👆)
+                        </div>
+                      </div>
+                    </div>
+                    <div id="lnkBadge"
+                      style="font-size: 11.5px; font-weight: 800; padding: 3px 8px; border-radius: 9999px; background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;">
+                      ✔ 실행 가능
+                    </div>
+                  </div>
+
                 </div>
-                <div class="excel-morph-grid" style="grid-template-columns: 140px 1fr; margin-top: 14px;">
-                  <div class="e-cell header">동작 상황</div>
-                  <div class="e-cell header">결과 및 영향</div>
-                  <div class="e-cell" style="color:#b91c1c; font-weight:800;">원본 파일 삭제</div>
-                  <div class="e-cell">바로 가기 아이콘 실행 불가 (연결 오류 창)</div>
-                  <div class="e-cell" style="color:#059669; font-weight:800;">바로 가기 삭제</div>
-                  <div class="e-cell active-green">원본 파일에 아무 영향 없음 (그대로 보존)</div>
+
+                <!-- 하단 2열 요약표 -->
+                <div class="excel-morph-grid" style="grid-template-columns: 130px 1fr; margin-top: 8px;">
+                  <div class="e-cell header" style="padding: 5px 8px; font-size: 12px;">동작 상황</div>
+                  <div class="e-cell header" style="padding: 5px 8px; font-size: 12px;">시험 정답 판별 공식</div>
+                  <div class="e-cell" style="padding: 5px 8px; font-size: 11.5px; color:#b91c1c; font-weight:800;">원본 파일
+                    삭제</div>
+                  <div class="e-cell" style="padding: 5px 8px; font-size: 11.5px;">바로 가기 아이콘 <strong>실행 불가 (연결
+                      끊김)</strong></div>
+                  <div class="e-cell" style="padding: 5px 8px; font-size: 11.5px; color:#059669; font-weight:800;">바로 가기
+                    삭제</div>
+                  <div class="e-cell active-green" style="padding: 5px 8px; font-size: 11.5px;">원본 파일은 <strong>절대 삭제 안 됨
+                      (영향 0%)</strong></div>
                 </div>
               </div>
             </div>
@@ -1795,6 +1881,168 @@
 
     function toggleNotes() {
       notesDrawer.classList.toggle('open');
+    }
+
+    // ==========================================
+    // 슬라이드 08 : 원본 vs 바로가기 아이콘 인터랙티브 시뮬레이터
+    // ==========================================
+    let simState = 'normal'; // 'normal', 'origin_deleted', 'lnk_deleted'
+
+    function simDeleteOrigin() {
+      simState = 'origin_deleted';
+      const oCard = document.getElementById('originCard');
+      const oName = document.getElementById('originName');
+      const oBadge = document.getElementById('originBadge');
+      const oIcon = document.getElementById('originIcon');
+      const beam = document.getElementById('linkBeam');
+      const lText = document.getElementById('linkText');
+      const lCard = document.getElementById('lnkCard');
+      const lBadge = document.getElementById('lnkBadge');
+      const fb = document.getElementById('simFeedback');
+
+      if (!oCard) return;
+
+      // 원본 카드 삭제 처리
+      oCard.style.borderColor = '#ef4444';
+      oCard.style.background = '#fef2f2';
+      oCard.style.opacity = '0.55';
+      oName.innerHTML = '<del style="color:#94a3b8;">Excel.exe</del> <span style="font-size:11px; background:#fee2e2; color:#b91c1c; padding:1px 6px; border-radius:4px;">❌ 원본 파일 삭제됨</span>';
+      oBadge.textContent = '❌ 삭제됨';
+      oBadge.style.background = '#fee2e2';
+      oBadge.style.color = '#b91c1c';
+      oBadge.style.borderColor = '#fca5a5';
+      oIcon.style.background = '#94a3b8';
+
+      // 연결 링크 끊김 처리
+      beam.style.borderColor = '#ef4444';
+      beam.style.background = '#fff1f2';
+      lText.innerHTML = '<span style="color:#e11d48; font-weight:800;">⚡ [연결 끊김] 가리키는 대상 파일이 존재하지 않습니다!</span>';
+      document.getElementById('linkArrowUp').style.color = '#ef4444';
+      document.getElementById('linkArrowDown').style.color = '#ef4444';
+
+      // 바로가기 카드 경고 처리
+      lCard.style.borderColor = '#f59e0b';
+      lCard.style.background = '#fffbeb';
+      lCard.style.opacity = '1';
+      lBadge.textContent = '⚠️ 실행 불가';
+      lBadge.style.background = '#fef3c7';
+      lBadge.style.color = '#b45309';
+      lBadge.style.borderColor = '#fde68a';
+
+      // 피드백 안내
+      fb.style.background = '#fff1f2';
+      fb.style.borderColor = '#fca5a5';
+      fb.innerHTML = '🚨 <strong style="color:#b91c1c;">[시험 출제 1위] 원본 삭제 시</strong>: 바로 가기 아이콘은 위치 경로를 찾지 못해 <strong>실행되지 않고 오류 창이 발생</strong>합니다! (바로 가기 아이콘을 직접 클릭해보세요)';
+    }
+
+    function simDeleteLnk() {
+      simState = 'lnk_deleted';
+      const oCard = document.getElementById('originCard');
+      const oName = document.getElementById('originName');
+      const oBadge = document.getElementById('originBadge');
+      const oIcon = document.getElementById('originIcon');
+      const beam = document.getElementById('linkBeam');
+      const lText = document.getElementById('linkText');
+      const lCard = document.getElementById('lnkCard');
+      const lBadge = document.getElementById('lnkBadge');
+      const fb = document.getElementById('simFeedback');
+
+      if (!oCard) return;
+
+      // 원본 카드는 100% 정상 및 강조
+      oCard.style.borderColor = '#16a34a';
+      oCard.style.background = '#f0fdf4';
+      oCard.style.opacity = '1';
+      oCard.style.boxShadow = '0 0 16px rgba(34,197,94,0.3)';
+      oName.innerHTML = 'Excel.exe <span style="font-size:11px; background:#dcfce7; color:#15803d; padding:1px 6px; border-radius:4px;">✔ 완전 무사 보존</span>';
+      oBadge.textContent = '✔ 원본 안전 (50MB)';
+      oBadge.style.background = '#dcfce7';
+      oBadge.style.color = '#15803d';
+      oBadge.style.borderColor = '#86efac';
+      oIcon.style.background = '#107c41';
+
+      // 연결 링크 제거
+      beam.style.borderColor = '#cbd5e1';
+      beam.style.background = '#f8fafc';
+      lText.innerHTML = '<span style="color:#64748b;">바로 가기 아이콘만 제거되었습니다.</span>';
+      document.getElementById('linkArrowUp').style.color = '#94a3b8';
+      document.getElementById('linkArrowDown').style.color = '#94a3b8';
+
+      // 바로가기 카드 삭제 처리
+      lCard.style.borderColor = '#cbd5e1';
+      lCard.style.background = '#f8fafc';
+      lCard.style.opacity = '0.35';
+      lBadge.textContent = '🗑️ 바로가기 삭제됨';
+      lBadge.style.background = '#f1f5f9';
+      lBadge.style.color = '#64748b';
+      lBadge.style.borderColor = '#cbd5e1';
+
+      // 피드백 안내
+      fb.style.background = '#f0fdf4';
+      fb.style.borderColor = '#86efac';
+      fb.innerHTML = '💡 <strong style="color:#15803d;">[시험 출제 1위] 바로 가기 삭제 시</strong>: 1KB 포인터 링크만 삭제되었을 뿐, <strong>50MB 원본 파일은 아무런 영향을 받지 않고 100% 안전하게 보존</strong>됩니다!';
+    }
+
+    function simReset() {
+      simState = 'normal';
+      const oCard = document.getElementById('originCard');
+      const oName = document.getElementById('originName');
+      const oBadge = document.getElementById('originBadge');
+      const oIcon = document.getElementById('originIcon');
+      const beam = document.getElementById('linkBeam');
+      const lText = document.getElementById('linkText');
+      const lCard = document.getElementById('lnkCard');
+      const lBadge = document.getElementById('lnkBadge');
+      const fb = document.getElementById('simFeedback');
+
+      if (!oCard) return;
+
+      oCard.style.borderColor = '#22c55e';
+      oCard.style.background = '#ffffff';
+      oCard.style.opacity = '1';
+      oCard.style.boxShadow = '0 2px 6px rgba(34,197,94,0.12)';
+      oName.innerHTML = 'Excel.exe <span style="font-size:11px; background:#dcfce7; color:#15803d; padding:1px 6px; border-radius:4px; font-weight:700;">원본 파일</span>';
+      oBadge.textContent = '✔ 정상 보존';
+      oBadge.style.background = '#dcfce7';
+      oBadge.style.color = '#15803d';
+      oBadge.style.borderColor = '#86efac';
+      oIcon.style.background = '#107c41';
+
+      beam.style.borderColor = '#0284c7';
+      beam.style.background = '#f0f9ff';
+      lText.innerHTML = '<span>🔗</span><span>단순 경로 링크 (C:\\Program Files\\Excel.exe)</span>';
+      document.getElementById('linkArrowUp').style.color = '#0284c7';
+      document.getElementById('linkArrowDown').style.color = '#0284c7';
+
+      lCard.style.borderColor = '#0284c7';
+      lCard.style.background = '#ffffff';
+      lCard.style.opacity = '1';
+      lBadge.textContent = '✔ 실행 가능';
+      lBadge.style.background = '#e0f2fe';
+      lBadge.style.color = '#0284c7';
+      lBadge.style.borderColor = '#bae6fd';
+
+      fb.style.background = '#f8fafc';
+      fb.style.borderColor = '#e2e8f0';
+      fb.innerHTML = '💡 <strong>체험 팁</strong>: 상단의 <code class="key-badge" style="font-size:11.5px;">🗑️ 원본 삭제</code> 또는 <code class="key-badge" style="font-size:11.5px;">✂️ 바로가기 삭제</code> 버튼을 눌러보세요!';
+    }
+
+    function clickLnkIcon() {
+      const fb = document.getElementById('simFeedback');
+      if (!fb) return;
+      if (simState === 'origin_deleted') {
+        fb.style.background = '#fef2f2';
+        fb.style.borderColor = '#ef4444';
+        fb.innerHTML = '⚠️ <strong style="color:#b91c1c;">[Windows 오류 발생!]</strong> "이 바로 가기가 가리키는 대상 \'Excel.exe\'을(를) 찾을 수 없습니다. 바로 가기를 삭제하시겠습니까?" ➔ <strong>원본이 없으면 실행 불가!</strong>';
+      } else if (simState === 'lnk_deleted') {
+        fb.style.background = '#f1f5f9';
+        fb.style.borderColor = '#cbd5e1';
+        fb.innerHTML = 'ℹ️ 바로 가기 아이콘이 삭제된 상태입니다. 상단의 <code class="key-badge">↺ 초기화</code> 버튼을 눌러주세요.';
+      } else {
+        fb.style.background = '#f0fdf4';
+        fb.style.borderColor = '#22c55e';
+        fb.innerHTML = '🚀 <strong>[실행 성공!]</strong> 바로 가기(1KB)를 통해 원본 프로그램 Excel.exe(50MB)가 성공적으로 실행되었습니다!';
+      }
     }
 
     // 키보드 내비게이션
